@@ -1,0 +1,4072 @@
+{
+  "backend": [
+    {
+      "tn": "3034245336",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515728",
+              "CustomerServiceRecord": {
+                "BillingName": "WILMA FERGUS",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "6513 BENTON CIR"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "ARVADA"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "CO"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "80003-4733"
+                  }
+                },
+                "BAN": "332413927",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "3034245336",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "303",
+                    "ns10:NXX": "424",
+                    "ns10:LineNumber": "5336"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "6513 BENTON CIR"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "ARVADA"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "CO"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "80003"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663957",
+                      "ProductCode": "DIRECTV",
+                      "ProductType": "Video",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "DirecTV",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2020-05-22",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false"
+                    },
+                    {
+                      "CustomerProductId": "138663958",
+                      "ProductCode": "LONG_DISTANCE",
+                      "ProductType": "Voice",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Long Distance Service",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2024-03-28",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false"
+                    },
+                    {
+                      "CustomerProductId": "138663959",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "Old",
+                      "ProductActivationDate": "2024-03-28",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "VDSL2",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "5120K",
+                        "ProvisionSpeedDown": "60128K"
+                      }
+                    },
+                    {
+                      "CustomerProductId": "138663960",
+                      "ProductCode": "POTS_RES",
+                      "ProductType": "Voice",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "POTS Residential",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2024-03-28",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false"
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA58",
+              "SourceSystem": "C2E",
+              "Territory": "L-Q"
+            }
+          },
+          "TIME_TAKEN": "6559",
+          "STATUS": "S",
+          "Average_Elapsed_Time_ms": 5786.835777,
+          "MAX_TIME": 9000,
+          "MIN_TIME": 2800
+        },
+        {
+          "SERVICE_NAME": "Health Check",
+          "RESPONSE_XML": {
+            "RxPSHealthCheckResponse": {
+              "RxSessionId": "41515728",
+              "HealthCheckInfo": {
+                "CustomerProductId": "138663959"
+              },
+              "CallReasonCode": "DVA58"
+            }
+          },
+          "TIME_TAKEN": "15137",
+          "STATUS": "S",
+          "Average_Elapsed_Time_ms": 15080.61538,
+          "MAX_TIME": 25000,
+          "MIN_TIME": 10000
+        },
+        {
+          "SERVICE_NAME": "Outage Info",
+          "RESPONSE_XML": {
+            "RxPSOutageInfoResponse": {
+              "RxSessionId": "41515728",
+              "CallReasonCode": "DVA58",
+              "EmailAddress": "TestOps@TestScrub.net",
+              "SMSNumber": {
+                "ns6:NPA": {
+                  "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                  "#text": "303"
+                },
+                "ns7:NXX": {
+                  "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                  "#text": "906"
+                },
+                "ns8:LineNumber": {
+                  "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                  "#text": "8233"
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "1295",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Ticket Info",
+          "RESPONSE_XML": {
+            "RxPSTicketInfoResponse": {
+              "RxSessionId": "41515728",
+              "CallReasonCode": "DVA58",
+              "TicketInfo": {
+                "CustomerProductId": "138663960",
+                "Ticket": {
+                  "TicketNumber": "0310629",
+                  "TicketStatus": "DISPATCH.OPN.TPA",
+                  "NativeTroubleTicketNumber": "0310629",
+                  "OriginatingSessionId": "RX38833805",
+                  "CanCompleteHandoffFlag": "true",
+                  "CanRescheduleFlag": "true",
+                  "CanCloseTicketFlag": "true",
+                  "isCompanyMiss": "false",
+                  "CompanyMissSubReasonCd": null,
+                  "SourceSystem": "LMOS",
+                  "CommitmentDateTime": {
+                    "timeInCustomerTimezone": "true",
+                    "timeZoneAbbreviation": "MDT",
+                    "#text": "07/05/25 19:01"
+                  },
+                  "CreateDateTime": {
+                    "timeInCustomerTimezone": "true",
+                    "timeZoneAbbreviation": "MDT",
+                    "#text": "07/04/25 04:16"
+                  },
+                  "AppointmentInfo": {
+                    "StartDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "07/05/25 08:00"
+                    },
+                    "EndDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "07/05/25 17:00"
+                    }
+                  },
+                  "PastDueFlag": "true",
+                  "CanBeReachedTN": {
+                    "ns6:NPA": {
+                      "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "303"
+                    },
+                    "ns7:NXX": {
+                      "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "906"
+                    },
+                    "ns8:LineNumber": {
+                      "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "8233"
+                    }
+                  }
+                }
+              },
+              "BuriedServiceWireFetchOperations": {
+                "status": "SUCCESS",
+                "DataFetchResult": {
+                  "KeyUsed": {
+                    "keyName": "Service_TN",
+                    "#text": "303-424-5336"
+                  },
+                  "ResultCode": "SUCCESS",
+                  "Message": "No dispatches were found based on the provided information."
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "2398",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Ticket Info",
+          "RESPONSE_XML": {
+            "RxPSTicketInfoResponse": {
+              "RxSessionId": "41515728",
+              "CallReasonCode": "DVA58",
+              "TicketInfo": [
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV221354",
+                    "TicketStatus": "CAN",
+                    "NativeTroubleTicketNumber": "VV221354",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "07/22/25 04:26"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "07/22/25 11:56"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV221321",
+                    "TicketStatus": "CAN",
+                    "NativeTroubleTicketNumber": "VV221321",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "05/29/25 11:21"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "06/03/25 07:20"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV221318",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV221318",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "05/29/25 07:52"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "05/29/25 13:19"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV221298",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV221298",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "05/14/25 03:40"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "05/29/25 09:46"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV221270",
+                    "TicketStatus": "CAN",
+                    "NativeTroubleTicketNumber": "VV221270",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "04/29/25 01:09"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "05/06/25 03:54"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV221253",
+                    "TicketStatus": "CAN",
+                    "NativeTroubleTicketNumber": "VV221253",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "04/01/25 08:37"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "04/28/25 04:22"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV221247",
+                    "TicketStatus": "CAN",
+                    "NativeTroubleTicketNumber": "VV221247",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "03/20/25 00:21"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "03/24/25 10:55"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV186540",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV186540",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "12/21/16 19:50"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "12/21/16 19:57"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV659947",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV659947",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "12/23/15 11:21"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "12/29/15 12:50"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV913989",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV913989",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "01/07/12 21:23"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "01/07/12 21:33"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV625659",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV625659",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "06/23/10 10:36"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "06/23/10 10:57"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV625591",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV625591",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "06/23/10 09:08"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "06/23/10 09:43"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV798969",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV798969",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "04/16/08 09:56"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "04/16/08 10:04"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV717872",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV717872",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "11/12/07 11:50"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "11/12/07 12:53"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV715686",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV715686",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "11/07/07 12:19"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "11/07/07 12:27"
+                    }
+                  }
+                }
+              ],
+              "BuriedServiceWireFetchOperations": {
+                "status": "SUCCESS",
+                "DataFetchResult": {
+                  "KeyUsed": {
+                    "keyName": "Service_TN",
+                    "#text": "303-424-5336"
+                  },
+                  "ResultCode": "SUCCESS",
+                  "Message": "No dispatches were found based on the provided information."
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "2141",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Self Help Info",
+          "RESPONSE_XML": {
+            "RxPSSelfHelpEligibiltyResponse": {
+              "RxSessionId": "41515728",
+              "CallReasonCode": "DVA58",
+              "SelfHelpCode": "Offer",
+              "ChronicCustomer": "false",
+              "RuleName": "Offer"
+            }
+          },
+          "TIME_TAKEN": "7899",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Wireless Credential Notification",
+          "RESPONSE_XML": {
+            "RxPSWirelessCredentialsNotificationResponse": {
+              "RxSessionId": "41515728"
+            }
+          },
+          "TIME_TAKEN": "246",
+          "STATUS": "F"
+        },
+        {
+          "SERVICE_NAME": "MLT Info",
+          "RESPONSE_XML": {
+            "RxPSMLTInfoResponse": {
+              "RxSessionId": "41515728",
+              "MLTDetail": {
+                "CustomerProductId": "138663960",
+                "TN": "3034245336",
+                "MLTServiceRequestType": "Initiate",
+                "RecommendationDetail": {
+                  "Recommendation": "Poll",
+                  "ResponseStatus": null,
+                  "ResponseMessage": null,
+                  "ResponseCode": "-1"
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "77",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Set POC",
+          "RESPONSE_XML": {
+            "RxPSSetPOCResponse": {
+              "RxSessionId": "41515728",
+              "CallReasonCode": "DVA58"
+            }
+          },
+          "TIME_TAKEN": "138",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Modem Reboot",
+          "RESPONSE_XML": {
+            "RxPSModemRebootResponse": {
+              "RxSessionId": "41515728",
+              "RebootDetail": {
+                "CustomerProductId": "138663959",
+                "TN": "3034245336",
+                "ModemRebootRequestType": "Initiate",
+                "RebootStatus": "Failed"
+              }
+            }
+          },
+          "TIME_TAKEN": "247",
+          "STATUS": "F"
+        },
+        {
+          "SERVICE_NAME": "Wireless Modem Info",
+          "RESPONSE_XML": {
+            "RxPSWirelessModemInfoResponse": {
+              "RxSessionId": "41515728"
+            }
+          },
+          "TIME_TAKEN": "215",
+          "STATUS": "F"
+        },
+        {
+          "SERVICE_NAME": "Close Session",
+          "RESPONSE_XML": {
+            "RxPSSessionCloseResponse": {
+              "RxSessionId": "41515728",
+              "CallReasonCode": "DVA58"
+            }
+          },
+          "TIME_TAKEN": "54",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "4045551234",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515729",
+              "CustomerServiceRecord": {
+                "BillingName": "JOHN DOE",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "123 MAIN ST"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "ATLANTA"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "GA"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "30303-1234"
+                  }
+                },
+                "BAN": "987654321",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "4045551234",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "404",
+                    "ns10:NXX": "555",
+                    "ns10:LineNumber": "1234"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "123 MAIN ST"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "ATLANTA"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "GA"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "30303"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663961",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "New",
+                      "ProductActivationDate": "2023-10-15",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "Fiber",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "100000K",
+                        "ProvisionSpeedDown": "100000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA59",
+              "SourceSystem": "C2E",
+              "Territory": "SE-A"
+            }
+          },
+          "TIME_TAKEN": "7000",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Health Check",
+          "RESPONSE_XML": {
+            "RxPSHealthCheckResponse": {
+              "RxSessionId": "41515729",
+              "HealthCheckInfo": {
+                "CustomerProductId": "138663961"
+              },
+              "CallReasonCode": "DVA59"
+            }
+          },
+          "TIME_TAKEN": "16000",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "2128889999",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515730",
+              "CustomerServiceRecord": {
+                "BillingName": "JANE SMITH",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "789 BROADWAY"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "NEW YORK"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "NY"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "10003-5678"
+                  }
+                },
+                "BAN": "112233445",
+                "CustomerType": "Business",
+                "CustomerSubType": "S",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "2128889999",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "212",
+                    "ns10:NXX": "888",
+                    "ns10:LineNumber": "9999"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "789 BROADWAY"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "NEW YORK"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "NY"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "10003"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663962",
+                      "ProductCode": "BUS_VOICE",
+                      "ProductType": "Voice",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Business Voice Service",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2021-01-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "true",
+                      "PendingOrderFlag": "false"
+                    },
+                    {
+                      "CustomerProductId": "138663963",
+                      "ProductCode": "FIBER_ETHERNET",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Fiber Ethernet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "Old",
+                      "ProductActivationDate": "2021-01-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "Ethernet",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "1000000K",
+                        "ProvisionSpeedDown": "1000000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA60",
+              "SourceSystem": "BBS",
+              "Territory": "NE-NY"
+            }
+          },
+          "TIME_TAKEN": "8000",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Ticket Info",
+          "RESPONSE_XML": {
+            "RxPSTicketInfoResponse": {
+              "RxSessionId": "41515730",
+              "CallReasonCode": "DVA60",
+              "TicketInfo": {
+                "CustomerProductId": "138663963",
+                "Ticket": {
+                  "TicketNumber": "BIZ98765",
+                  "TicketStatus": "OPEN",
+                  "NativeTroubleTicketNumber": "BIZ98765",
+                  "OriginatingSessionId": "RX38833806",
+                  "CanCompleteHandoffFlag": "true",
+                  "CanRescheduleFlag": "true",
+                  "CanCloseTicketFlag": "false",
+                  "isCompanyMiss": "false",
+                  "CompanyMissSubReasonCd": null,
+                  "SourceSystem": "NOC",
+                  "CommitmentDateTime": {
+                    "timeInCustomerTimezone": "true",
+                    "timeZoneAbbreviation": "EST",
+                    "#text": "07/30/25 10:00"
+                  },
+                  "CreateDateTime": {
+                    "timeInCustomerTimezone": "true",
+                    "timeZoneAbbreviation": "EST",
+                    "#text": "07/28/25 14:00"
+                  },
+                  "AppointmentInfo": {
+                    "StartDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "EST",
+                      "#text": "07/30/25 09:00"
+                    },
+                    "EndDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "EST",
+                      "#text": "07/30/25 12:00"
+                    }
+                  },
+                  "PastDueFlag": "false",
+                  "CanBeReachedTN": {
+                    "ns6:NPA": {
+                      "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "212"
+                    },
+                    "ns7:NXX": {
+                      "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "888"
+                    },
+                    "ns8:LineNumber": {
+                      "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "9999"
+                    }
+                  }
+                }
+              },
+              "BuriedServiceWireFetchOperations": {
+                "status": "SUCCESS",
+                "DataFetchResult": {
+                  "KeyUsed": {
+                    "keyName": "Service_TN",
+                    "#text": "212-888-9999"
+                  },
+                  "ResultCode": "SUCCESS",
+                  "Message": "No dispatches were found based on the provided information."
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "3000",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "7201112222",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515731",
+              "CustomerServiceRecord": {
+                "BillingName": "ROBERT JOHNSON",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "456 OAK AVE"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "DENVER"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "CO"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "80202-3456"
+                  }
+                },
+                "BAN": "567890123",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "7201112222",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "720",
+                    "ns10:NXX": "111",
+                    "ns10:LineNumber": "2222"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "456 OAK AVE"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "DENVER"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "CO"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "80202"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663964",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "New",
+                      "ProductActivationDate": "2024-11-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "GPON",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "50000K",
+                        "ProvisionSpeedDown": "500000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA61",
+              "SourceSystem": "C2E",
+              "Territory": "L-Q"
+            }
+          },
+          "TIME_TAKEN": "6000",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Outage Info",
+          "RESPONSE_XML": {
+            "RxPSOutageInfoResponse": {
+              "RxSessionId": "41515731",
+              "CallReasonCode": "DVA61",
+              "EmailAddress": "rjohnson@email.com",
+              "SMSNumber": {
+                "ns6:NPA": {
+                  "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                  "#text": "720"
+                },
+                "ns7:NXX": {
+                  "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                  "#text": "111"
+                },
+                "ns8:LineNumber": {
+                  "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                  "#text": "2222"
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "1500",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "6023334444",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515732",
+              "CustomerServiceRecord": {
+                "BillingName": "EMILY WHITE",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "987 PINE LN"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "PHOENIX"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "AZ"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "85001-9876"
+                  }
+                },
+                "BAN": "234567890",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "true",
+                "AccountStatus": "Suspended",
+                "CustomerSvcDetail": {
+                  "ServiceID": "6023334444",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "602",
+                    "ns10:NXX": "333",
+                    "ns10:LineNumber": "4444"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "987 PINE LN"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "PHOENIX"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "AZ"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "85001"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663965",
+                      "ProductCode": "POTS_RES",
+                      "ProductType": "Voice",
+                      "ProductStatus": "INACTIVE",
+                      "ProductDescription": "POTS Residential",
+                      "SvcDeniedNonPaymentFlag": "true",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2019-03-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false"
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA62",
+              "SourceSystem": "C2E",
+              "Territory": "SW-AZ"
+            }
+          },
+          "TIME_TAKEN": "5500",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Self Help Info",
+          "RESPONSE_XML": {
+            "RxPSSelfHelpEligibiltyResponse": {
+              "RxSessionId": "41515732",
+              "CallReasonCode": "DVA62",
+              "SelfHelpCode": "NoOffer",
+              "ChronicCustomer": "true",
+              "RuleName": "PaymentRequired"
+            }
+          },
+          "TIME_TAKEN": "7000",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "5037778888",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515733",
+              "CustomerServiceRecord": {
+                "BillingName": "DAVID GREEN",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "101 RIVER RD"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "PORTLAND"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "OR"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "97204-1010"
+                  }
+                },
+                "BAN": "345678901",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "5037778888",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "503",
+                    "ns10:NXX": "777",
+                    "ns10:LineNumber": "8888"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "101 RIVER RD"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "PORTLAND"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "OR"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "97204"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663966",
+                      "ProductCode": "IP_TV_BUNDLE",
+                      "ProductType": "Bundle",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet & TV Bundle",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2022-08-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "GPON",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "20000K",
+                        "ProvisionSpeedDown": "200000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA63",
+              "SourceSystem": "C2E",
+              "Territory": "NW-OR"
+            }
+          },
+          "TIME_TAKEN": "6800",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Modem Reboot",
+          "RESPONSE_XML": {
+            "RxPSModemRebootResponse": {
+              "RxSessionId": "41515733",
+              "RebootDetail": {
+                "CustomerProductId": "138663966",
+                "TN": "5037778888",
+                "ModemRebootRequestType": "Initiate",
+                "RebootStatus": "Success"
+              }
+            }
+          },
+          "TIME_TAKEN": "300",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "3122223333",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515734",
+              "CustomerServiceRecord": {
+                "BillingName": "SARAH BROWN",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "222 ELM ST"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "CHICAGO"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "IL"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "60606-2222"
+                  }
+                },
+                "BAN": "456789012",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "3122223333",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "312",
+                    "ns10:NXX": "222",
+                    "ns10:LineNumber": "3333"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "222 ELM ST"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "CHICAGO"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "IL"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "60606"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663967",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "Old",
+                      "ProductActivationDate": "2018-06-10",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "DSL",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "1024K",
+                        "ProvisionSpeedDown": "10240K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA64",
+              "SourceSystem": "C2E",
+              "Territory": "MW-IL"
+            }
+          },
+          "TIME_TAKEN": "6200",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Health Check",
+          "RESPONSE_XML": {
+            "RxPSHealthCheckResponse": {
+              "RxSessionId": "41515734",
+              "HealthCheckInfo": {
+                "CustomerProductId": "138663967"
+              },
+              "CallReasonCode": "DVA64"
+            }
+          },
+          "TIME_TAKEN": "14500",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "7024445555",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515735",
+              "CustomerServiceRecord": {
+                "BillingName": "MICHAEL DAVIS",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "333 DESERT DR"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "LAS VEGAS"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "NV"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "89109-3333"
+                  }
+                },
+                "BAN": "567890123",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "7024445555",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "702",
+                    "ns10:NXX": "444",
+                    "ns10:LineNumber": "5555"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "333 DESERT DR"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "LAS VEGAS"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "NV"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "89109"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663968",
+                      "ProductCode": "DIRECTV",
+                      "ProductType": "Video",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "DirecTV",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2023-01-01",
+                      "SeasonalDisconnectFlag": "true",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false"
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA65",
+              "SourceSystem": "C2E",
+              "Territory": "SW-NV"
+            }
+          },
+          "TIME_TAKEN": "6700",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Close Session",
+          "RESPONSE_XML": {
+            "RxPSSessionCloseResponse": {
+              "RxSessionId": "41515735",
+              "CallReasonCode": "DVA65"
+            }
+          },
+          "TIME_TAKEN": "60",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "5126667777",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515736",
+              "CustomerServiceRecord": {
+                "BillingName": "LINDA MILLER",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "444 LAKESIDE DR"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "AUSTIN"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "TX"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "78701-4444"
+                  }
+                },
+                "BAN": "678901234",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "5126667777",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "512",
+                    "ns10:NXX": "666",
+                    "ns10:LineNumber": "7777"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "444 LAKESIDE DR"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "AUSTIN"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "TX"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "78701"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663969",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "New",
+                      "ProductActivationDate": "2025-01-10",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "true",
+                      "AccessTechnology": "GPON",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "100000K",
+                        "ProvisionSpeedDown": "1000000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA66",
+              "SourceSystem": "C2E",
+              "Territory": "SW-TX"
+            }
+          },
+          "TIME_TAKEN": "7200",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Ticket Info",
+          "RESPONSE_XML": {
+            "RxPSTicketInfoResponse": {
+              "RxSessionId": "41515736",
+              "CallReasonCode": "DVA66",
+              "TicketInfo": {
+                "CustomerProductId": "138663969",
+                "Ticket": {
+                  "TicketNumber": "ORD12345",
+                  "TicketStatus": "PENDING_INSTALL",
+                  "NativeTroubleTicketNumber": "ORD12345",
+                  "OriginatingSessionId": "RX38833807",
+                  "CanCompleteHandoffFlag": "false",
+                  "CanRescheduleFlag": "true",
+                  "CanCloseTicketFlag": "false",
+                  "isCompanyMiss": "false",
+                  "CompanyMissSubReasonCd": null,
+                  "SourceSystem": "OMS",
+                  "CommitmentDateTime": {
+                    "timeInCustomerTimezone": "true",
+                    "timeZoneAbbreviation": "CDT",
+                    "#text": "08/05/25 13:00"
+                  },
+                  "CreateDateTime": {
+                    "timeInCustomerTimezone": "true",
+                    "timeZoneAbbreviation": "CDT",
+                    "#text": "07/28/25 11:00"
+                  },
+                  "AppointmentInfo": {
+                    "StartDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "CDT",
+                      "#text": "08/05/25 09:00"
+                    },
+                    "EndDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "CDT",
+                      "#text": "08/05/25 17:00"
+                    }
+                  },
+                  "PastDueFlag": "false",
+                  "CanBeReachedTN": {
+                    "ns6:NPA": {
+                      "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "512"
+                    },
+                    "ns7:NXX": {
+                      "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "666"
+                    },
+                    "ns8:LineNumber": {
+                      "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "7777"
+                    }
+                  }
+                }
+              },
+              "BuriedServiceWireFetchOperations": {
+                "status": "SUCCESS",
+                "DataFetchResult": {
+                  "KeyUsed": {
+                    "keyName": "Service_TN",
+                    "#text": "512-666-7777"
+                  },
+                  "ResultCode": "SUCCESS",
+                  "Message": "No dispatches were found based on the provided information."
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "2500",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "8189990000",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515737",
+              "CustomerServiceRecord": {
+                "BillingName": "CHRIS ANDERSON",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "555 SUNSET BLVD"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "LOS ANGELES"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "CA"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "90028-5555"
+                  }
+                },
+                "BAN": "789012345",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "8189990000",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "818",
+                    "ns10:NXX": "999",
+                    "ns10:LineNumber": "0000"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "555 SUNSET BLVD"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "LOS ANGELES"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "CA"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "90028"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663970",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "Old",
+                      "ProductActivationDate": "2017-02-20",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "Fiber",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "100000K",
+                        "ProvisionSpeedDown": "100000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA67",
+              "SourceSystem": "C2E",
+              "Territory": "SW-CA"
+            }
+          },
+          "TIME_TAKEN": "6900",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Modem Reboot",
+          "RESPONSE_XML": {
+            "RxPSModemRebootResponse": {
+              "RxSessionId": "41515737",
+              "RebootDetail": {
+                "CustomerProductId": "138663970",
+                "TN": "8189990000",
+                "ModemRebootRequestType": "Initiate",
+                "RebootStatus": "Failed"
+              }
+            }
+          },
+          "TIME_TAKEN": "280",
+          "STATUS": "F"
+        }
+      ]
+    },
+    {
+      "tn": "4157778888",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515738",
+              "CustomerServiceRecord": {
+                "BillingName": "PATRICIA TAYLOR",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "666 GOLDEN GATE AVE"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "SAN FRANCISCO"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "CA"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "94102-6666"
+                  }
+                },
+                "BAN": "890123456",
+                "CustomerType": "Business",
+                "CustomerSubType": "M",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "4157778888",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "415",
+                    "ns10:NXX": "777",
+                    "ns10:LineNumber": "8888"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "666 GOLDEN GATE AVE"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "SAN FRANCISCO"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "CA"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "94102"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663971",
+                      "ProductCode": "BUSINESS_BUNDLE",
+                      "ProductType": "Bundle",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Business Communications Bundle",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2020-09-15",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "true",
+                      "PendingOrderFlag": "false"
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA68",
+              "SourceSystem": "BBS",
+              "Territory": "SW-CA"
+            }
+          },
+          "TIME_TAKEN": "8500",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Wireless Credential Notification",
+          "RESPONSE_XML": {
+            "RxPSWirelessCredentialsNotificationResponse": {
+              "RxSessionId": "41515738"
+            }
+          },
+          "TIME_TAKEN": "260",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "2065551111",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515739",
+              "CustomerServiceRecord": {
+                "BillingName": "JAMES WILSON",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "777 RAINIER ST"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "SEATTLE"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "WA"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "98101-7777"
+                  }
+                },
+                "BAN": "901234567",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "2065551111",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "206",
+                    "ns10:NXX": "555",
+                    "ns10:LineNumber": "1111"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "777 RAINIER ST"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "SEATTLE"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "WA"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "98101"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663972",
+                      "ProductCode": "POTS_RES",
+                      "ProductType": "Voice",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "POTS Residential",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2015-11-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false"
+                    },
+                    {
+                      "CustomerProductId": "138663973",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "Old",
+                      "ProductActivationDate": "2015-11-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "ADSL",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "768K",
+                        "ProvisionSpeedDown": "6144K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA69",
+              "SourceSystem": "C2E",
+              "Territory": "NW-WA"
+            }
+          },
+          "TIME_TAKEN": "6400",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "MLT Info",
+          "RESPONSE_XML": {
+            "RxPSMLTInfoResponse": {
+              "RxSessionId": "41515739",
+              "MLTDetail": {
+                "CustomerProductId": "138663972",
+                "TN": "2065551111",
+                "MLTServiceRequestType": "Initiate",
+                "RecommendationDetail": {
+                  "Recommendation": "Poll",
+                  "ResponseStatus": null,
+                  "ResponseMessage": null,
+                  "ResponseCode": "-1"
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "80",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "9718889999",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515740",
+              "CustomerServiceRecord": {
+                "BillingName": "JENNIFER MOORE",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "888 FOREST AVE"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "EUGENE"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "OR"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "97401-8888"
+                  }
+                },
+                "BAN": "012345678",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "9718889999",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "971",
+                    "ns10:NXX": "888",
+                    "ns10:LineNumber": "9999"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "888 FOREST AVE"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "EUGENE"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "OR"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "97401"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663974",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "New",
+                      "ProductActivationDate": "2024-06-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "GPON",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "50000K",
+                        "ProvisionSpeedDown": "500000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA70",
+              "SourceSystem": "C2E",
+              "Territory": "NW-OR"
+            }
+          },
+          "TIME_TAKEN": "6600",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Health Check",
+          "RESPONSE_XML": {
+            "RxPSHealthCheckResponse": {
+              "RxSessionId": "41515740",
+              "HealthCheckInfo": {
+                "CustomerProductId": "138663974"
+              },
+              "CallReasonCode": "DVA70"
+            }
+          },
+          "TIME_TAKEN": "15500",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "2531112222",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515741",
+              "CustomerServiceRecord": {
+                "BillingName": "DANIEL GARCIA",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "999 VALLEY RD"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "TACOMA"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "WA"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "98402-9999"
+                  }
+                },
+                "BAN": "123456789",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "2531112222",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "253",
+                    "ns10:NXX": "111",
+                    "ns10:LineNumber": "2222"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "999 VALLEY RD"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "TACOMA"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "WA"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "98402"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663975",
+                      "ProductCode": "POTS_RES",
+                      "ProductType": "Voice",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "POTS Residential",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2021-04-05",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "true",
+                      "PendingOrderFlag": "false"
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA71",
+              "SourceSystem": "C2E",
+              "Territory": "NW-WA"
+            }
+          },
+          "TIME_TAKEN": "6300",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "MLT Info",
+          "RESPONSE_XML": {
+            "RxPSMLTInfoResponse": {
+              "RxSessionId": "41515741",
+              "MLTDetail": {
+                "CustomerProductId": "138663975",
+                "TN": "2531112222",
+                "MLTServiceRequestType": "Initiate",
+                "RecommendationDetail": {
+                  "Recommendation": "Poll",
+                  "ResponseStatus": null,
+                  "ResponseMessage": null,
+                  "ResponseCode": "-1"
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "75",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "5052223333",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515742",
+              "CustomerServiceRecord": {
+                "BillingName": "MARIA RODRIGUEZ",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "111 CANYON CT"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "ALBUQUERQUE"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "NM"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "87102-1111"
+                  }
+                },
+                "BAN": "234567890",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "5052223333",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "505",
+                    "ns10:NXX": "222",
+                    "ns10:LineNumber": "3333"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "111 CANYON CT"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "ALBUQUERQUE"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "NM"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "87102"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663976",
+                      "ProductCode": "IP_POTS_BUNDLE",
+                      "ProductType": "Bundle",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet & Phone Bundle",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2023-09-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "DSL",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "2048K",
+                        "ProvisionSpeedDown": "20480K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA72",
+              "SourceSystem": "C2E",
+              "Territory": "SW-NM"
+            }
+          },
+          "TIME_TAKEN": "7100",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Modem Reboot",
+          "RESPONSE_XML": {
+            "RxPSModemRebootResponse": {
+              "RxSessionId": "41515742",
+              "RebootDetail": {
+                "CustomerProductId": "138663976",
+                "TN": "5052223333",
+                "ModemRebootRequestType": "Initiate",
+                "RebootStatus": "Success"
+              }
+            }
+          },
+          "TIME_TAKEN": "290",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "4063334444",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515743",
+              "CustomerServiceRecord": {
+                "BillingName": "ROBERT SMITH",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "222 RANCH RD"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "BILLINGS"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "MT"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "59101-2222"
+                  }
+                },
+                "BAN": "345678901",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "4063334444",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "406",
+                    "ns10:NXX": "333",
+                    "ns10:LineNumber": "4444"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "222 RANCH RD"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "BILLINGS"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "MT"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "59101"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663977",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "Old",
+                      "ProductActivationDate": "2016-07-18",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "Fixed Wireless",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "25000K",
+                        "ProvisionSpeedDown": "100000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA73",
+              "SourceSystem": "C2E",
+              "Territory": "MT-C"
+            }
+          },
+          "TIME_TAKEN": "6100",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Outage Info",
+          "RESPONSE_XML": {
+            "RxPSOutageInfoResponse": {
+              "RxSessionId": "41515743",
+              "CallReasonCode": "DVA73",
+              "EmailAddress": "rsmith@email.com",
+              "SMSNumber": {
+                "ns6:NPA": {
+                  "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                  "#text": "406"
+                },
+                "ns7:NXX": {
+                  "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                  "#text": "333"
+                },
+                "ns8:LineNumber": {
+                  "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                  "#text": "4444"
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "1400",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "4255556666",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515744",
+              "CustomerServiceRecord": {
+                "BillingName": "AMY DAVIS",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "333 FIR ST"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "BELLEVUE"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "WA"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "98004-3333"
+                  }
+                },
+                "BAN": "456789012",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "4255556666",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "425",
+                    "ns10:NXX": "555",
+                    "ns10:LineNumber": "6666"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "333 FIR ST"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "BELLEVUE"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "WA"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "98004"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663978",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "New",
+                      "ProductActivationDate": "2025-02-15",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "GPON",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "100000K",
+                        "ProvisionSpeedDown": "1000000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA74",
+              "SourceSystem": "C2E",
+              "Territory": "NW-WA"
+            }
+          },
+          "TIME_TAKEN": "7300",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Wireless Modem Info",
+          "RESPONSE_XML": {
+            "RxPSWirelessModemInfoResponse": {
+              "RxSessionId": "41515744"
+            }
+          },
+          "TIME_TAKEN": "220",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "3076667777",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515745",
+              "CustomerServiceRecord": {
+                "BillingName": "WILLIAM WILSON",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "444 RIDGE RD"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "CHEYENNE"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "WY"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "82001-4444"
+                  }
+                },
+                "BAN": "567890123",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "3076667777",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "307",
+                    "ns10:NXX": "666",
+                    "ns10:LineNumber": "7777"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "444 RIDGE RD"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "CHEYENNE"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "WY"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "82001"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663979",
+                      "ProductCode": "POTS_RES",
+                      "ProductType": "Voice",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "POTS Residential",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2010-01-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false"
+                    },
+                    {
+                      "CustomerProductId": "138663980",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "Old",
+                      "ProductActivationDate": "2010-01-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "DSL",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "1536K",
+                        "ProvisionSpeedDown": "12288K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA75",
+              "SourceSystem": "C2E",
+              "Territory": "MT-WY"
+            }
+          },
+          "TIME_TAKEN": "6000",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "MLT Info",
+          "RESPONSE_XML": {
+            "RxPSMLTInfoResponse": {
+              "RxSessionId": "41515745",
+              "MLTDetail": {
+                "CustomerProductId": "138663979",
+                "TN": "3076667777",
+                "MLTServiceRequestType": "Initiate",
+                "RecommendationDetail": {
+                  "Recommendation": "Poll",
+                  "ResponseStatus": null,
+                  "ResponseMessage": null,
+                  "ResponseCode": "-1"
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "85",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "5097778888",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515746",
+              "CustomerServiceRecord": {
+                "BillingName": "ELIZABETH JONES",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "555 LAKE SHORE DR"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "SPOKANE"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "WA"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "99201-5555"
+                  }
+                },
+                "BAN": "678901234",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "5097778888",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "509",
+                    "ns10:NXX": "777",
+                    "ns10:LineNumber": "8888"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "555 LAKE SHORE DR"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "SPOKANE"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "WA"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "99201"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663981",
+                      "ProductCode": "DIRECTV",
+                      "ProductType": "Video",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "DirecTV",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2020-03-20",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false"
+                    },
+                    {
+                      "CustomerProductId": "138663982",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "Old",
+                      "ProductActivationDate": "2020-03-20",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "ADSL2+",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "3072K",
+                        "ProvisionSpeedDown": "25000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA76",
+              "SourceSystem": "C2E",
+              "Territory": "NW-WA"
+            }
+          },
+          "TIME_TAKEN": "6900",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Modem Reboot",
+          "RESPONSE_XML": {
+            "RxPSModemRebootResponse": {
+              "RxSessionId": "41515746",
+              "RebootDetail": {
+                "CustomerProductId": "138663982",
+                "TN": "5097778888",
+                "ModemRebootRequestType": "Initiate",
+                "RebootStatus": "Failed"
+              }
+            }
+          },
+          "TIME_TAKEN": "250",
+          "STATUS": "F"
+        }
+      ]
+    },
+    {
+      "tn": "6128889999",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515747",
+              "CustomerServiceRecord": {
+                "BillingName": "RICHARD CLARK",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "666 UNIVERSITY AVE"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "MINNEAPOLIS"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "MN"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "55414-6666"
+                  }
+                },
+                "BAN": "789012345",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "6128889999",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "612",
+                    "ns10:NXX": "888",
+                    "ns10:LineNumber": "9999"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "666 UNIVERSITY AVE"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "MINNEAPOLIS"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "MN"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "55414"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663983",
+                      "ProductCode": "POTS_RES",
+                      "ProductType": "Voice",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "POTS Residential",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2013-05-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false"
+                    },
+                    {
+                      "CustomerProductId": "138663984",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "Old",
+                      "ProductActivationDate": "2013-05-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "VDSL",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "5120K",
+                        "ProvisionSpeedDown": "40960K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA77",
+              "SourceSystem": "C2E",
+              "Territory": "MW-MN"
+            }
+          },
+          "TIME_TAKEN": "6500",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Health Check",
+          "RESPONSE_XML": {
+            "RxPSHealthCheckResponse": {
+              "RxSessionId": "41515747",
+              "HealthCheckInfo": {
+                "CustomerProductId": "138663984"
+              },
+              "CallReasonCode": "DVA77"
+            }
+          },
+          "TIME_TAKEN": "15000",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "5732223333",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515748",
+              "CustomerServiceRecord": {
+                "BillingName": "BARBARA LEWIS",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "777 FARM RD"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "COLUMBIA"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "MO"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "65201-7777"
+                  }
+                },
+                "BAN": "890123456",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "5732223333",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "573",
+                    "ns10:NXX": "222",
+                    "ns10:LineNumber": "3333"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "777 FARM RD"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "COLUMBIA"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "MO"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "65201"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663985",
+                      "ProductCode": "POTS_RES",
+                      "ProductType": "Voice",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "POTS Residential",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2012-09-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false"
+                    },
+                    {
+                      "CustomerProductId": "138663986",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "Old",
+                      "ProductActivationDate": "2012-09-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "ADSL",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "768K",
+                        "ProvisionSpeedDown": "6144K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA78",
+              "SourceSystem": "C2E",
+              "Territory": "MW-MO"
+            }
+          },
+          "TIME_TAKEN": "6200",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Close Session",
+          "RESPONSE_XML": {
+            "RxPSSessionCloseResponse": {
+              "RxSessionId": "41515748",
+              "CallReasonCode": "DVA78"
+            }
+          },
+          "TIME_TAKEN": "55",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "4025556666",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515749",
+              "CustomerServiceRecord": {
+                "BillingName": "THOMAS HALL",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "888 PRAIRIE LN"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "OMAHA"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "NE"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "68102-8888"
+                  }
+                },
+                "BAN": "901234567",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "4025556666",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "402",
+                    "ns10:NXX": "555",
+                    "ns10:LineNumber": "6666"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "888 PRAIRIE LN"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "OMAHA"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "NE"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "68102"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663987",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "New",
+                      "ProductActivationDate": "2024-12-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "GPON",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "50000K",
+                        "ProvisionSpeedDown": "500000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA79",
+              "SourceSystem": "C2E",
+              "Territory": "MW-NE"
+            }
+          },
+          "TIME_TAKEN": "7000",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Wireless Modem Info",
+          "RESPONSE_XML": {
+            "RxPSWirelessModemInfoResponse": {
+              "RxSessionId": "41515749"
+            }
+          },
+          "TIME_TAKEN": "230",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "5039990000",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515750",
+              "CustomerServiceRecord": {
+                "BillingName": "NANCY KING",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "999 OCEAN VIEW BLVD"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "ASTORIA"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "OR"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "97103-9999"
+                  }
+                },
+                "BAN": "012345678",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "5039990000",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "503",
+                    "ns10:NXX": "999",
+                    "ns10:LineNumber": "0000"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "999 OCEAN VIEW BLVD"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "ASTORIA"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "OR"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "97103"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663988",
+                      "ProductCode": "IP_TV_BUNDLE",
+                      "ProductType": "Bundle",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet & TV Bundle",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2023-01-25",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "GPON",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "20000K",
+                        "ProvisionSpeedDown": "200000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA80",
+              "SourceSystem": "C2E",
+              "Territory": "NW-OR"
+            }
+          },
+          "TIME_TAKEN": "6800",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Modem Reboot",
+          "RESPONSE_XML": {
+            "RxPSModemRebootResponse": {
+              "RxSessionId": "41515750",
+              "RebootDetail": {
+                "CustomerProductId": "138663988",
+                "TN": "5039990000",
+                "ModemRebootRequestType": "Initiate",
+                "RebootStatus": "Success"
+              }
+            }
+          },
+          "TIME_TAKEN": "310",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "9701112222",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515751",
+              "CustomerServiceRecord": {
+                "BillingName": "PAUL SCOTT",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "111 MOUNTAIN RD"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "FORT COLLINS"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "CO"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "80521-1111"
+                  }
+                },
+                "BAN": "123456789",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "9701112222",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "970",
+                    "ns10:NXX": "111",
+                    "ns10:LineNumber": "2222"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "111 MOUNTAIN RD"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "FORT COLLINS"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "CO"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "80521"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663989",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "New",
+                      "ProductActivationDate": "2025-03-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "GPON",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "100000K",
+                        "ProvisionSpeedDown": "1000000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA81",
+              "SourceSystem": "C2E",
+              "Territory": "L-Q"
+            }
+          },
+          "TIME_TAKEN": "7200",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Ticket Info",
+          "RESPONSE_XML": {
+            "RxPSTicketInfoResponse": {
+              "RxSessionId": "41515751",
+              "CallReasonCode": "DVA81",
+              "TicketInfo": {
+                "CustomerProductId": "138663989",
+                "Ticket": {
+                  "TicketNumber": "ORD67890",
+                  "TicketStatus": "PENDING_INSTALL",
+                  "NativeTroubleTicketNumber": "ORD67890",
+                  "OriginatingSessionId": "RX38833808",
+                  "CanCompleteHandoffFlag": "false",
+                  "CanRescheduleFlag": "true",
+                  "CanCloseTicketFlag": "false",
+                  "isCompanyMiss": "false",
+                  "CompanyMissSubReasonCd": null,
+                  "SourceSystem": "OMS",
+                  "CommitmentDateTime": {
+                    "timeInCustomerTimezone": "true",
+                    "timeZoneAbbreviation": "MDT",
+                    "#text": "08/10/25 15:00"
+                  },
+                  "CreateDateTime": {
+                    "timeInCustomerTimezone": "true",
+                    "timeZoneAbbreviation": "MDT",
+                    "#text": "07/28/25 10:00"
+                  },
+                  "AppointmentInfo": {
+                    "StartDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "08/10/25 13:00"
+                    },
+                    "EndDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "08/10/25 17:00"
+                    }
+                  },
+                  "PastDueFlag": "false",
+                  "CanBeReachedTN": {
+                    "ns6:NPA": {
+                      "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "970"
+                    },
+                    "ns7:NXX": {
+                      "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "111"
+                    },
+                    "ns8:LineNumber": {
+                      "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "2222"
+                    }
+                  }
+                }
+              },
+              "BuriedServiceWireFetchOperations": {
+                "status": "SUCCESS",
+                "DataFetchResult": {
+                  "KeyUsed": {
+                    "keyName": "Service_TN",
+                    "#text": "970-111-2222"
+                  },
+                  "ResultCode": "SUCCESS",
+                  "Message": "No dispatches were found based on the provided information."
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "2600",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "5032223333",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515752",
+              "CustomerServiceRecord": {
+                "BillingName": "MARTHA ADAMS",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "222 ELM ST"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "PORTLAND"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "OR"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "97205-2222"
+                  }
+                },
+                "BAN": "234567890",
+                "CustomerType": "Business",
+                "CustomerSubType": "S",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "5032223333",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "503",
+                    "ns10:NXX": "222",
+                    "ns10:LineNumber": "3333"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "222 ELM ST"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "PORTLAND"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "OR"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "97205"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663990",
+                      "ProductCode": "BUS_VOICE",
+                      "ProductType": "Voice",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Business Voice Service",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2022-11-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "true",
+                      "PendingOrderFlag": "false"
+                    },
+                    {
+                      "CustomerProductId": "138663991",
+                      "ProductCode": "FIBER_ETHERNET",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Fiber Ethernet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "Old",
+                      "ProductActivationDate": "2022-11-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "Ethernet",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "500000K",
+                        "ProvisionSpeedDown": "500000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA82",
+              "SourceSystem": "BBS",
+              "Territory": "NW-OR"
+            }
+          },
+          "TIME_TAKEN": "8200",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Ticket Info",
+          "RESPONSE_XML": {
+            "RxPSTicketInfoResponse": {
+              "RxSessionId": "41515752",
+              "CallReasonCode": "DVA82",
+              "TicketInfo": {
+                "CustomerProductId": "138663991",
+                "Ticket": {
+                  "TicketNumber": "BIZ12345",
+                  "TicketStatus": "OPEN",
+                  "NativeTroubleTicketNumber": "BIZ12345",
+                  "OriginatingSessionId": "RX38833809",
+                  "CanCompleteHandoffFlag": "true",
+                  "CanRescheduleFlag": "true",
+                  "CanCloseTicketFlag": "false",
+                  "isCompanyMiss": "false",
+                  "CompanyMissSubReasonCd": null,
+                  "SourceSystem": "NOC",
+                  "CommitmentDateTime": {
+                    "timeInCustomerTimezone": "true",
+                    "timeZoneAbbreviation": "PDT",
+                    "#text": "07/30/25 11:00"
+                  },
+                  "CreateDateTime": {
+                    "timeInCustomerTimezone": "true",
+                    "timeZoneAbbreviation": "PDT",
+                    "#text": "07/28/25 12:00"
+                  },
+                  "AppointmentInfo": {
+                    "StartDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "PDT",
+                      "#text": "07/30/25 08:00"
+                    },
+                    "EndDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "PDT",
+                      "#text": "07/30/25 16:00"
+                    }
+                  },
+                  "PastDueFlag": "false",
+                  "CanBeReachedTN": {
+                    "ns6:NPA": {
+                      "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "503"
+                    },
+                    "ns7:NXX": {
+                      "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "222"
+                    },
+                    "ns8:LineNumber": {
+                      "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "3333"
+                    }
+                  }
+                }
+              },
+              "BuriedServiceWireFetchOperations": {
+                "status": "SUCCESS",
+                "DataFetchResult": {
+                  "KeyUsed": {
+                    "keyName": "Service_TN",
+                    "#text": "503-222-3333"
+                  },
+                  "ResultCode": "SUCCESS",
+                  "Message": "No dispatches were found based on the provided information."
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "3100",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "3035551212",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515753",
+              "CustomerServiceRecord": {
+                "BillingName": "ROBERT JOHNSON",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "100 PINE ST"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "BOULDER"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "CO"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "80302-1212"
+                  }
+                },
+                "BAN": "332413928",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "3035551212",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "303",
+                    "ns10:NXX": "555",
+                    "ns10:LineNumber": "1212"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "100 PINE ST"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "BOULDER"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "CO"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "80302"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663992",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "Old",
+                      "ProductActivationDate": "2024-01-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "VDSL2",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "10240K",
+                        "ProvisionSpeedDown": "100000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA83",
+              "SourceSystem": "C2E",
+              "Territory": "L-Q"
+            }
+          },
+          "TIME_TAKEN": "6600",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Health Check",
+          "RESPONSE_XML": {
+            "RxPSHealthCheckResponse": {
+              "RxSessionId": "41515753",
+              "HealthCheckInfo": {
+                "CustomerProductId": "138663992"
+              },
+              "CallReasonCode": "DVA83"
+            }
+          },
+          "TIME_TAKEN": "15200",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "4041112222",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515754",
+              "CustomerServiceRecord": {
+                "BillingName": "MARIA GARCIA",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "200 PEACHTREE RD"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "ATLANTA"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "GA"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "30309-2222"
+                  }
+                },
+                "BAN": "987654322",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "4041112222",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "404",
+                    "ns10:NXX": "111",
+                    "ns10:LineNumber": "2222"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "200 PEACHTREE RD"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "ATLANTA"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "GA"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "30309"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663993",
+                      "ProductCode": "DIRECTV",
+                      "ProductType": "Video",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "DirecTV",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2021-08-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false"
+                    },
+                    {
+                      "CustomerProductId": "138663994",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "Old",
+                      "ProductActivationDate": "2021-08-01",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "Fiber",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "10000K",
+                        "ProvisionSpeedDown": "100000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA84",
+              "SourceSystem": "C2E",
+              "Territory": "SE-A"
+            }
+          },
+          "TIME_TAKEN": "6800",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Outage Info",
+          "RESPONSE_XML": {
+            "RxPSOutageInfoResponse": {
+              "RxSessionId": "41515754",
+              "CallReasonCode": "DVA84",
+              "EmailAddress": "m.garcia@email.com",
+              "SMSNumber": {
+                "ns6:NPA": {
+                  "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                  "#text": "404"
+                },
+                "ns7:NXX": {
+                  "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                  "#text": "111"
+                },
+                "ns8:LineNumber": {
+                  "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                  "#text": "2222"
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "1350",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "2123334444",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515755",
+              "CustomerServiceRecord": {
+                "BillingName": "WILLIAM BROWN",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "300 PARK AVE"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "NEW YORK"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "NY"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "10022-3333"
+                  }
+                },
+                "BAN": "112233446",
+                "CustomerType": "Business",
+                "CustomerSubType": "L",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "2123334444",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "212",
+                    "ns10:NXX": "333",
+                    "ns10:LineNumber": "4444"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "300 PARK AVE"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "NEW YORK"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "NY"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "10022"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663995",
+                      "ProductCode": "BUSINESS_VOICE_TRUNK",
+                      "ProductType": "Voice",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Business Voice Trunk",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2019-06-15",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "true",
+                      "PendingOrderFlag": "false"
+                    },
+                    {
+                      "CustomerProductId": "138663996",
+                      "ProductCode": "MPLS",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "MPLS Service",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "Old",
+                      "ProductActivationDate": "2019-06-15",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "Fiber",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "1000000K",
+                        "ProvisionSpeedDown": "1000000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA85",
+              "SourceSystem": "BBS",
+              "Territory": "NE-NY"
+            }
+          },
+          "TIME_TAKEN": "9000",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Ticket Info",
+          "RESPONSE_XML": {
+            "RxPSTicketInfoResponse": {
+              "RxSessionId": "41515755",
+              "CallReasonCode": "DVA85",
+              "TicketInfo": {
+                "CustomerProductId": "138663996",
+                "Ticket": {
+                  "TicketNumber": "BIZ23456",
+                  "TicketStatus": "CLOSED",
+                  "NativeTroubleTicketNumber": "BIZ23456",
+                  "OriginatingSessionId": "RX38833810",
+                  "CanCompleteHandoffFlag": "false",
+                  "CanRescheduleFlag": "false",
+                  "CanCloseTicketFlag": "true",
+                  "isCompanyMiss": "false",
+                  "CompanyMissSubReasonCd": null,
+                  "SourceSystem": "NOC",
+                  "CommitmentDateTime": {
+                    "timeInCustomerTimezone": "true",
+                    "timeZoneAbbreviation": "EST",
+                    "#text": "07/20/25 17:00"
+                  },
+                  "CreateDateTime": {
+                    "timeInCustomerTimezone": "true",
+                    "timeZoneAbbreviation": "EST",
+                    "#text": "07/18/25 09:00"
+                  },
+                  "AppointmentInfo": {
+                    "StartDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "EST",
+                      "#text": "07/20/25 10:00"
+                    },
+                    "EndDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "EST",
+                      "#text": "07/20/25 16:00"
+                    }
+                  },
+                  "PastDueFlag": "false",
+                  "CanBeReachedTN": {
+                    "ns6:NPA": {
+                      "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "212"
+                    },
+                    "ns7:NXX": {
+                      "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "333"
+                    },
+                    "ns8:LineNumber": {
+                      "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "4444"
+                    }
+                  }
+                }
+              },
+              "BuriedServiceWireFetchOperations": {
+                "status": "SUCCESS",
+                "DataFetchResult": {
+                  "KeyUsed": {
+                    "keyName": "Service_TN",
+                    "#text": "212-333-4444"
+                  },
+                  "ResultCode": "SUCCESS",
+                  "Message": "No dispatches were found based on the provided information."
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "3200",
+          "STATUS": "S"
+        }
+      ]
+    },
+    {
+      "tn": "7209990000",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515756",
+              "CustomerServiceRecord": {
+                "BillingName": "LINDA THOMAS",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "400 MOUNTAIN VIEW DR"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "LAKEWOOD"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "CO"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "80215-4444"
+                  }
+                },
+                "BAN": "567890124",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "7209990000",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "720",
+                    "ns10:NXX": "999",
+                    "ns10:LineNumber": "0000"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "400 MOUNTAIN VIEW DR"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "LAKEWOOD"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "CO"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "80215"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663997",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "New",
+                      "ProductActivationDate": "2024-05-10",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "GPON",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "50000K",
+                        "ProvisionSpeedDown": "500000K"
+                      }
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA86",
+              "SourceSystem": "C2E",
+              "Territory": "L-Q"
+            }
+          },
+          "TIME_TAKEN": "6500",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Health Check",
+          "RESPONSE_XML": {
+            "RxPSHealthCheckResponse": {
+              "RxSessionId": "41515756",
+              "HealthCheckInfo": {
+                "CustomerProductId": "138663997"
+              },
+              "CallReasonCode": "DVA86"
+            }
+          },
+          "TIME_TAKEN": "15300",
+          "STATUS": "S"
+        }
+      ]
+    }
+  ]
+}

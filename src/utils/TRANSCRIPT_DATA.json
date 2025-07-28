@@ -1,0 +1,2027 @@
+[
+  {
+    "conversation_id": "conversation_1",
+    "issue_category": "General Billing Inquiry",
+    "interactions": [
+      {
+        "speaker": "Agent",
+        "timestamp": "10:31:18",
+        "text": "Of course, I'd be happy to help you with that. Let me pull up your account."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:31:25",
+        "text": "I see a charge for $89.99 that I don't recognize."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:31:32",
+        "text": "I can see that charge here. It appears to be for the premium service upgrade from last month."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:31:40",
+        "text": "Premium service upgrade? I don't recall authorizing any upgrade."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:31:48",
+        "text": "Let me check the details. It looks like it was activated on June 15th."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:31:55",
+        "text": "June 15th? That doesn't sound right. I've been on the basic plan for years."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:32:02",
+        "text": "Understood. The system indicates an upgrade request was processed from your account."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:32:10",
+        "text": "Is there a way to see how it was requested? Like, if it was online or by phone?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:32:18",
+        "text": "One moment, please. Yes, it shows here it was an online request."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:32:25",
+        "text": "Online? I definitely didn't do that. Could someone else have accessed my account?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:32:33",
+        "text": "It's possible. We can investigate that further. Would you like to dispute this charge?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:32:40",
+        "text": "Yes, absolutely. I want this charge removed."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:32:47",
+        "text": "Alright, I'm initiating a dispute for the $89.99 charge. It will take 3-5 business days to process."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:32:55",
+        "text": "And what about the premium service? Is it still active?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:33:02",
+        "text": "No, I've downgraded your account back to the basic service, effective immediately."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:33:10",
+        "text": "Thank you. And will I get a confirmation email for the dispute?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:33:17",
+        "text": "Yes, you'll receive an email confirmation within the next hour detailing the dispute and the downgrade."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:33:25",
+        "text": "Okay, great. Is there anything else I need to do?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:33:32",
+        "text": "Not at this time. We'll notify you once the dispute is resolved. Is there anything else I can assist you with today?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:33:40",
+        "text": "No, that's all for now. Thanks for your help."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:33:47",
+        "text": "You're welcome. Have a good day."
+      }
+    ],
+    "telecom_relevance": "Billing dispute for a service upgrade, common in telecom."
+  },
+  {
+    "conversation_id": "conversation_2",
+    "issue_category": "Internet Cancel",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "10:34:00",
+        "text": "Hello, I'm calling about a recent charge."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:34:05",
+        "text": "Certainly, what is the charge you are inquiring about?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:34:12",
+        "text": "It's for $25.99 on my statement, dated July 20th."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:34:18",
+        "text": "Let me look that up for you. One moment."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:34:25",
+        "text": "I see a charge for 'Monthly Subscription Fee' on July 20th."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:34:32",
+        "text": "Monthly subscription? I thought I cancelled that service months ago."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:34:39",
+        "text": "According to our records, the last cancellation request was not fully processed."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:34:47",
+        "text": "That's frustrating. I distinctly remember calling to cancel."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:34:54",
+        "text": "I apologize for the inconvenience. Would you like me to process the cancellation now?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:35:01",
+        "text": "Yes, please. And can I get a refund for this charge?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:35:08",
+        "text": "I can definitely process the cancellation for you right away. Regarding the refund, let me check our policy for previously uncancelled subscriptions."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:35:16",
+        "text": "Typically, we offer refunds for up to 30 days post-charge if the service wasn't used."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:35:24",
+        "text": "I haven't used the service at all since I thought it was cancelled."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:35:31",
+        "text": "Understood. In that case, I can issue a full refund for the $25.99 charge."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:35:38",
+        "text": "Perfect, thank you so much."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:35:45",
+        "text": "The refund will be processed to your original payment method within 5-7 business days. You will also receive a confirmation email for the cancellation."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:35:53",
+        "text": "Excellent. Is there anything else required from my end?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:36:00",
+        "text": "No, that's all. Your subscription is cancelled and the refund is initiated. Is there anything further I can assist with?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:36:07",
+        "text": "No, I think that covers everything. Thanks for your help."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:36:14",
+        "text": "You're most welcome. Have a good day."
+      }
+    ],
+    "telecom_relevance": "Cancellation and refund for a monthly subscription, a core telecom issue."
+  },
+  {
+    "conversation_id": "conversation_3",
+    "issue_category": "Internet Out",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "10:40:05",
+        "text": "My internet is completely down. I can't connect to anything."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:40:12",
+        "text": "I'm sorry to hear that. Let me check for outages in your area. Can I get your account number or address?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:40:20",
+        "text": "It's 123 Main Street, Anytown. Account is XA7890."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:40:28",
+        "text": "Thank you. I see a reported outage affecting your neighborhood. Our technicians are working to restore service."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:40:35",
+        "text": "Any idea when it will be back up? I work from home."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:40:42",
+        "text": "The estimated restoration time is within the next 2-4 hours. We'll send you a text update."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:40:49",
+        "text": "Okay, thank you for the update."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:40:55",
+        "text": "You're welcome. Is there anything else I can assist you with today?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:41:00",
+        "text": "No, that's all."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:41:05",
+        "text": "Alright, have a good day."
+      }
+    ],
+    "telecom_relevance": "Direct report of internet outage, leading to outage inquiry."
+  },
+  {
+    "conversation_id": "conversation_4",
+    "issue_category": "Wi-Fi Extender",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "10:45:10",
+        "text": "My Wi-Fi signal is really weak in my bedroom. Do you offer range extenders?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:45:18",
+        "text": "Yes, we do. We have powerful Wi-Fi extenders that can boost your signal throughout your home. Would you like more information?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:45:25",
+        "text": "How much do they cost and how do I get one?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:45:32",
+        "text": "They are $5 a month to lease, or you can purchase one outright for $99. We can ship it to you or schedule a tech visit for installation."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:45:40",
+        "text": "I think I'll lease one. Can you send it to me?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:45:47",
+        "text": "Certainly. I've placed an order for a Wi-Fi extender. It should arrive in 3-5 business days."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:45:55",
+        "text": "Do I need to do anything special to set it up?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:46:02",
+        "text": "It comes with easy setup instructions. You'll just need to plug it in halfway between your router and bedroom, then follow the app setup process."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:46:09",
+        "text": "Sounds simple enough. Will it work with my current router?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:46:16",
+        "text": "Yes, our extenders are compatible with all our provided routers. You should see a significant improvement in signal strength."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:46:23",
+        "text": "Perfect. And the monthly charge will appear on my regular bill?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:46:30",
+        "text": "That's correct. The $5 monthly fee will be added to your next billing cycle. You'll receive an email confirmation shortly."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:46:37",
+        "text": "Great, thanks for your help."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:46:42",
+        "text": "You're welcome. Is there anything else I can assist you with today?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:46:47",
+        "text": "No, that covers everything."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:46:52",
+        "text": "Excellent. Have a great day, and enjoy your improved Wi-Fi coverage!"
+      }
+    ],
+    "telecom_relevance": "Inquiry and order for a Wi-Fi extender, a common add-on for telecom internet services."
+  },
+  {
+    "conversation_id": "conversation_5",
+    "issue_category": "Transfer Services",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "10:50:00",
+        "text": "Hi, I'm moving next month and need to transfer my internet service."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:50:07",
+        "text": "Congratulations on your move! I can definitely help with that. What's your new address?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:50:15",
+        "text": "It's 456 Oak Avenue, New City. I'm moving on August 15th."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:50:22",
+        "text": "Alright. I'm checking service availability at your new address. Good news, it's serviceable."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:50:29",
+        "text": "Great! Will my current plan and equipment transfer over?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:50:36",
+        "text": "Yes, your current plan will transfer. We'll need to schedule an installation at your new home."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:50:43",
+        "text": "Okay, what's the earliest appointment?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:50:50",
+        "text": "We have an opening on August 16th, between 9 AM and 1 PM."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:50:58",
+        "text": "That works perfectly. Please book it."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:51:05",
+        "text": "Consider it done. You'll receive a confirmation email shortly. Is there anything else I can assist you with regarding your move?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:51:12",
+        "text": "No, that's everything. Thanks."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:51:18",
+        "text": "You're welcome. Have a great day!"
+      }
+    ],
+    "telecom_relevance": "Customer requesting to transfer internet service due to relocation, a common telecom service request."
+  },
+  {
+    "conversation_id": "conversation_6",
+    "issue_category": "Customer Outage Inquiry",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "10:55:00",
+        "text": "Is there an outage in my area? My TV is showing no signal."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:55:08",
+        "text": "Let me check for you. Can I get your address?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:55:15",
+        "text": "789 Pine Street, Smallville."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:55:22",
+        "text": "Thank you. I'm not seeing any widespread outages reported for your specific address right now. Have you tried restarting your cable box?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:55:30",
+        "text": "Yes, I did that twice. Still nothing."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:55:37",
+        "text": "Alright, it seems to be an isolated issue. Let me walk you through a few more troubleshooting steps before scheduling a technician."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:55:45",
+        "text": "Sure, I'm willing to try anything."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:55:52",
+        "text": "Can you check if all the cables are securely connected to your cable box and TV? Sometimes they can work loose."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:55:59",
+        "text": "Let me check... Yes, they all seem tight and secure."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:56:06",
+        "text": "Okay. Do you see any lights on your cable box, and if so, what color are they?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:56:13",
+        "text": "There's a red light on the front. Is that bad?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:56:20",
+        "text": "A red light usually indicates a signal issue. Let me run a signal test from our end to your cable box."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:56:27",
+        "text": "Okay, go ahead."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:56:34",
+        "text": "I'm seeing very low signal levels to your box. This suggests an issue with the line coming to your home. I'll need to schedule a technician to investigate."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:56:41",
+        "text": "How soon can someone come out?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:56:48",
+        "text": "We have an opening tomorrow afternoon between 1 PM and 5 PM. The technician will check your outdoor connections and signal levels."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:56:55",
+        "text": "That works for me. Please schedule it."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:57:02",
+        "text": "Perfect. I've scheduled the technician visit. You'll receive a confirmation text with the appointment details and the technician's contact number."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:57:09",
+        "text": "Great. Will there be any charge for this visit?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:57:16",
+        "text": "Since this appears to be a signal issue with our equipment, there will be no charge for the service call."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:57:23",
+        "text": "Excellent. Thank you for your help."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:57:30",
+        "text": "You're very welcome. Is there anything else I can assist you with today?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "10:57:35",
+        "text": "No, that covers everything."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "10:57:40",
+        "text": "Perfect. Have a great day, and we'll get your TV service restored tomorrow."
+      }
+    ],
+    "telecom_relevance": "Customer inquiring about a service outage (TV signal), a direct telecom issue."
+  },
+  {
+    "conversation_id": "conversation_7",
+    "issue_category": "Where's my Tech",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "11:00:10",
+        "text": "I had a technician scheduled for this morning, but they haven't arrived yet. It's past the window."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:00:18",
+        "text": "I apologize for the delay. Let me check the status of your technician's visit. Can I have your appointment number or account details?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:00:25",
+        "text": "My account number is 5678 and the appointment was for 9 AM to 12 PM."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:00:33",
+        "text": "Thank you. It appears the technician is running behind due to an unforeseen issue at a previous appointment. They are now estimated to arrive within the next hour."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:00:40",
+        "text": "An hour? Okay, as long as they're still coming. Can you confirm when they're en route?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:00:47",
+        "text": "Yes, you'll receive a text message notification once they are on their way to your location."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:00:55",
+        "text": "Alright, thank you for the update."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:01:00",
+        "text": "You're welcome. Is there anything else I can help you with today?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:01:05",
+        "text": "No, that's all."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:01:10",
+        "text": "Okay, have a good day."
+      }
+    ],
+    "telecom_relevance": "Customer calling to inquire about a delayed technician visit, common in telecom service appointments."
+  },
+  {
+    "conversation_id": "conversation_8",
+    "issue_category": "Connection-Reliability Issues",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "11:05:05",
+        "text": "My internet keeps cutting out every few minutes. It's really frustrating."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:05:13",
+        "text": "I understand that's frustrating. Let's troubleshoot your connection. Have you tried restarting your modem and router?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:05:20",
+        "text": "Yes, I've done that multiple times. It works for a bit then cuts out again."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:05:27",
+        "text": "Okay, I'm running a diagnostic on your line now. It looks like there might be some signal instability. I recommend scheduling a technician visit to inspect your wiring and equipment."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:05:35",
+        "text": "How soon can someone come out? This is affecting my work."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:05:42",
+        "text": "We have an opening tomorrow morning, between 8 AM and 12 PM. Does that work for you?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:05:50",
+        "text": "Yes, that would be great. Please schedule that."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:05:57",
+        "text": "Consider it scheduled. You'll receive an email confirming the appointment. Is there anything else?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:06:02",
+        "text": "No, that's all for now. Thanks."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:06:08",
+        "text": "You're welcome. Have a good day."
+      }
+    ],
+    "telecom_relevance": "Customer reporting intermittent internet connection issues, a classic telecom technical support problem."
+  },
+  {
+    "conversation_id": "conversation_9",
+    "issue_category": "Order Reschedule",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "11:10:00",
+        "text": "Hi, I need to reschedule my installation appointment for my new TV service."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:10:07",
+        "text": "No problem at all. Can you provide your order number or account details?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:10:14",
+        "text": "My order number is TV2025 and it was scheduled for tomorrow."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:10:21",
+        "text": "Got it. What day and time would be more convenient for you to reschedule?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:10:28",
+        "text": "Can we push it to next Friday, in the afternoon?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:10:35",
+        "text": "Let me check. Yes, we have an opening next Friday, August 8th, between 1 PM and 5 PM. Does that work?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:10:42",
+        "text": "Yes, that's perfect. Thank you."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:10:49",
+        "text": "Excellent. Your installation has been rescheduled. You'll receive a confirmation email shortly."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:10:55",
+        "text": "Great. Thanks for your help."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:11:00",
+        "text": "You're welcome. Have a good day."
+      }
+    ],
+    "telecom_relevance": "Customer rescheduling a service installation, directly related to telecom order management."
+  },
+  {
+    "conversation_id": "conversation_10",
+    "issue_category": "Equipment Return",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "11:15:00",
+        "text": "I'm cancelling my service and need to return my modem and router."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:15:07",
+        "text": "Understood. We can definitely arrange that. You have a few options for returning your equipment."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:15:15",
+        "text": "What are they?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:15:22",
+        "text": "You can drop it off at any of our retail locations, or we can send you a prepaid shipping label to mail it back."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:15:29",
+        "text": "A shipping label would be best. Can you email it to me?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:15:36",
+        "text": "Yes, I'll send that to the email address on file. Please ensure all cables and power adapters are included with the equipment."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:15:44",
+        "text": "Do I need to include the original boxes?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:15:51",
+        "text": "The original boxes aren't required. You can use any sturdy box or packaging. Just make sure the equipment is well-protected during shipping."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:15:58",
+        "text": "Okay. How long do I have to return it?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:16:05",
+        "text": "You have 30 days from your service cancellation date. Since your service ends today, you have until August 28th to return the equipment."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:16:12",
+        "text": "What happens if I don't return it in time?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:16:19",
+        "text": "After 30 days, you would be charged the full retail price for any unreturned equipment. For your modem and router, that would be about $200 total."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:16:26",
+        "text": "I definitely don't want that charge! I'll get it shipped back this week."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:16:33",
+        "text": "Perfect. Once you drop it off at UPS or schedule a pickup, you'll get a tracking number. I recommend keeping that until we confirm receipt."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:16:40",
+        "text": "Good advice. Will I get confirmation when you receive it?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:16:47",
+        "text": "Yes, you'll receive an email confirmation within 2-3 business days after we process the returned equipment."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:16:54",
+        "text": "Excellent. Thanks for explaining everything."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:17:01",
+        "text": "You're very welcome. Is there anything else I can help you with regarding your service cancellation?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:17:06",
+        "text": "No, that covers everything I needed to know."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:17:11",
+        "text": "Great! Have a wonderful day, and thank you for being a valued customer."
+      }
+    ],
+    "telecom_relevance": "Customer returning telecom equipment after service cancellation."
+  },
+  {
+    "conversation_id": "conversation_11",
+    "issue_category": "30 Words or Less Inbound",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "11:20:00",
+        "text": "My internet speed is very slow. I'm paying for higher speed."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:20:07",
+        "text": "I can help with that. What speed are you subscribed to?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:20:12",
+        "text": "200 Mbps. I'm only getting around 50."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:20:18",
+        "text": "Okay, I'll run some diagnostics to see what's causing the slowdown."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:20:25",
+        "text": "Thanks."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:20:30",
+        "text": "The test shows signal degradation on your line. I'm scheduling a technician to check your connection tomorrow morning."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:20:37",
+        "text": "Perfect, that works for me."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:20:42",
+        "text": "Great! You'll receive a confirmation text with the appointment window. Anything else I can help with?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:20:47",
+        "text": "No, that's all. Thanks for your help."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:20:52",
+        "text": "You're welcome. Have a great day!"
+      }
+    ],
+    "telecom_relevance": "Brief, direct inquiry about internet speed discrepancy, common in telecom tech support."
+  },
+  {
+    "conversation_id": "conversation_12",
+    "issue_category": "Order Status Inquiry",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "11:25:00",
+        "text": "I ordered new phone service last week. Can I get an update on my order?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:25:07",
+        "text": "Of course. What's your order number or account information?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:25:14",
+        "text": "Order number is PHN9876. I placed it on July 20th."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:25:21",
+        "text": "Thank you. Your order for new phone service is currently in the processing stage. It's expected to be activated by July 30th."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:25:28",
+        "text": "Okay, so I should receive the equipment by then?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:25:35",
+        "text": "Yes, the equipment should arrive a few days before activation. You'll get tracking information via email."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:25:42",
+        "text": "Perfect, thank you for the update."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:25:48",
+        "text": "You're most welcome. Is there anything else you need assistance with today?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:25:53",
+        "text": "No, that's all."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:25:58",
+        "text": "Alright, goodbye."
+      }
+    ],
+    "telecom_relevance": "Customer inquiring about the status of a new phone service order, typical for telecom sales/support."
+  },
+  {
+    "conversation_id": "conversation_13",
+    "issue_category": "My Account Profile Assistance",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "11:30:00",
+        "text": "I'm trying to update my email address on my account, but it's not letting me."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:30:07",
+        "text": "I can help you update your account profile. What's the new email address you'd like to use?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:30:14",
+        "text": "It's newemail@example.com."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:30:21",
+        "text": "Thank you. I've updated your primary email address. You'll receive a confirmation email for this change."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:30:28",
+        "text": "Great, thanks. Also, can I change my billing preference to paperless?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:30:35",
+        "text": "Absolutely. I've switched your billing preference to paperless statements. You'll get an email when your next bill is ready."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:30:42",
+        "text": "Perfect, thank you so much for your help."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:30:49",
+        "text": "You're very welcome. Is there anything else I can assist you with today?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:30:54",
+        "text": "No, that's all."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:30:59",
+        "text": "Alright, have a good day."
+      }
+    ],
+    "telecom_relevance": "Customer updating account information and billing preferences, common for telecom customer self-service or assisted support."
+  },
+  {
+    "conversation_id": "conversation_14",
+    "issue_category": "Make Payment",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "11:35:00",
+        "text": "I'd like to make a payment on my bill over the phone."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:35:07",
+        "text": "Certainly. I can process your payment for you. What's the amount you'd like to pay?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:35:14",
+        "text": "The full amount due, $75.50."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:35:21",
+        "text": "And will you be paying with a credit card or debit card?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:35:28",
+        "text": "Debit card."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:35:35",
+        "text": "Please provide your card number, expiration date, and the security code."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:35:42",
+        "text": "[Customer provides card details]"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:35:50",
+        "text": "Thank you. Your payment of $75.50 has been successfully processed. You'll receive a confirmation email shortly."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:35:58",
+        "text": "Great, thank you."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:36:03",
+        "text": "You're welcome. Is there anything else I can help you with today?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:36:08",
+        "text": "No, that's all."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:36:13",
+        "text": "Alright, goodbye."
+      }
+    ],
+    "telecom_relevance": "Customer making a payment for their service bill, a fundamental telecom billing interaction."
+  },
+  {
+    "conversation_id": "conversation_15",
+    "issue_category": "Outage",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "11:40:00",
+        "text": "My internet and cable are both out. Is there a big outage?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:40:07",
+        "text": "Let me check the system. Can you confirm your address for me?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:40:14",
+        "text": "100 River Road."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:40:21",
+        "text": "Yes, I see a major service interruption reported for your area affecting internet and TV. It's due to unexpected equipment failure."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:40:28",
+        "text": "When will it be fixed?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:40:35",
+        "text": "Our teams are working on it around the clock. The current estimated restoration time is within 6-8 hours."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:40:42",
+        "text": "6-8 hours? That's a long time. Will I get any credit on my bill?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:40:49",
+        "text": "I understand your frustration. For outages lasting over 4 hours, we automatically apply service credits to affected accounts. You don't need to request it."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:40:56",
+        "text": "Good to know. Is there any other way I can get updates on the progress?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:41:03",
+        "text": "Yes, you can check our outage map on our website or mobile app. We also send text alerts when service is restored if you're signed up for notifications."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:41:10",
+        "text": "I'm not signed up for texts. Can you add me now?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:41:17",
+        "text": "Absolutely. I've added your phone number to receive outage notifications. You'll get a confirmation text shortly."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:41:24",
+        "text": "Perfect. Is there anything else I should know about this outage?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:41:31",
+        "text": "The outage affects about 2,500 customers in your area. Our priority repair crews are on-site replacing the failed equipment. We expect service to be restored well before the 8-hour estimate."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:41:38",
+        "text": "Okay, thanks for all the information and setting up the notifications."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:41:45",
+        "text": "You're very welcome. We appreciate your patience during this service interruption. Is there anything else I can help you with?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:41:50",
+        "text": "No, that covers everything."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:41:55",
+        "text": "Thank you for calling, and again, we apologize for the inconvenience. Have a good day."
+      }
+    ],
+    "telecom_relevance": "Customer reporting a widespread service outage affecting multiple telecom services."
+  },
+  {
+    "conversation_id": "conversation_16",
+    "issue_category": "Internet Out",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "11:45:00",
+        "text": "My internet light on the modem is red. I have no connection."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:45:07",
+        "text": "I see. Let's start with a remote modem reset. Please unplug your modem for 30 seconds and then plug it back in."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:45:15",
+        "text": "Okay, I'm doing that now... Still red. Nothing."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:45:22",
+        "text": "Thank you. It seems to be a deeper issue. I'm dispatching a technician to your location. Earliest is tomorrow afternoon."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:45:29",
+        "text": "What time tomorrow afternoon?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:45:36",
+        "text": "We have an opening between 1 PM and 5 PM. Does that work for you?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:45:42",
+        "text": "Yes, that's fine. Please send them."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:45:49",
+        "text": "Alright, the technician visit is scheduled. You'll receive a confirmation via text message. Is there anything else I can help you with?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:45:55",
+        "text": "No, that's all. Thanks."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:46:00",
+        "text": "You're welcome. Have a good day."
+      }
+    ],
+    "telecom_relevance": "Technical troubleshooting for a complete internet outage, using telecom-specific equipment indicators."
+  },
+  {
+    "conversation_id": "conversation_17",
+    "issue_category": "Internet Cancel",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "11:50:00",
+        "text": "I want to cancel my internet service. I'm moving out of the country."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:50:07",
+        "text": "Understood. I can help process that for you. When would you like the service to be disconnected?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:50:14",
+        "text": "The end of this month, July 31st."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:50:21",
+        "text": "Okay. Please be aware that you will need to return your equipment to avoid any unreturned equipment fees."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:50:28",
+        "text": "Yes, I understand. How do I do that?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:50:35",
+        "text": "You can drop it off at any of our retail locations, or I can email you a prepaid shipping label to mail it back. Which do you prefer?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:50:42",
+        "text": "A shipping label would be best."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:50:49",
+        "text": "Alright, I'll send that to your email address on file. Your service will be disconnected on July 31st. Is there anything else?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:50:55",
+        "text": "No, that's all. Thank you."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:51:00",
+        "text": "You're welcome. Goodbye."
+      }
+    ],
+    "telecom_relevance": "Customer initiating an internet service cancellation, common in telecom."
+  },
+  {
+    "conversation_id": "conversation_18",
+    "issue_category": "Wi-Fi Extender",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "11:55:00",
+        "text": "I just got a new Wi-Fi extender. Can you help me set it up?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:55:07",
+        "text": "Absolutely. I can guide you through the setup process. Do you have the instructions manual handy?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:55:14",
+        "text": "Yes, I do. It says to connect it to the router."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:55:21",
+        "text": "Correct. Connect it via Ethernet first, then we'll configure it through our online portal. I'll send you the link."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:55:28",
+        "text": "Okay, I'm connected. Waiting for the link."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:55:35",
+        "text": "Great. The link has been sent to your email. Please let me know if you have any trouble accessing it."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:55:42",
+        "text": "Got it. Thanks for the help."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:55:48",
+        "text": "You're welcome. Is there anything else you need assistance with today?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "11:55:53",
+        "text": "No, that's all."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "11:55:58",
+        "text": "Alright, have a great day."
+      }
+    ],
+    "telecom_relevance": "Customer seeking assistance with Wi-Fi extender setup, specific to telecom equipment support."
+  },
+  {
+    "conversation_id": "conversation_19",
+    "issue_category": "General Billing Inquiry",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "12:00:00",
+        "text": "My last bill was much higher than usual. Can you tell me why?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:00:07",
+        "text": "Let me review your bill details. What's your account number?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:00:14",
+        "text": "It's 12345."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:00:21",
+        "text": "Thank you. I see a one-time charge for a pay-per-view movie on July 5th for $12.99. Is that familiar?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:00:28",
+        "text": "Oh, yes! I completely forgot about that. That explains it."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:00:35",
+        "text": "Perfect. I also see your regular monthly service charges, plus there was a small adjustment credit of $3.50 for a service issue last month."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:00:42",
+        "text": "Right, I remember calling about an outage. Good to see the credit was applied."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:00:49",
+        "text": "Absolutely. Your total bill came to $87.49 instead of your usual $78.00. Is there anything else about your billing you'd like me to explain?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:00:56",
+        "text": "Actually, yes. Can you remind me how to set parental controls to prevent accidental pay-per-view purchases?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:01:03",
+        "text": "Certainly! You can set up a PIN for pay-per-view purchases through your cable box settings, or I can enable it from our system right now."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:01:10",
+        "text": "Can you enable it now? That would be easier."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:01:17",
+        "text": "Of course. I've activated pay-per-view PIN protection on your account. You'll need to create a 4-digit PIN when you try to order your next pay-per-view."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:01:24",
+        "text": "Perfect. That should prevent any more surprises on my bill."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:01:31",
+        "text": "Exactly! Is there anything else I can help you with regarding your account or billing?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:01:36",
+        "text": "No, that covers everything. Thank you for the explanation and setting up the PIN protection."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:01:43",
+        "text": "You're very welcome! Have a wonderful day."
+      }
+    ],
+    "telecom_relevance": "Common billing inquiry for unexpected charges, often related to on-demand content or service changes in telecom."
+  },
+  {
+    "conversation_id": "conversation_20",
+    "issue_category": "Transfer Services",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "12:05:00",
+        "text": "I need to transfer my landline phone number to a new address."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:05:07",
+        "text": "We can certainly transfer your existing number. What's the new address you're moving to?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:05:14",
+        "text": "Apartment 3B, 123 Elm Street."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:05:21",
+        "text": "And when is your move date?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:05:28",
+        "text": "August 1st."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:05:35",
+        "text": "Thank you. I'm confirming service availability at your new address for your landline. Yes, it's serviceable. We'll schedule the transfer for August 1st."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:05:42",
+        "text": "Perfect. Will I need new equipment?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:05:49",
+        "text": "Typically, your existing landline equipment will work. If there are any compatibility issues, we'll let you know. You'll receive a confirmation email for the transfer."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:05:56",
+        "text": "Okay, thank you for your help."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:06:02",
+        "text": "You're welcome. Have a good day."
+      }
+    ],
+    "telecom_relevance": "Customer requesting to transfer a landline phone service, a very specific telecom service transfer."
+  },
+  {
+    "conversation_id": "conversation_21",
+    "issue_category": "Customer Outage Inquiry",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "12:10:00",
+        "text": "Are there any known outages for internet in Zip Code 90210 right now?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:10:07",
+        "text": "Let me check for you. No, I'm not seeing any active outages reported for that zip code at this moment."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:10:14",
+        "text": "Okay, my neighbor said their internet was out, so I was checking."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:10:21",
+        "text": "It might be an isolated issue for them, or perhaps they're experiencing a different kind of problem. Is your internet working fine?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:10:28",
+        "text": "Mine seems to be working, yes."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:10:35",
+        "text": "That's good. For your neighbor's issue, they might want to try restarting their modem and router first. If that doesn't work, they can call our technical support line."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:10:42",
+        "text": "I'll let them know. Is there a way to check for outages online?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:10:49",
+        "text": "Absolutely! We have an outage map on our website and mobile app where customers can check real-time service status by entering their address or zip code."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:10:56",
+        "text": "That's helpful. I'll share that with my neighbor too."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:11:03",
+        "text": "Perfect! The outage map also shows estimated restoration times when there are known issues. Is there anything else I can help you with today?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:11:08",
+        "text": "No, that's all I needed. Thanks for the information."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:11:13",
+        "text": "You're very welcome! Have a great day, and feel free to call back if you have any other questions."
+      }
+    ],
+    "telecom_relevance": "Customer proactively inquiring about potential internet outages based on neighbor's experience."
+  },
+  {
+    "conversation_id": "conversation_22",
+    "issue_category": "Where's my Tech",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "12:15:00",
+        "text": "My technician was supposed to be here between 1 and 3, and it's already 3:30."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:15:07",
+        "text": "I apologize. Let me look up your technician's current location. What's your service address?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:15:14",
+        "text": "456 City Avenue."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:15:21",
+        "text": "It shows they are on their way and should arrive in approximately 15 minutes."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:15:28",
+        "text": "Okay, thanks for letting me know."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:15:34",
+        "text": "You're welcome. Is there anything else I can assist you with?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:15:39",
+        "text": "No, that's all."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:15:44",
+        "text": "Alright, goodbye."
+      }
+    ],
+    "telecom_relevance": "Customer seeking an update on the arrival of a scheduled telecom technician."
+  },
+  {
+    "conversation_id": "conversation_23",
+    "issue_category": "Connection-Reliability Issues",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "12:20:00",
+        "text": "My streaming quality is really bad, lots of buffering, even on low settings."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:20:07",
+        "text": "That sounds like a connection issue. Are other devices experiencing slow speeds too?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:20:14",
+        "text": "Yes, my phone is having trouble loading web pages as well."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:20:21",
+        "text": "Let's perform a line test. Please ensure all devices are disconnected from the network for a moment."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:20:28",
+        "text": "Okay, they're disconnected."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:20:35",
+        "text": "Running the test now... It looks like there's an issue with your signal strength. I recommend scheduling a technician visit to inspect your equipment."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:20:42",
+        "text": "How soon can they come?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:20:49",
+        "text": "We have an opening the day after tomorrow, in the morning. Does that work?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:20:55",
+        "text": "Yes, that's fine. Please book it."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:21:02",
+        "text": "Alright, technician visit is scheduled. You'll receive a confirmation email. Anything else?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:21:07",
+        "text": "No, that's all. Thanks."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:21:12",
+        "text": "You're welcome. Goodbye."
+      }
+    ],
+    "telecom_relevance": "Customer reporting consistent poor streaming and Browse, indicative of internet connection reliability problems."
+  },
+  {
+    "conversation_id": "conversation_24",
+    "issue_category": "Order Reschedule",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "12:25:00",
+        "text": "I need to change the date of my equipment delivery. I won't be home."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:25:07",
+        "text": "No problem. What's your order number for the equipment delivery?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:25:14",
+        "text": "It's EQ456."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:25:21",
+        "text": "Okay, when would you prefer the new delivery date?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:25:28",
+        "text": "Can it be next Monday?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:25:35",
+        "text": "Let me check... Yes, we can reschedule your equipment delivery for next Monday, August 4th. You'll receive a confirmation email."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:25:42",
+        "text": "Perfect. Thank you."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:25:48",
+        "text": "You're welcome. Is there anything else I can help you with today?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:25:53",
+        "text": "No, that's all."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:25:58",
+        "text": "Alright, goodbye."
+      }
+    ],
+    "telecom_relevance": "Customer rescheduling a telecom equipment delivery."
+  },
+  {
+    "conversation_id": "conversation_25",
+    "issue_category": "Equipment Return",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "12:30:00",
+        "text": "I received a new modem, so I need to return the old one."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:30:07",
+        "text": "Certainly. The easiest way to return it is to take it to any UPS store with the return label we included in your new equipment box."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:30:14",
+        "text": "Do I need to pack anything special?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:30:21",
+        "text": "Just ensure the modem and its power cord are in the box. UPS will handle the rest."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:30:28",
+        "text": "Okay, that's easy enough. Thanks."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:30:35",
+        "text": "You're welcome. Is there anything else I can assist you with today?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:30:40",
+        "text": "No, that's all."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:30:45",
+        "text": "Alright, goodbye."
+      }
+    ],
+    "telecom_relevance": "Customer returning old telecom equipment after an upgrade."
+  },
+  {
+    "conversation_id": "conversation_26",
+    "issue_category": "30 Words or Less Inbound",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "12:35:00",
+        "text": "My phone bill has a new charge. What is it?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:35:07",
+        "text": "Let me check. It's for international calls made on July 24th."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:35:12",
+        "text": "Oh, right. Forgot about those."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:35:18",
+        "text": "Is there anything else on your bill that you have questions about?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:35:23",
+        "text": "No, that's it."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:35:28",
+        "text": "Alright, have a good day."
+      }
+    ],
+    "telecom_relevance": "Short, direct inquiry about a new charge on a phone bill."
+  },
+  {
+    "conversation_id": "conversation_27",
+    "issue_category": "Order Status Inquiry",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "12:40:00",
+        "text": "I ordered a new data plan. When will it activate?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:40:07",
+        "text": "What's your mobile number associated with the order?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:40:14",
+        "text": "It's 555-123-4567."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:40:21",
+        "text": "It shows your new data plan is scheduled to activate at midnight tonight."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:40:28",
+        "text": "Excellent! Thanks for the update."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:40:34",
+        "text": "You're welcome. Is there anything else I can help you with today?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:40:39",
+        "text": "No, that's all."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:40:44",
+        "text": "Alright, goodbye."
+      }
+    ],
+    "telecom_relevance": "Customer inquiring about the activation status of a new data plan, telecom-specific."
+  },
+  {
+    "conversation_id": "conversation_28",
+    "issue_category": "My Account Profile Assistance",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "12:45:00",
+        "text": "I forgot my online account password. How do I reset it?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:45:07",
+        "text": "I can send a password reset link to your registered email or phone number. Which would you prefer?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:45:14",
+        "text": "Send it to my email, please."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:45:21",
+        "text": "A reset link has been sent. Please check your inbox and follow the instructions."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:45:28",
+        "text": "Okay, I'll do that now. Thanks for your help."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:45:34",
+        "text": "You're welcome. Is there anything else I can assist you with?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:45:39",
+        "text": "No, that's all."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:45:44",
+        "text": "Alright, goodbye."
+      }
+    ],
+    "telecom_relevance": "Common account profile assistance for password reset, applicable across many services including telecom."
+  },
+  {
+    "conversation_id": "conversation_29",
+    "issue_category": "Make Payment",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "12:50:00",
+        "text": "I want to set up automatic payments for my monthly bill."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:50:07",
+        "text": "Excellent! We can set that up for you. What payment method would you like to use for auto-pay?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:50:14",
+        "text": "My checking account. Can I give you the routing and account numbers?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:50:21",
+        "text": "Yes, please. I'll need the routing number first, followed by your account number."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:50:28",
+        "text": "[Customer provides banking details]"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:50:35",
+        "text": "Thank you. Your automatic payments have been set up successfully using your checking account. You'll receive a confirmation email shortly."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:50:42",
+        "text": "Great, thank you for setting that up."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:50:48",
+        "text": "You're welcome. Is there anything else I can assist you with today?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:50:53",
+        "text": "No, that's all."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:50:58",
+        "text": "Alright, goodbye."
+      }
+    ],
+    "telecom_relevance": "Customer setting up recurring payments for telecom services."
+  },
+  {
+    "conversation_id": "conversation_30",
+    "issue_category": "Outage",
+    "interactions": [
+      {
+        "speaker": "Customer",
+        "timestamp": "12:55:00",
+        "text": "My cell phone has no service bars at all right now."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:55:07",
+        "text": "I understand. Let me check the network status in your current location. Can you confirm your full address or zip code?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:55:14",
+        "text": "I'm at 777 Park Lane, 10001."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:55:21",
+        "text": "Thank you. I see a localized cell tower issue affecting that area. Technicians are on-site for repairs."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:55:28",
+        "text": "So, it's not just my phone then?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:55:35",
+        "text": "That's correct. It's a network issue impacting service for all customers in that immediate vicinity."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:55:42",
+        "text": "Okay, good to know. When do you expect it to be resolved?"
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:55:49",
+        "text": "The estimated resolution time is within the next 2-4 hours. We'll send out a text alert once service is fully restored."
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:55:56",
+        "text": "Alright, thank you for the update."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:56:02",
+        "text": "You're welcome. Is there anything else I can assist you with at this time?"
+      },
+      {
+        "speaker": "Customer",
+        "timestamp": "12:56:07",
+        "text": "No, that's all."
+      },
+      {
+        "speaker": "Agent",
+        "timestamp": "12:56:12",
+        "text": "Alright, goodbye."
+      }
+    ],
+    "telecom_relevance": "Customer reporting a cell phone service outage, clearly a telecom network issue."
+  }
+]

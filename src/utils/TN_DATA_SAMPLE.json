@@ -1,0 +1,686 @@
+{
+  "backend": [
+    {
+      "tn": "3034245336",
+      "backendDetail": [
+        {
+          "SERVICE_NAME": "Product Info",
+          "RESPONSE_XML": {
+            "RxPSProductInfoResponse": {
+              "RxSessionId": "41515728",
+              "CustomerServiceRecord": {
+                "BillingName": "WILMA FERGUS",
+                "BillingAddress": {
+                  "ns6:StreetAddress": {
+                    "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "6513 BENTON CIR"
+                  },
+                  "ns7:City": {
+                    "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "ARVADA"
+                  },
+                  "ns8:StateProvince": {
+                    "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "CO"
+                  },
+                  "ns9:PostalCode": {
+                    "xmlns:ns9": "http://www.qwest.com/XMLSchema/BIM",
+                    "#text": "80003-4733"
+                  }
+                },
+                "BAN": "332413927",
+                "CustomerType": "Consumer",
+                "CustomerSubType": "R",
+                "SvcDeniedNonPaymentFlag": "false",
+                "AccountStatus": "Open",
+                "CustomerSvcDetail": {
+                  "ServiceID": "3034245336",
+                  "ns10:WTN": {
+                    "xmlns:ns10": "http://www.qwest.com/XMLSchema/BIM",
+                    "ns10:NPA": "303",
+                    "ns10:NXX": "424",
+                    "ns10:LineNumber": "5336"
+                  },
+                  "ServiceAddress": {
+                    "ns11:StreetAddress": {
+                      "xmlns:ns11": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "6513 BENTON CIR"
+                    },
+                    "ns12:City": {
+                      "xmlns:ns12": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "ARVADA"
+                    },
+                    "ns13:StateProvince": {
+                      "xmlns:ns13": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "CO"
+                    },
+                    "ns14:PostalCode": {
+                      "xmlns:ns14": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "80003"
+                    }
+                  },
+                  "CustomerProduct": [
+                    {
+                      "CustomerProductId": "138663957",
+                      "ProductCode": "DIRECTV",
+                      "ProductType": "Video",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "DirecTV",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2020-05-22",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false"
+                    },
+                    {
+                      "CustomerProductId": "138663958",
+                      "ProductCode": "LONG_DISTANCE",
+                      "ProductType": "Voice",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Long Distance Service",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2024-03-28",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false"
+                    },
+                    {
+                      "CustomerProductId": "138663959",
+                      "ProductCode": "IP",
+                      "ProductType": "Data",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "Internet",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "Old",
+                      "ProductActivationDate": "2024-03-28",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false",
+                      "AccessTechnology": "VDSL2",
+                      "TransportInfo": {
+                        "ProvisionSpeedUp": "5120K",
+                        "ProvisionSpeedDown": "60128K"
+                      }
+                    },
+                    {
+                      "CustomerProductId": "138663960",
+                      "ProductCode": "POTS_RES",
+                      "ProductType": "Voice",
+                      "ProductStatus": "ACTIVE",
+                      "ProductDescription": "POTS Residential",
+                      "SvcDeniedNonPaymentFlag": "false",
+                      "NewSvcInd": "N/A",
+                      "ProductActivationDate": "2024-03-28",
+                      "SeasonalDisconnectFlag": "false",
+                      "LongDistanceFlag": "false",
+                      "PendingOrderFlag": "false"
+                    }
+                  ]
+                }
+              },
+              "CallReasonCode": "DVA58",
+              "SourceSystem": "C2E",
+              "Territory": "L-Q"
+            }
+          },
+          "TIME_TAKEN": "6559",
+          "STATUS": "S",
+          "Average_Elapsed_Time_ms": 5786.835777,
+          "MAX_TIME": 9000,
+          "MIN_TIME": 2800
+        },
+        {
+          "SERVICE_NAME": "Health Check",
+          "RESPONSE_XML": {
+            "RxPSHealthCheckResponse": {
+              "RxSessionId": "41515728",
+              "HealthCheckInfo": {
+                "CustomerProductId": "138663959"
+              },
+              "CallReasonCode": "DVA58"
+            }
+          },
+          "TIME_TAKEN": "15137",
+          "STATUS": "S",
+          "Average_Elapsed_Time_ms": 15080.61538,
+          "MAX_TIME": 25000,
+          "MIN_TIME": 10000
+        },
+        {
+          "SERVICE_NAME": "Outage Info",
+          "RESPONSE_XML": {
+            "RxPSOutageInfoResponse": {
+              "RxSessionId": "41515728",
+              "CallReasonCode": "DVA58",
+              "EmailAddress": "TestOps@TestScrub.net",
+              "SMSNumber": {
+                "ns6:NPA": {
+                  "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                  "#text": "303"
+                },
+                "ns7:NXX": {
+                  "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                  "#text": "906"
+                },
+                "ns8:LineNumber": {
+                  "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                  "#text": "8233"
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "1295",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Ticket Info",
+          "RESPONSE_XML": {
+            "RxPSTicketInfoResponse": {
+              "RxSessionId": "41515728",
+              "CallReasonCode": "DVA58",
+              "TicketInfo": {
+                "CustomerProductId": "138663960",
+                "Ticket": {
+                  "TicketNumber": "0310629",
+                  "TicketStatus": "DISPATCH.OPN.TPA",
+                  "NativeTroubleTicketNumber": "0310629",
+                  "OriginatingSessionId": "RX38833805",
+                  "CanCompleteHandoffFlag": "true",
+                  "CanRescheduleFlag": "true",
+                  "CanCloseTicketFlag": "true",
+                  "isCompanyMiss": "false",
+                  "CompanyMissSubReasonCd": null,
+                  "SourceSystem": "LMOS",
+                  "CommitmentDateTime": {
+                    "timeInCustomerTimezone": "true",
+                    "timeZoneAbbreviation": "MDT",
+                    "#text": "07/05/25 19:01"
+                  },
+                  "CreateDateTime": {
+                    "timeInCustomerTimezone": "true",
+                    "timeZoneAbbreviation": "MDT",
+                    "#text": "07/04/25 04:16"
+                  },
+                  "AppointmentInfo": {
+                    "StartDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "07/05/25 08:00"
+                    },
+                    "EndDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "07/05/25 17:00"
+                    }
+                  },
+                  "PastDueFlag": "true",
+                  "CanBeReachedTN": {
+                    "ns6:NPA": {
+                      "xmlns:ns6": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "303"
+                    },
+                    "ns7:NXX": {
+                      "xmlns:ns7": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "906"
+                    },
+                    "ns8:LineNumber": {
+                      "xmlns:ns8": "http://www.qwest.com/XMLSchema/BIM",
+                      "#text": "8233"
+                    }
+                  }
+                }
+              },
+              "BuriedServiceWireFetchOperations": {
+                "status": "SUCCESS",
+                "DataFetchResult": {
+                  "KeyUsed": {
+                    "keyName": "Service_TN",
+                    "#text": "303-424-5336"
+                  },
+                  "ResultCode": "SUCCESS",
+                  "Message": "No dispatches were found based on the provided information."
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "2398",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Ticket Info",
+          "RESPONSE_XML": {
+            "RxPSTicketInfoResponse": {
+              "RxSessionId": "41515728",
+              "CallReasonCode": "DVA58",
+              "TicketInfo": [
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV221354",
+                    "TicketStatus": "CAN",
+                    "NativeTroubleTicketNumber": "VV221354",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "07/22/25 04:26"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "07/22/25 11:56"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV221321",
+                    "TicketStatus": "CAN",
+                    "NativeTroubleTicketNumber": "VV221321",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "05/29/25 11:21"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "06/03/25 07:20"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV221318",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV221318",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "05/29/25 07:52"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "05/29/25 13:19"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV221298",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV221298",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "05/14/25 03:40"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "05/29/25 09:46"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV221270",
+                    "TicketStatus": "CAN",
+                    "NativeTroubleTicketNumber": "VV221270",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "04/29/25 01:09"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "05/06/25 03:54"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV221253",
+                    "TicketStatus": "CAN",
+                    "NativeTroubleTicketNumber": "VV221253",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "04/01/25 08:37"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "04/28/25 04:22"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV221247",
+                    "TicketStatus": "CAN",
+                    "NativeTroubleTicketNumber": "VV221247",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "03/20/25 00:21"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "03/24/25 10:55"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV186540",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV186540",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "12/21/16 19:50"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "12/21/16 19:57"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV659947",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV659947",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "12/23/15 11:21"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "12/29/15 12:50"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV913989",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV913989",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "01/07/12 21:23"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "01/07/12 21:33"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV625659",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV625659",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "06/23/10 10:36"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "06/23/10 10:57"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV625591",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV625591",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "06/23/10 09:08"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "06/23/10 09:43"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV798969",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV798969",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "04/16/08 09:56"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MDT",
+                      "#text": "04/16/08 10:04"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV717872",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV717872",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "11/12/07 11:50"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "11/12/07 12:53"
+                    }
+                  }
+                },
+                {
+                  "CustomerProductId": "138663959",
+                  "Ticket": {
+                    "TicketNumber": "VV715686",
+                    "TicketStatus": "CLD",
+                    "NativeTroubleTicketNumber": "VV715686",
+                    "isCompanyMiss": "false",
+                    "CompanyMissSubReasonCd": null,
+                    "SourceSystem": "WFA",
+                    "CreateDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "11/07/07 12:19"
+                    },
+                    "ClosedDateTime": {
+                      "timeInCustomerTimezone": "true",
+                      "timeZoneAbbreviation": "MST",
+                      "#text": "11/07/07 12:27"
+                    }
+                  }
+                }
+              ],
+              "BuriedServiceWireFetchOperations": {
+                "status": "SUCCESS",
+                "DataFetchResult": {
+                  "KeyUsed": {
+                    "keyName": "Service_TN",
+                    "#text": "303-424-5336"
+                  },
+                  "ResultCode": "SUCCESS",
+                  "Message": "No dispatches were found based on the provided information."
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "2141",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Self Help Info",
+          "RESPONSE_XML": {
+            "RxPSSelfHelpEligibiltyResponse": {
+              "RxSessionId": "41515728",
+              "CallReasonCode": "DVA58",
+              "SelfHelpCode": "Offer",
+              "ChronicCustomer": "false",
+              "RuleName": "Offer"
+            }
+          },
+          "TIME_TAKEN": "7899",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Wireless Credential Notification",
+          "RESPONSE_XML": {
+            "RxPSWirelessCredentialsNotificationResponse": {
+              "RxSessionId": "41515728"
+            }
+          },
+          "TIME_TAKEN": "246",
+          "STATUS": "F"
+        },
+        {
+          "SERVICE_NAME": "MLT Info",
+          "RESPONSE_XML": {
+            "RxPSMLTInfoResponse": {
+              "RxSessionId": "41515728",
+              "MLTDetail": {
+                "CustomerProductId": "138663960",
+                "TN": "3034245336",
+                "MLTServiceRequestType": "Initiate",
+                "RecommendationDetail": {
+                  "Recommendation": "Poll",
+                  "ResponseStatus": null,
+                  "ResponseMessage": null,
+                  "ResponseCode": "-1"
+                }
+              }
+            }
+          },
+          "TIME_TAKEN": "77",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Set POC",
+          "RESPONSE_XML": {
+            "RxPSSetPOCResponse": {
+              "RxSessionId": "41515728",
+              "CallReasonCode": "DVA58"
+            }
+          },
+          "TIME_TAKEN": "138",
+          "STATUS": "S"
+        },
+        {
+          "SERVICE_NAME": "Modem Reboot",
+          "RESPONSE_XML": {
+            "RxPSModemRebootResponse": {
+              "RxSessionId": "41515728",
+              "RebootDetail": {
+                "CustomerProductId": "138663959",
+                "TN": "3034245336",
+                "ModemRebootRequestType": "Initiate",
+                "RebootStatus": "Failed"
+              }
+            }
+          },
+          "TIME_TAKEN": "247",
+          "STATUS": "F"
+        },
+        {
+          "SERVICE_NAME": "Wireless Modem Info",
+          "RESPONSE_XML": {
+            "RxPSWirelessModemInfoResponse": {
+              "RxSessionId": "41515728"
+            }
+          },
+          "TIME_TAKEN": "215",
+          "STATUS": "F"
+        },
+        {
+          "SERVICE_NAME": "Close Session",
+          "RESPONSE_XML": {
+            "RxPSSessionCloseResponse": {
+              "RxSessionId": "41515728",
+              "CallReasonCode": "DVA58"
+            }
+          },
+          "TIME_TAKEN": "54",
+          "STATUS": "S"
+        }
+      ]
+    }
+  ]
+}

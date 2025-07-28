@@ -1,0 +1,122 @@
+{
+  "IVR_Categories": [
+    {
+      "category_name": "Billing & Payments",
+      "sub_issues": [
+        "General Billing Inquiry",
+        "Make Payment",
+        "Incorrect Bill Inquiry",
+        "Establish Modify Autopay",
+        "Refund Inquiry",
+        "Balance Inquiry",
+        "First Bill Inquiry",
+        "Paperless - Paper Bill Inquiry",
+        "Payment Problem Question",
+        "Charged By CTL & QF",
+        "Payment Arrangements",
+        "Adjustment or Credit",
+        "Bill Increase",
+        "Past Due Related",
+        "Suspended Non-Pay",
+        "Equipment Credit"
+      ]
+    },
+    {
+      "category_name": "Technical Support - Internet",
+      "sub_issues": [
+        "Internet Out",
+        "Connection-Reliability Issues",
+        "Speed Issues",
+        "Modem Not Working",
+        "Modem Setup",
+        "Modem New Replacement",
+        "Modem Compatibility",
+        "Wi-Fi Extender",
+        "Wi-Fi or Device Related",
+        "VPN Connection Issue",
+        "IP Address Request",
+        "Internet Shopper"
+      ]
+    },
+    {
+      "category_name": "Technical Support - Phone/Voice",
+      "sub_issues": [
+        "Phone Problem",
+        "Connected Voice",
+        "VOIP General",
+        "Phone Feature",
+        "Port Phone Number",
+        "Phone Cancel",
+        "Can You Hear Me"
+      ]
+    },
+    {
+      "category_name": "Service Management & Orders",
+      "sub_issues": [
+        "Transfer Services",
+        "Order Reschedule",
+        "Order Status Inquiry",
+        "Order Cancel",
+        "Order Cancel - Date Too Far Out",
+        "Activation Guidance",
+        "Reactivate Request",
+        "Upgrade Internet",
+        "Add Buy Phone",
+        "Vacation Hold Reconnect",
+        "Buried Service Wire",
+        "Bulk Service Related",
+        "Migration Related"
+      ]
+    },
+    {
+      "category_name": "Equipment",
+      "sub_issues": [
+        "Equipment Return",
+        "DIRECTV General - Customer",
+        "Jack or Wire Work"
+      ]
+    },
+    {
+      "category_name": "Customer Service & Account",
+      "sub_issues": [
+        "My Account Profile Assistance",
+        "Account Records Update",
+        "Referral Program",
+        "Promotional Marketing Complaint",
+        "Directory Assistance Charge",
+        "Customer Requests Callback"
+      ]
+    },
+    {
+      "category_name": "Outages & Technician Visits",
+      "sub_issues": [
+        "Customer Outage Inquiry",
+        "Outage",
+        "Where's my Tech",
+        "Technician Missed"
+      ]
+    },
+    {
+      "category_name": "Specialized Programs/Requests",
+      "sub_issues": [
+        "Affordable Connectivity Program",
+        "Request Spanish-Language",
+        "Bilingual or Spanish Language",
+        "Request US Based Support"
+      ]
+    },
+    {
+      "category_name": "General Inquiries/Routing",
+      "sub_issues": [
+        "Promotion Inquiry",
+        "Service Area Inquiry",
+        "VISA Reward Card",
+        "Block on Account"
+      ]
+    },
+    {
+      "category_name": "Agent Interaction (Direct Transfer/Request)",
+      "sub_issues": ["Request Agent Chat Or Phone Support"]
+    }
+  ]
+}

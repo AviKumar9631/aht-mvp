@@ -1,0 +1,433 @@
+{
+  "agents": [
+    {
+      "agentId": "AGT001",
+      "agentName": "Diana Moore",
+      "agentCategory": "Service Management & Orders",
+      "skillSet": [
+        "Service Management & Orders Expertise",
+        "Customer Service",
+        "Problem Solving"
+      ],
+      "status": "IDLE",
+      "performance": {
+        "today": {
+          "callsHandled": 42,
+          "averageHandleTimeSeconds": 348,
+          "firstCallResolutionPercentage": 91,
+          "customerSatisfactionScore": 4.0,
+          "adherencePercentage": 89
+        },
+        "thisWeek": {
+          "callsHandled": 197,
+          "averageHandleTimeSeconds": 379,
+          "firstCallResolutionPercentage": 82,
+          "customerSatisfactionScore": 4.8,
+          "adherencePercentage": 99
+        },
+        "lastMonth": {
+          "callsHandled": 986,
+          "averageHandleTimeSeconds": 343,
+          "firstCallResolutionPercentage": 94,
+          "customerSatisfactionScore": 3.9,
+          "adherencePercentage": 100
+        }
+      },
+      "otherMetrics": {
+        "escalationsTransferred": 5,
+        "emailTicketsResolved": 8,
+        "chatSessionsHandled": 10
+      }
+    },
+    {
+      "agentId": "AGT002",
+      "agentName": "Mike Taylor",
+      "agentCategory": "Agent Interaction (Direct Transfer/Request)",
+      "skillSet": [
+        "Agent Interaction (Direct Transfer/Request) Expertise",
+        "Customer Service",
+        "Problem Solving"
+      ],
+      "status": "BUSY",
+      "performance": {
+        "today": {
+          "callsHandled": 43,
+          "averageHandleTimeSeconds": 274,
+          "firstCallResolutionPercentage": 87,
+          "customerSatisfactionScore": 4.6,
+          "adherencePercentage": 95
+        },
+        "thisWeek": {
+          "callsHandled": 149,
+          "averageHandleTimeSeconds": 375,
+          "firstCallResolutionPercentage": 94,
+          "customerSatisfactionScore": 4.3,
+          "adherencePercentage": 88
+        },
+        "lastMonth": {
+          "callsHandled": 678,
+          "averageHandleTimeSeconds": 352,
+          "firstCallResolutionPercentage": 72,
+          "customerSatisfactionScore": 4.6,
+          "adherencePercentage": 95
+        }
+      },
+      "otherMetrics": {
+        "escalationsTransferred": 1,
+        "emailTicketsResolved": 7,
+        "chatSessionsHandled": 18
+      }
+    },
+    {
+      "agentId": "AGT003",
+      "agentName": "Penny Walker",
+      "agentCategory": "Service Management & Orders",
+      "skillSet": [
+        "Service Management & Orders Expertise",
+        "Customer Service",
+        "Problem Solving"
+      ],
+      "status": "IDLE",
+      "performance": {
+        "today": {
+          "callsHandled": 49,
+          "averageHandleTimeSeconds": 310,
+          "firstCallResolutionPercentage": 76,
+          "customerSatisfactionScore": 5.0,
+          "adherencePercentage": 94
+        },
+        "thisWeek": {
+          "callsHandled": 187,
+          "averageHandleTimeSeconds": 282,
+          "firstCallResolutionPercentage": 73,
+          "customerSatisfactionScore": 4.2,
+          "adherencePercentage": 89
+        },
+        "lastMonth": {
+          "callsHandled": 819,
+          "averageHandleTimeSeconds": 471,
+          "firstCallResolutionPercentage": 89,
+          "customerSatisfactionScore": 4.7,
+          "adherencePercentage": 99
+        }
+      },
+      "otherMetrics": {
+        "escalationsTransferred": 3,
+        "emailTicketsResolved": 15,
+        "chatSessionsHandled": 20
+      }
+    },
+    {
+      "agentId": "AGT004",
+      "agentName": "George Hall",
+      "agentCategory": "Specialized Programs/Requests",
+      "skillSet": [
+        "Specialized Programs/Requests Expertise",
+        "Customer Service",
+        "Problem Solving"
+      ],
+      "status": "OFFLINE",
+      "performance": {
+        "today": {
+          "callsHandled": 47,
+          "averageHandleTimeSeconds": 500,
+          "firstCallResolutionPercentage": 72,
+          "customerSatisfactionScore": 4.4,
+          "adherencePercentage": 86
+        },
+        "thisWeek": {
+          "callsHandled": 135,
+          "averageHandleTimeSeconds": 426,
+          "firstCallResolutionPercentage": 82,
+          "customerSatisfactionScore": 4.1,
+          "adherencePercentage": 95
+        },
+        "lastMonth": {
+          "callsHandled": 890,
+          "averageHandleTimeSeconds": 333,
+          "firstCallResolutionPercentage": 80,
+          "customerSatisfactionScore": 4.3,
+          "adherencePercentage": 92
+        }
+      },
+      "otherMetrics": {
+        "escalationsTransferred": 3,
+        "emailTicketsResolved": 13,
+        "chatSessionsHandled": 28
+      }
+    },
+    {
+      "agentId": "AGT005",
+      "agentName": "Tina Harris",
+      "agentCategory": "Equipment",
+      "skillSet": [
+        "Equipment Expertise",
+        "Customer Service",
+        "Problem Solving"
+      ],
+      "status": "OFFLINE",
+      "performance": {
+        "today": {
+          "callsHandled": 21,
+          "averageHandleTimeSeconds": 487,
+          "firstCallResolutionPercentage": 84,
+          "customerSatisfactionScore": 4.6,
+          "adherencePercentage": 93
+        },
+        "thisWeek": {
+          "callsHandled": 164,
+          "averageHandleTimeSeconds": 280,
+          "firstCallResolutionPercentage": 91,
+          "customerSatisfactionScore": 5.0,
+          "adherencePercentage": 94
+        },
+        "lastMonth": {
+          "callsHandled": 637,
+          "averageHandleTimeSeconds": 410,
+          "firstCallResolutionPercentage": 91,
+          "customerSatisfactionScore": 4.1,
+          "adherencePercentage": 86
+        }
+      },
+      "otherMetrics": {
+        "escalationsTransferred": 3,
+        "emailTicketsResolved": 7,
+        "chatSessionsHandled": 18
+      }
+    },
+    {
+      "agentId": "AGT006",
+      "agentName": "Kevin Thompson",
+      "agentCategory": "Equipment",
+      "skillSet": [
+        "Equipment Expertise",
+        "Customer Service",
+        "Problem Solving"
+      ],
+      "status": "ON_CALL",
+      "performance": {
+        "today": {
+          "callsHandled": 50,
+          "averageHandleTimeSeconds": 372,
+          "firstCallResolutionPercentage": 83,
+          "customerSatisfactionScore": 3.6,
+          "adherencePercentage": 98
+        },
+        "thisWeek": {
+          "callsHandled": 185,
+          "averageHandleTimeSeconds": 294,
+          "firstCallResolutionPercentage": 93,
+          "customerSatisfactionScore": 4.9,
+          "adherencePercentage": 91
+        },
+        "lastMonth": {
+          "callsHandled": 976,
+          "averageHandleTimeSeconds": 331,
+          "firstCallResolutionPercentage": 83,
+          "customerSatisfactionScore": 4.3,
+          "adherencePercentage": 95
+        }
+      },
+      "otherMetrics": {
+        "escalationsTransferred": 0,
+        "emailTicketsResolved": 12,
+        "chatSessionsHandled": 23
+      }
+    },
+    {
+      "agentId": "AGT007",
+      "agentName": "Zack Martinez",
+      "agentCategory": "Service Management & Orders",
+      "skillSet": [
+        "Service Management & Orders Expertise",
+        "Customer Service",
+        "Problem Solving"
+      ],
+      "status": "BUSY",
+      "performance": {
+        "today": {
+          "callsHandled": 31,
+          "averageHandleTimeSeconds": 322,
+          "firstCallResolutionPercentage": 91,
+          "customerSatisfactionScore": 4.7,
+          "adherencePercentage": 87
+        },
+        "thisWeek": {
+          "callsHandled": 126,
+          "averageHandleTimeSeconds": 468,
+          "firstCallResolutionPercentage": 74,
+          "customerSatisfactionScore": 3.7,
+          "adherencePercentage": 92
+        },
+        "lastMonth": {
+          "callsHandled": 965,
+          "averageHandleTimeSeconds": 484,
+          "firstCallResolutionPercentage": 95,
+          "customerSatisfactionScore": 4.5,
+          "adherencePercentage": 99
+        }
+      },
+      "otherMetrics": {
+        "escalationsTransferred": 4,
+        "emailTicketsResolved": 16,
+        "chatSessionsHandled": 20
+      }
+    },
+    {
+      "agentId": "AGT008",
+      "agentName": "Oscar Lewis",
+      "agentCategory": "Technical Support - Phone/Voice",
+      "skillSet": [
+        "Technical Support - Phone/Voice Expertise",
+        "Customer Service",
+        "Problem Solving"
+      ],
+      "status": "OFFLINE",
+      "performance": {
+        "today": {
+          "callsHandled": 36,
+          "averageHandleTimeSeconds": 220,
+          "firstCallResolutionPercentage": 87,
+          "customerSatisfactionScore": 3.8,
+          "adherencePercentage": 97
+        },
+        "thisWeek": {
+          "callsHandled": 191,
+          "averageHandleTimeSeconds": 267,
+          "firstCallResolutionPercentage": 89,
+          "customerSatisfactionScore": 4.5,
+          "adherencePercentage": 90
+        },
+        "lastMonth": {
+          "callsHandled": 926,
+          "averageHandleTimeSeconds": 203,
+          "firstCallResolutionPercentage": 75,
+          "customerSatisfactionScore": 3.8,
+          "adherencePercentage": 92
+        }
+      },
+      "otherMetrics": {
+        "escalationsTransferred": 1,
+        "emailTicketsResolved": 19,
+        "chatSessionsHandled": 21
+      }
+    },
+    {
+      "agentId": "AGT009",
+      "agentName": "Ivan Moore",
+      "agentCategory": "General Inquiries/Routing",
+      "skillSet": [
+        "General Inquiries/Routing Expertise",
+        "Customer Service",
+        "Problem Solving"
+      ],
+      "status": "ON_CALL",
+      "performance": {
+        "today": {
+          "callsHandled": 31,
+          "averageHandleTimeSeconds": 334,
+          "firstCallResolutionPercentage": 75,
+          "customerSatisfactionScore": 4.4,
+          "adherencePercentage": 96
+        },
+        "thisWeek": {
+          "callsHandled": 185,
+          "averageHandleTimeSeconds": 369,
+          "firstCallResolutionPercentage": 80,
+          "customerSatisfactionScore": 4.0,
+          "adherencePercentage": 94
+        },
+        "lastMonth": {
+          "callsHandled": 557,
+          "averageHandleTimeSeconds": 255,
+          "firstCallResolutionPercentage": 71,
+          "customerSatisfactionScore": 3.5,
+          "adherencePercentage": 85
+        }
+      },
+      "otherMetrics": {
+        "escalationsTransferred": 2,
+        "emailTicketsResolved": 19,
+        "chatSessionsHandled": 26
+      }
+    },
+    {
+      "agentId": "AGT011",
+      "agentName": "Laura Garcia",
+      "agentCategory": "Billing & Payments",
+      "skillSet": [
+        "Billing & Payments Expertise",
+        "Customer Service",
+        "Problem Solving"
+      ],
+      "status": "IDLE",
+      "performance": {
+        "today": {
+          "callsHandled": 45,
+          "averageHandleTimeSeconds":260,
+          "firstCallResolutionPercentage": 70,
+          "customerSatisfactionScore": 4.9,
+          "adherencePercentage": 89
+        },
+        "thisWeek": {
+          "callsHandled": 238,
+          "averageHandleTimeSeconds": 428,
+          "firstCallResolutionPercentage": 81,
+          "customerSatisfactionScore": 3.9,
+          "adherencePercentage": 100
+        },
+        "lastMonth": {
+          "callsHandled": 604,
+          "averageHandleTimeSeconds": 214,
+          "firstCallResolutionPercentage": 87,
+          "customerSatisfactionScore": 4.8,
+          "adherencePercentage": 91
+        }
+      },
+      "otherMetrics": {
+        "escalationsTransferred": 2,
+        "emailTicketsResolved": 7,
+        "chatSessionsHandled": 27
+      }
+    },
+    {
+      "agentId": "AGT010",
+      "agentName": "Arnold Hillary",
+      "agentCategory": "Billing & Payments",
+      "skillSet": [
+        "Billing & Payments Expertise",
+        "Customer Service",
+        "Problem Solving"
+      ],
+      "status": "IDLE",
+      "performance": {
+        "today": {
+          "callsHandled": 39,
+          "averageHandleTimeSeconds": 318,
+          "firstCallResolutionPercentage": 52,
+          "customerSatisfactionScore": 4.7,
+          "adherencePercentage": 89
+        },
+        "thisWeek": {
+          "callsHandled": 238,
+          "averageHandleTimeSeconds": 428,
+          "firstCallResolutionPercentage": 81,
+          "customerSatisfactionScore": 3.9,
+          "adherencePercentage": 100
+        },
+        "lastMonth": {
+          "callsHandled": 604,
+          "averageHandleTimeSeconds": 214,
+          "firstCallResolutionPercentage": 87,
+          "customerSatisfactionScore": 4.8,
+          "adherencePercentage": 91
+        }
+      },
+      "otherMetrics": {
+        "escalationsTransferred": 3,
+        "emailTicketsResolved": 6,
+        "chatSessionsHandled": 26
+      }
+    }
+  ]
+}
