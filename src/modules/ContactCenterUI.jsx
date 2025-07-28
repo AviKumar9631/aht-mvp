@@ -1317,6 +1317,124 @@ Customer transferred from IVR system:
     }
   }, [callStatus, transcript.length]);
 
+  // Function to handle complete resolution - gather all data and log it
+  const handleCompleteResolution = () => {
+    const resolutionData = {
+      // Call Information
+      callInfo: {
+        status: callStatus,
+        duration: callDuration,
+        startTime: sessionTimestamp || new Date().toISOString(),
+        endTime: new Date().toISOString(),
+        isRecording: isRecording,
+        isMuted: isMuted,
+        sessionId: sessionId,
+      },
+      
+      // Customer Information
+      customerInfo: {
+        data: customerData,
+        phoneNumber: phoneNumber,
+        issue: currentIssue,
+        selectedOption: selectedOption,
+        categoryMapping: categoryMapping,
+      },
+      
+      // Agent Information
+      agentInfo: {
+        routedAgent: routedAgent,
+        agentMatchScore: agentMatchScore,
+        availableAgentsCount: availableAgentsCount,
+      },
+      
+      // Resolution Details
+      resolutionDetails: {
+        status: resolutionStatus,
+        summary: resolutionSummary,
+        category: resolutionCategory,
+        followUpRequired: followUpRequired,
+        followUpDate: followUpDate,
+        customerSatisfaction: customerSatisfaction,
+        callNotes: callNotes,
+      },
+      
+      // Backend Services Data
+      backendData: {
+        details: backendDetails,
+        totalServices: totalBackendServices,
+        successfulServices: successfulServices,
+        failedServices: failedServices,
+        totalBackendTime: totalBackendTime,
+      },
+      
+      // IVR Session Data
+      ivrData: {
+        sessionData: ivrSessionData,
+        summary: ivrSessionSummary,
+        activityLog: activityLog,
+        lastSession: lastIVRSession,
+      },
+      
+      // AI and Analytics
+      aiAnalytics: {
+        suggestions: aiSuggestions,
+        knowledgeBase: knowledgeBase,
+        geminiApiResponse: geminiApiResponse,
+        geminiApiLoading: geminiApiLoading,
+        timingSavings: timingSavings,
+      },
+      
+      // Transcript Data
+      conversationData: {
+        transcript: transcript,
+        searchQuery: searchQuery,
+      },
+      
+      // Performance Metrics
+      performanceMetrics: {
+        timingSavings: timingSavings,
+        showOptimizationDemo: showOptimizationDemo,
+      },
+      
+      // Additional Context
+      additionalContext: {
+        isAutoPopulating: isAutoPopulating,
+        showDebugPanel: showDebugPanel,
+        completedAt: new Date().toISOString(),
+        allLocalStorageState: getAllLocalStorageState(),
+      }
+    };
+
+    // Log the complete resolution data
+    console.log('=== COMPLETE RESOLUTION DATA ===');
+    console.log(JSON.stringify(resolutionData, null, 2));
+    console.log('=== END RESOLUTION DATA ===');
+    
+    // Also log a summary for easier reading
+    console.log('=== RESOLUTION SUMMARY ===');
+    console.log('Customer:', customerData?.name || 'Unknown');
+    console.log('Phone:', phoneNumber || 'Not provided');
+    console.log('Issue:', currentIssue || selectedOption || 'Not specified');
+    console.log('Resolution Status:', resolutionStatus);
+    console.log('Duration:', formatTime(callDuration));
+    console.log('Agent:', routedAgent?.name || 'Not assigned');
+    console.log('Satisfaction:', customerSatisfaction ? `${customerSatisfaction}/5` : 'Not rated');
+    console.log('Follow-up Required:', followUpRequired ? 'Yes' : 'No');
+    console.log('Backend Services:', `${successfulServices}/${totalBackendServices} successful`);
+    console.log('AI Suggestions:', aiSuggestions?.length || 0);
+    console.log('=== END SUMMARY ===');
+    
+    // Optional: Show alert to confirm completion
+    alert('Resolution completed! Check console for detailed data log.');
+    
+    // Optional: Clear the call state or perform other cleanup
+    // You could add additional logic here like:
+    // - Sending data to an API
+    // - Clearing localStorage
+    // - Resetting call state
+    // - Navigating to next call
+  };
+
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -2469,6 +2587,7 @@ Customer transferred from IVR system:
                           : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                       }`}
                       disabled={!resolutionStatus || !resolutionSummary}
+                      onClick={handleCompleteResolution}
                     >
                       Complete Resolution
                     </button>
