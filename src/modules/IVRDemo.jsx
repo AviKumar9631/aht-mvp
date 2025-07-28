@@ -464,7 +464,7 @@ const IVRDemo = () => {
                     Agent starts helping
                   </div>
                   <div className="mt-3 p-2 bg-red-100 rounded text-center">
-                    <span className="font-bold text-red-800">Total AHT: ~7 min</span>
+                    <span className="font-bold text-red-800">Total AHT: ~11 min</span>
                   </div>
                 </div>
               </div>
@@ -529,7 +529,7 @@ const IVRDemo = () => {
                   {backendDetails.length > 0 && (
                     <div className="mt-3 p-2 bg-green-100 rounded text-center">
                       <span className="font-bold text-green-800">
-                        Estimated AHT: ~{Math.max(1, 7 - Math.round(backendDetails.reduce((sum, service) => 
+                        Estimated AHT: ~{Math.max(1, 11 - Math.round(backendDetails.reduce((sum, service) => 
                           sum + parseInt(service.TIME_TAKEN || 0), 0) / 1000 / 60))} min
                       </span>
                     </div>

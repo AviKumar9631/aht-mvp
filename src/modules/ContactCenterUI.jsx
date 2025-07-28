@@ -478,7 +478,7 @@ Please format your response clearly with specific, actionable recommendations th
     const totalTimeSaved = preFetchedTime + customerDataLookupTime + agentContextSwitchTime;
     
     // Calculate percentage improvement in AHT
-    const traditionalAHTSeconds = 420; // 7 minutes average
+    const traditionalAHTSeconds = 660; // 11 minutes average
     const optimizedAHTSeconds = traditionalAHTSeconds - (totalTimeSaved / 1000);
     const improvementPercentage = ((traditionalAHTSeconds - optimizedAHTSeconds) / traditionalAHTSeconds) * 100;
     
