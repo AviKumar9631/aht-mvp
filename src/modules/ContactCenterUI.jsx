@@ -15,6 +15,15 @@ const ContactCenterUI = () => {
   const [currentIssue, setCurrentIssue] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   
+  // Resolution section state
+  const [resolutionStatus, setResolutionStatus] = useState(''); // pending, resolved, escalated, follow-up
+  const [resolutionSummary, setResolutionSummary] = useState('');
+  const [resolutionCategory, setResolutionCategory] = useState('');
+  const [followUpRequired, setFollowUpRequired] = useState(false);
+  const [followUpDate, setFollowUpDate] = useState('');
+  const [customerSatisfaction, setCustomerSatisfaction] = useState(null);
+  const [isAutoPopulating, setIsAutoPopulating] = useState(false);
+  
   // IVR Session Data State Variables
   const [ivrSessionData, setIvrSessionData] = useState(null);
   const [ivrSessionSummary, setIvrSessionSummary] = useState(null);
@@ -839,6 +848,225 @@ Customer transferred from IVR system:
     console.log('All localStorage state data:', getAllLocalStorageState());
   };
 
+  // Function to automatically populate resolution fields based on context
+  const autoPopulateResolution = () => {
+    setIsAutoPopulating(true);
+    
+    // Add a small delay to show the loading state
+    setTimeout(() => {
+      // Determine resolution category based on IVR selection or customer issue
+      let category = '';
+      let status = 'resolved';
+      let summary = '';
+      let followUp = false;
+      let satisfaction = 4; // Default to good rating
+
+      // Map IVR selection to resolution category
+      if (selectedOption) {
+        const option = selectedOption.toLowerCase();
+        if (option.includes('billing') || option.includes('payment')) {
+          category = 'billing-inquiry';
+          summary = 'Assisted customer with billing inquiry. ';
+        } else if (option.includes('technical') || option.includes('internet') || option.includes('connection')) {
+          category = 'technical-support';
+          summary = 'Provided technical support for connectivity issue. ';
+        } else if (option.includes('service') || option.includes('account')) {
+          category = 'account-management';
+          summary = 'Helped customer with account service request. ';
+        } else {
+          category = 'other';
+          summary = 'Addressed customer inquiry. ';
+        }
+      } else if (customerData?.issue) {
+        const issue = customerData.issue.toLowerCase();
+        if (issue.includes('billing')) {
+          category = 'billing-inquiry';
+          summary = 'Resolved billing-related inquiry. ';
+        } else if (issue.includes('technical') || issue.includes('internet')) {
+          category = 'technical-support';
+          summary = 'Provided technical assistance. ';
+        } else {
+          category = 'service-request';
+          summary = 'Assisted with service request. ';
+        }
+      }
+
+      // Enhance summary based on AI suggestions
+      const relevantSuggestions = aiSuggestions.filter(s => 
+        s.type === 'action' || s.type === 'response'
+      ).slice(0, 2);
+      
+      if (relevantSuggestions.length > 0) {
+        const actions = relevantSuggestions.map(s => 
+          s.text.replace(/^(Review|Check|Run|Verify|Consider)/i, 'Reviewed')
+        ).join('. ');
+        summary += actions + '. ';
+      }
+
+      // Add backend service information if available
+      if (backendDetails && backendDetails.length > 0) {
+        const successfulServices = backendDetails.filter(s => s.STATUS === 'S').length;
+        summary += `Verified ${successfulServices} backend services during call. `;
+      }
+
+      // Add customer context
+      if (customerData) {
+        if (customerData.tier === 'Premium' || customerData.tier === 'VIP') {
+          summary += 'Provided premium customer service. ';
+          satisfaction = 5; // Higher rating for premium customers
+        }
+        
+        // Check sentiment and adjust accordingly
+        if (customerData.sentiment === 'negative') {
+          status = 'follow-up';
+          followUp = true;
+          satisfaction = 3;
+          summary += 'Customer expressed concerns - follow-up scheduled. ';
+        } else if (customerData.sentiment === 'positive') {
+          satisfaction = 5;
+          summary += 'Customer expressed satisfaction with service. ';
+        }
+      }
+
+      // Check if there are escalation suggestions
+      const escalationSuggestions = aiSuggestions.filter(s => s.type === 'escalation');
+      if (escalationSuggestions.length > 0) {
+        status = 'escalated';
+        followUp = true;
+        summary += 'Issue escalated to specialist team. ';
+      }
+
+      // Set call duration context
+      if (callDuration > 600) { // More than 10 minutes
+        followUp = true;
+        summary += 'Extended call duration - monitoring for customer satisfaction. ';
+      }
+
+      // Update resolution fields
+      setResolutionCategory(category);
+      setResolutionStatus(status);
+      setResolutionSummary(summary.trim());
+      setFollowUpRequired(followUp);
+      setCustomerSatisfaction(satisfaction);
+
+      // Set follow-up date if required (3 days from now)
+      if (followUp) {
+        const followUpDate = new Date();
+        followUpDate.setDate(followUpDate.getDate() + 3);
+        setFollowUpDate(followUpDate.toISOString().split('T')[0]);
+      }
+      
+      setIsAutoPopulating(false);
+    }, 800); // 800ms delay to show loading
+  };
+
+  // Function to generate resolution summary based on transcript
+  const generateResolutionFromTranscript = () => {
+    if (transcript.length === 0) return;
+
+    let summary = 'Call summary: ';
+    const customerMessages = transcript.filter(msg => msg.speaker === 'Customer' && !msg.isSystem);
+    const agentMessages = transcript.filter(msg => msg.speaker === 'Agent' && !msg.isSystem);
+
+    // Analyze customer concerns from transcript
+    const concerns = [];
+    customerMessages.forEach(msg => {
+      const text = msg.text.toLowerCase();
+      if (text.includes('problem') || text.includes('issue') || text.includes('trouble')) {
+        concerns.push('Technical issue discussed');
+      }
+      if (text.includes('bill') || text.includes('charge') || text.includes('payment')) {
+        concerns.push('Billing matter addressed');
+      }
+      if (text.includes('cancel') || text.includes('disconnect')) {
+        concerns.push('Service cancellation discussed');
+      }
+    });
+
+    // Add agent actions from transcript
+    const actions = [];
+    agentMessages.forEach(msg => {
+      const text = msg.text.toLowerCase();
+      if (text.includes('check') || text.includes('verify')) {
+        actions.push('Verified account information');
+      }
+      if (text.includes('reset') || text.includes('restart')) {
+        actions.push('Performed system reset');
+      }
+      if (text.includes('transfer') || text.includes('escalate')) {
+        actions.push('Escalated to appropriate team');
+      }
+    });
+
+    // Combine findings
+    if (concerns.length > 0) {
+      summary += concerns.join(', ') + '. ';
+    }
+    if (actions.length > 0) {
+      summary += actions.join(', ') + '. ';
+    }
+
+    // Determine resolution status from transcript
+    let status = 'resolved';
+    const lastFewMessages = transcript.slice(-3);
+    const hasUnresolvedIndicators = lastFewMessages.some(msg => 
+      msg.text.toLowerCase().includes('still') || 
+      msg.text.toLowerCase().includes('not working') ||
+      msg.text.toLowerCase().includes('problem')
+    );
+
+    if (hasUnresolvedIndicators) {
+      status = 'follow-up';
+      setFollowUpRequired(true);
+      summary += 'Issue requires additional follow-up. ';
+    } else {
+      summary += 'Issue successfully resolved. ';
+    }
+
+    setResolutionSummary(summary);
+    setResolutionStatus(status);
+  };
+
+  // Function to suggest resolution based on AI analysis
+  const suggestResolutionFromAI = () => {
+    const geminiSuggestions = aiSuggestions.filter(s => s.source === 'gemini_ai' || s.source === 'gemini_transcript');
+    
+    if (geminiSuggestions.length === 0) return;
+
+    let summary = 'AI-assisted resolution: ';
+    let category = 'other';
+    let status = 'resolved';
+
+    geminiSuggestions.forEach(suggestion => {
+      const text = suggestion.text.toLowerCase();
+      
+      // Extract category from AI suggestion
+      if (text.includes('billing') || text.includes('payment')) {
+        category = 'billing-inquiry';
+      } else if (text.includes('technical') || text.includes('internet') || text.includes('connection')) {
+        category = 'technical-support';
+      } else if (text.includes('service') || text.includes('account')) {
+        category = 'account-management';
+      }
+
+      // Extract status indicators
+      if (text.includes('escalat') || text.includes('specialist')) {
+        status = 'escalated';
+        setFollowUpRequired(true);
+      } else if (text.includes('follow') || text.includes('monitor')) {
+        status = 'follow-up';
+        setFollowUpRequired(true);
+      }
+    });
+
+    summary += 'Utilized AI insights to provide comprehensive customer assistance. ';
+    summary += `Confidence level: ${Math.max(...geminiSuggestions.map(s => s.confidence))}%. `;
+
+    setResolutionCategory(category);
+    setResolutionStatus(status);
+    setResolutionSummary(prev => prev + summary);
+  };
+
   
 
   // Simulate incoming call only if no IVR data is available
@@ -1041,6 +1269,54 @@ Customer transferred from IVR system:
     }
   }, [callStatus, ivrSessionData, customerData, selectedOption, agentMatchScore, categoryMapping]);
 
+  // Auto-populate resolution fields when call becomes active and we have context
+  useEffect(() => {
+    if (callStatus === 'active' && (ivrSessionData || customerData)) {
+      // Wait a bit for other data to load, then auto-populate
+      setTimeout(() => {
+        autoPopulateResolution();
+      }, 3000); // 3 second delay to allow data to settle
+    }
+  }, [callStatus, ivrSessionData, customerData, selectedOption]);
+
+  // Update resolution when AI suggestions are updated
+  useEffect(() => {
+    if (callStatus === 'active' && aiSuggestions.length > 0) {
+      // If we have Gemini AI suggestions, enhance the resolution
+      const hasGeminiSuggestions = aiSuggestions.some(s => 
+        s.source === 'gemini_ai' || s.source === 'gemini_transcript'
+      );
+      
+      if (hasGeminiSuggestions) {
+        setTimeout(() => {
+          suggestResolutionFromAI();
+        }, 1000); // 1 second delay after AI suggestions arrive
+      }
+    }
+  }, [aiSuggestions, callStatus]);
+
+  // Update resolution when transcript is updated (for real-time insights)
+  useEffect(() => {
+    if (callStatus === 'active' && transcript.length > 3) {
+      // Only update after we have substantial transcript content
+      const shouldUpdate = transcript.length % 5 === 0; // Update every 5 messages
+      
+      if (shouldUpdate) {
+        generateResolutionFromTranscript();
+      }
+    }
+  }, [transcript, callStatus]);
+
+  // Auto-populate when call ends to ensure resolution is captured
+  useEffect(() => {
+    if (callStatus === 'idle' && transcript.length > 0) {
+      // Call just ended, ensure we have resolution data
+      if (!resolutionStatus || !resolutionSummary) {
+        autoPopulateResolution();
+      }
+    }
+  }, [callStatus, transcript.length]);
+
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -1063,6 +1339,15 @@ Customer transferred from IVR system:
     setAiSuggestions([]);
     setKnowledgeBase([]);
     setCallNotes('');
+    
+    // Reset resolution data
+    setResolutionStatus('');
+    setResolutionSummary('');
+    setResolutionCategory('');
+    setFollowUpRequired(false);
+    setFollowUpDate('');
+    setCustomerSatisfaction(null);
+    setIsAutoPopulating(false);
   };
 
   const handleIncomingCall = () => {
@@ -1994,6 +2279,222 @@ Customer transferred from IVR system:
                       Save Notes
                     </button>
                   </div>
+                </div>
+
+                {/* Call Resolution */}
+                <div className="p-4 border-t border-gray-200">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center space-x-2">
+                      <h3 className="font-semibold text-gray-900">Call Resolution</h3>
+                      <button
+                        onClick={autoPopulateResolution}
+                        disabled={isAutoPopulating}
+                        className={`px-2 py-1 rounded text-xs transition-colors flex items-center space-x-1 ${
+                          isAutoPopulating 
+                            ? 'bg-blue-200 text-blue-600 cursor-not-allowed' 
+                            : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+                        }`}
+                        title="Auto-fill resolution fields based on call context"
+                      >
+                        {isAutoPopulating ? (
+                          <>
+                            <div className="w-3 h-3 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                            <span>Auto-Filling...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Zap className="w-3 h-3" />
+                            <span>Auto-Fill</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      resolutionStatus === 'resolved' ? 'bg-green-100 text-green-800' :
+                      resolutionStatus === 'escalated' ? 'bg-red-100 text-red-800' :
+                      resolutionStatus === 'follow-up' ? 'bg-yellow-100 text-yellow-800' :
+                      'bg-gray-100 text-gray-800'
+                    }`}>
+                      {resolutionStatus || 'Pending'}
+                    </span>
+                  </div>
+
+                  {/* Resolution Status */}
+                  <div className="mb-3">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Resolution Status</label>
+                    <div className="grid grid-cols-2 gap-2">
+                      {['resolved', 'escalated', 'follow-up', 'pending'].map(status => (
+                        <button
+                          key={status}
+                          onClick={() => setResolutionStatus(status)}
+                          className={`p-2 text-sm rounded border transition-colors ${
+                            resolutionStatus === status
+                              ? status === 'resolved' ? 'bg-green-500 text-white border-green-500' :
+                                status === 'escalated' ? 'bg-red-500 text-white border-red-500' :
+                                status === 'follow-up' ? 'bg-yellow-500 text-white border-yellow-500' :
+                                'bg-gray-500 text-white border-gray-500'
+                              : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                          }`}
+                        >
+                          {status.charAt(0).toUpperCase() + status.slice(1).replace('-', ' ')}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Resolution Category */}
+                  <div className="mb-3">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Resolution Category</label>
+                    <select
+                      value={resolutionCategory}
+                      onChange={(e) => setResolutionCategory(e.target.value)}
+                      className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                      <option value="">Select category...</option>
+                      <option value="technical-support">Technical Support</option>
+                      <option value="billing-inquiry">Billing Inquiry</option>
+                      <option value="service-request">Service Request</option>
+                      <option value="account-management">Account Management</option>
+                      <option value="complaint-resolution">Complaint Resolution</option>
+                      <option value="product-information">Product Information</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+
+                  {/* Resolution Summary */}
+                  <div className="mb-3">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Resolution Summary</label>
+                    <textarea
+                      value={resolutionSummary}
+                      onChange={(e) => setResolutionSummary(e.target.value)}
+                      placeholder="Describe how the issue was resolved or current status..."
+                      className="w-full h-20 p-3 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                    />
+                  </div>
+
+                  {/* Follow-up Section */}
+                  <div className="mb-3">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <input
+                        type="checkbox"
+                        id="followUpRequired"
+                        checked={followUpRequired}
+                        onChange={(e) => setFollowUpRequired(e.target.checked)}
+                        className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                      />
+                      <label htmlFor="followUpRequired" className="text-sm font-medium text-gray-700">
+                        Follow-up Required
+                      </label>
+                    </div>
+                    
+                    {followUpRequired && (
+                      <div className="ml-6">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Follow-up Date</label>
+                        <input
+                          type="date"
+                          value={followUpDate}
+                          onChange={(e) => setFollowUpDate(e.target.value)}
+                          className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                          min={new Date().toISOString().split('T')[0]}
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Customer Satisfaction */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Customer Satisfaction</label>
+                    <div className="flex items-center space-x-2">
+                      {[1, 2, 3, 4, 5].map(rating => (
+                        <button
+                          key={rating}
+                          onClick={() => setCustomerSatisfaction(rating)}
+                          className={`p-1 transition-colors ${
+                            customerSatisfaction >= rating ? 'text-yellow-400' : 'text-gray-300 hover:text-yellow-300'
+                          }`}
+                        >
+                          <Star className="w-5 h-5 fill-current" />
+                        </button>
+                      ))}
+                      {customerSatisfaction && (
+                        <span className="text-sm text-gray-600 ml-2">
+                          {customerSatisfaction}/5 stars
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex justify-between items-center">
+                    <div className="flex space-x-2">
+                      <button 
+                        onClick={() => {
+                          setResolutionStatus('');
+                          setResolutionSummary('');
+                          setResolutionCategory('');
+                          setFollowUpRequired(false);
+                          setFollowUpDate('');
+                          setCustomerSatisfaction(null);
+                        }}
+                        className="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm hover:bg-gray-200"
+                      >
+                        Clear
+                      </button>
+                      <button 
+                        onClick={generateResolutionFromTranscript}
+                        className="px-3 py-1 bg-purple-100 text-purple-700 rounded text-sm hover:bg-purple-200 flex items-center space-x-1"
+                        title="Generate resolution from transcript"
+                        disabled={transcript.length === 0}
+                      >
+                        <FileText className="w-3 h-3" />
+                        <span>From Transcript</span>
+                      </button>
+                      <button 
+                        onClick={suggestResolutionFromAI}
+                        className="px-3 py-1 bg-green-100 text-green-700 rounded text-sm hover:bg-green-200 flex items-center space-x-1"
+                        title="Use AI suggestions for resolution"
+                        disabled={aiSuggestions.length === 0}
+                      >
+                        <Bot className="w-3 h-3" />
+                        <span>AI Suggest</span>
+                      </button>
+                      <button className="px-3 py-1 bg-blue-100 text-blue-700 rounded text-sm hover:bg-blue-200">
+                        Save Draft
+                      </button>
+                    </div>
+                    <button 
+                      className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
+                        resolutionStatus && resolutionSummary
+                          ? 'bg-green-500 text-white hover:bg-green-600'
+                          : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      }`}
+                      disabled={!resolutionStatus || !resolutionSummary}
+                    >
+                      Complete Resolution
+                    </button>
+                  </div>
+
+                  {/* Resolution Summary Display */}
+                  {resolutionStatus && resolutionSummary && (
+                    <div className="mt-4 p-3 bg-gray-50 rounded-lg border">
+                      <div className="text-xs text-gray-600 mb-1">Resolution Preview:</div>
+                      <div className="text-sm">
+                        <span className="font-medium">Status:</span> {resolutionStatus.replace('-', ' ')} • 
+                        <span className="font-medium ml-2">Category:</span> {resolutionCategory || 'Not specified'} • 
+                        {followUpRequired && <span className="font-medium ml-2">Follow-up:</span>}
+                        {followUpRequired && <span className="ml-1">{followUpDate}</span>}
+                        {customerSatisfaction && (
+                          <>
+                            <span className="font-medium ml-2">Rating:</span>
+                            <span className="ml-1">{customerSatisfaction}/5 ⭐</span>
+                          </>
+                        )}
+                      </div>
+                      <div className="text-sm text-gray-700 mt-1">
+                        {resolutionSummary}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
