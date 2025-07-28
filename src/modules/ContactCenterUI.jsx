@@ -50,7 +50,23 @@ const ContactCenterUI = () => {
   const [geminiApiLoading, setGeminiApiLoading] = useState(false);
   const [geminiApiResponse, setGeminiApiResponse] = useState(null);
   
+  // Customer Sentiment Analysis State Variables
+  const [currentSentiment, setCurrentSentiment] = useState(null);
+  const [sentimentHistory, setSentimentHistory] = useState([]);
+  const [sentimentTrend, setSentimentTrend] = useState('neutral');
+  const [emotionalIndicators, setEmotionalIndicators] = useState([]);
+  const [escalationRisk, setEscalationRisk] = useState('low');
+  const [sentimentAnalysisLoading, setSentimentAnalysisLoading] = useState(false);
+  
   const callTimerRef = useRef(null);
+
+  // Utility function to safely filter transcript messages
+  const safeFilterTranscript = (messages, filterFn) => {
+    if (!messages || !Array.isArray(messages)) {
+      return [];
+    }
+    return messages.filter(msg => msg && typeof msg === 'object' && filterFn(msg));
+  };
 
   // Dialogflow chatbot integration
   useEffect(() => {
@@ -279,7 +295,7 @@ Ensure the summary is clear, concise, and highlights key findings.:\n\n${xmlText
       console.log('Calling Gemini API with backend details:', payload);
 
       // Make the API call
-      const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent', {
+      const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -345,8 +361,7 @@ Ensure the summary is clear, concise, and highlights key findings.:\n\n${xmlText
 
     try {
       // Format transcript for analysis
-      const transcriptText = transcriptMessages
-        .filter(msg => !msg.isSystem) // Exclude system messages
+      const transcriptText = safeFilterTranscript(transcriptMessages, msg => !msg.isSystem)
         .map(msg => `${msg.speaker}: ${msg.text}`)
         .join('\n');
 
@@ -409,7 +424,7 @@ Please format your response clearly with specific, actionable recommendations th
       console.log('Calling Gemini API with transcript data:', payload);
 
       // Make the API call
-      const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent', {
+      const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -458,6 +473,247 @@ Please format your response clearly with specific, actionable recommendations th
       ]);
       
       setGeminiApiLoading(false);
+      return null;
+    }
+  };
+
+  // Function to analyze customer sentiment using Gemini API
+  const analyzeSentimentWithGemini = async (transcriptMessages, stage = 'real-time') => {
+    if (!transcriptMessages || transcriptMessages.length === 0) {
+      console.warn('No transcript available for sentiment analysis');
+      return null;
+    }
+
+    setSentimentAnalysisLoading(true);
+
+    try {
+      // Format transcript for sentiment analysis
+      const transcriptText = safeFilterTranscript(transcriptMessages, msg => !msg.isSystem && msg.speaker === 'Customer')
+        .slice(-10) // Analyze last 10 customer messages for real-time analysis
+        .map((msg, index) => `[${index + 1}] ${msg.text}`)
+        .join('\n');
+
+      if (!transcriptText.trim()) {
+        setSentimentAnalysisLoading(false);
+        return null;
+      }
+
+      // Include customer context if available
+      const customerContext = customerData ? `
+Customer Profile:
+- Name: ${customerData.name}
+- Phone: ${customerData.phone}
+- Account: ${customerData.account}
+- Issue Category: ${selectedOption || 'General Inquiry'}
+` : '';
+
+      const currentStageContext = stage === 'real-time' ? 
+        'This is a real-time analysis during an active call.' :
+        stage === 'call-end' ? 
+        'This is an end-of-call comprehensive analysis.' :
+        'This is an initial call assessment.';
+
+      // Gemini API payload for sentiment analysis
+      const payload = {
+        contents: [
+          {
+            parts: [
+              {
+                text: `You are an AI sentiment analyst for a contact center. Analyze the customer's emotional state and sentiment from their recent messages.
+
+${customerContext}
+
+Analysis Stage: ${currentStageContext}
+
+Recent Customer Messages:
+${transcriptText}
+
+Please provide a detailed sentiment analysis in the following JSON format:
+
+{
+  "overallSentiment": "positive|neutral|negative",
+  "sentimentScore": 0.85,
+  "confidence": 95,
+  "emotionalIndicators": [
+    {
+      "emotion": "frustration|satisfaction|confusion|anger|joy|concern|trust",
+      "intensity": "low|medium|high",
+      "keywords": ["specific", "words", "that", "indicate", "this", "emotion"]
+    }
+  ],
+  "escalationRisk": "low|medium|high",
+  "escalationFactors": ["reason1", "reason2"],
+  "sentimentTrend": "improving|stable|declining",
+  "keyInsights": [
+    "Customer shows signs of frustration with wait times",
+    "Positive response to agent's explanation",
+    "Potential satisfaction if issue is resolved quickly"
+  ],
+  "recommendations": [
+    "Acknowledge the customer's frustration",
+    "Provide clear timeline for resolution",
+    "Follow up proactively"
+  ],
+  "riskFactors": [
+    "Multiple failed attempts mentioned",
+    "Time sensitivity expressed"
+  ],
+  "customerState": "calm|frustrated|angry|satisfied|confused|anxious|impatient",
+  "urgencyLevel": "low|medium|high",
+  "satisfactionPrediction": "likely_satisfied|neutral|likely_dissatisfied"
+}
+
+Important: Respond ONLY with the raw JSON object. Do not include any markdown code blocks, backticks, or additional formatting. Start your response directly with the opening curly brace { and end with the closing curly brace }.`
+              }
+            ]
+          }
+        ]
+      };
+
+      console.log('Calling Gemini API for sentiment analysis:', payload);
+
+      // Make the API call
+      const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-goog-api-key': 'AIzaSyCroQ-BaLYAuriHkGfr9PxLL950RNQctfY'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`Gemini API error: ${response.status} ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log('Gemini API sentiment response:', data);
+
+      // Extract the generated text from the response
+      const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      
+      if (generatedText) {
+        try {
+          // Clean the generated text by removing markdown code block syntax
+          let cleanedText = generatedText.trim();
+          
+          // Remove ```json at the beginning and ``` at the end if present
+          if (cleanedText.startsWith('```json')) {
+            cleanedText = cleanedText.replace(/^```json\s*/, '');
+          }
+          if (cleanedText.startsWith('```')) {
+            cleanedText = cleanedText.replace(/^```\s*/, '');
+          }
+          if (cleanedText.endsWith('```')) {
+            cleanedText = cleanedText.replace(/\s*```$/, '');
+          }
+          
+          console.log('Cleaned sentiment response text:', cleanedText);
+          
+          // Parse the JSON response
+          const sentimentData = JSON.parse(cleanedText);
+          
+          // Update sentiment state
+          setCurrentSentiment(sentimentData);
+          
+          // Add to sentiment history
+          setSentimentHistory(prev => [
+            ...prev,
+            {
+              timestamp: new Date().toISOString(),
+              stage: stage,
+              sentiment: sentimentData.overallSentiment,
+              score: sentimentData.sentimentScore,
+              confidence: sentimentData.confidence,
+              customerState: sentimentData.customerState,
+              escalationRisk: sentimentData.escalationRisk
+            }
+          ].slice(-20)); // Keep last 20 sentiment analyses
+          
+          // Update derived states
+          setSentimentTrend(sentimentData.sentimentTrend);
+          setEmotionalIndicators(sentimentData.emotionalIndicators || []);
+          setEscalationRisk(sentimentData.escalationRisk);
+          
+          // Add sentiment insights as AI suggestions
+          setAiSuggestions(prev => [
+            {
+              type: 'sentiment',
+              text: `😊 Customer Sentiment: ${sentimentData.overallSentiment.toUpperCase()} (${sentimentData.confidence}% confidence)\n\nKey Insights:\n${sentimentData.keyInsights?.map(insight => `• ${insight}`).join('\n')}\n\nRecommendations:\n${sentimentData.recommendations?.map(rec => `• ${rec}`).join('\n')}`,
+              confidence: sentimentData.confidence,
+              source: 'gemini_sentiment',
+              sentiment: sentimentData.overallSentiment,
+              escalationRisk: sentimentData.escalationRisk,
+              timestamp: new Date().toISOString()
+            },
+            ...prev.filter(s => s.source !== 'gemini_sentiment') // Remove previous sentiment analysis
+          ]);
+          
+          console.log('Sentiment analysis completed:', sentimentData);
+          
+        } catch (parseError) {
+          console.error('Error parsing sentiment JSON:', parseError);
+          console.log('Raw response:', generatedText);
+          console.log('Cleaned response for parsing:', cleanedText);
+          
+          // Try to extract useful information even if JSON parsing fails
+          let fallbackSentiment = 'neutral';
+          let fallbackConfidence = 50;
+          
+          // Simple text analysis as fallback
+          const lowerText = generatedText.toLowerCase();
+          if (lowerText.includes('positive') || lowerText.includes('satisfied') || lowerText.includes('happy')) {
+            fallbackSentiment = 'positive';
+            fallbackConfidence = 70;
+          } else if (lowerText.includes('negative') || lowerText.includes('frustrated') || lowerText.includes('angry')) {
+            fallbackSentiment = 'negative';
+            fallbackConfidence = 70;
+          }
+          
+          // Set basic sentiment data as fallback
+          setCurrentSentiment({
+            overallSentiment: fallbackSentiment,
+            sentimentScore: fallbackConfidence / 100,
+            confidence: fallbackConfidence,
+            customerState: 'unknown',
+            escalationRisk: fallbackSentiment === 'negative' ? 'medium' : 'low',
+            keyInsights: ['Unable to parse detailed analysis'],
+            recommendations: ['Manual review recommended']
+          });
+          
+          // Fallback: treat as text response
+          setAiSuggestions(prev => [
+            {
+              type: 'sentiment',
+              text: `😊 Sentiment Analysis (Fallback): ${fallbackSentiment.toUpperCase()}\n\nNote: JSON parsing failed, showing simplified analysis.\n\nRaw Analysis:\n${generatedText}`,
+              confidence: fallbackConfidence,
+              source: 'gemini_sentiment_text',
+              sentiment: fallbackSentiment,
+              escalationRisk: fallbackSentiment === 'negative' ? 'medium' : 'low',
+              timestamp: new Date().toISOString()
+            },
+            ...prev.filter(s => s.source !== 'gemini_sentiment')
+          ]);
+        }
+      }
+
+      setSentimentAnalysisLoading(false);
+      return data;
+    } catch (error) {
+      console.error('Error calling Gemini API for sentiment analysis:', error);
+      
+      // Add error as a suggestion for debugging
+      setAiSuggestions(prev => [
+        {
+          type: 'context',
+          text: `⚠️ Failed to analyze customer sentiment: ${error.message}`,
+          confidence: 0,
+          source: 'gemini_sentiment_error'
+        },
+        ...prev
+      ]);
+      
+      setSentimentAnalysisLoading(false);
       return null;
     }
   };
@@ -965,8 +1221,8 @@ Customer transferred from IVR system:
     if (transcript.length === 0) return;
 
     let summary = 'Call summary: ';
-    const customerMessages = transcript.filter(msg => msg.speaker === 'Customer' && !msg.isSystem);
-    const agentMessages = transcript.filter(msg => msg.speaker === 'Agent' && !msg.isSystem);
+    const customerMessages = safeFilterTranscript(transcript, msg => msg.speaker === 'Customer' && !msg.isSystem);
+    const agentMessages = safeFilterTranscript(transcript, msg => msg.speaker === 'Agent' && !msg.isSystem);
 
     // Analyze customer concerns from transcript
     const concerns = [];
@@ -1317,6 +1573,41 @@ Customer transferred from IVR system:
     }
   }, [callStatus, transcript.length]);
 
+  // Real-time sentiment analysis during active calls
+  useEffect(() => {
+    if (callStatus === 'active' && transcript.length > 0) {
+      // Analyze sentiment every 3 customer messages to avoid too frequent API calls
+      const customerMessages = safeFilterTranscript(transcript, msg => !msg.isSystem && msg.speaker === 'Customer');
+      const shouldAnalyze = customerMessages.length > 0 && customerMessages.length % 3 === 0;
+      
+      if (shouldAnalyze) {
+        analyzeSentimentWithGemini(transcript, 'real-time');
+      }
+    }
+  }, [transcript, callStatus]);
+
+  // Sentiment analysis at call start
+  useEffect(() => {
+    if (callStatus === 'active' && transcript.length >= 2) {
+      // Initial sentiment analysis when call starts and we have first customer interaction
+      const hasCustomerMessage = safeFilterTranscript(transcript, msg => !msg.isSystem && msg.speaker === 'Customer').length > 0;
+      if (hasCustomerMessage && sentimentHistory.length === 0) {
+        analyzeSentimentWithGemini(transcript, 'call-start');
+      }
+    }
+  }, [callStatus, transcript, sentimentHistory.length]);
+
+  // Comprehensive sentiment analysis at call end
+  useEffect(() => {
+    if (callStatus === 'idle' && transcript.length > 0) {
+      // Perform final comprehensive sentiment analysis
+      const customerMessages = safeFilterTranscript(transcript, msg => !msg.isSystem && msg.speaker === 'Customer');
+      if (customerMessages.length > 0) {
+        analyzeSentimentWithGemini(transcript, 'call-end');
+      }
+    }
+  }, [callStatus, transcript.length]);
+
   // Function to handle complete resolution - gather all data and log it
   const handleCompleteResolution = () => {
     const resolutionData = {
@@ -1384,6 +1675,19 @@ Customer transferred from IVR system:
         timingSavings: timingSavings,
       },
       
+      // Customer Sentiment Analysis
+      sentimentAnalysis: {
+        currentSentiment: currentSentiment,
+        sentimentHistory: sentimentHistory,
+        sentimentTrend: sentimentTrend,
+        emotionalIndicators: emotionalIndicators,
+        escalationRisk: escalationRisk,
+        finalSentimentScore: currentSentiment?.sentimentScore || null,
+        overallCustomerState: currentSentiment?.customerState || 'unknown',
+        satisfactionPrediction: currentSentiment?.satisfactionPrediction || 'neutral',
+        sentimentAnalysisLoading: sentimentAnalysisLoading,
+      },
+      
       // Transcript Data
       conversationData: {
         transcript: transcript,
@@ -1439,6 +1743,25 @@ Customer transferred from IVR system:
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  // Helper function to add sample transcript for sentiment testing
+  const addSentimentTestData = () => {
+    const testMessages = [
+      { speaker: 'Agent', text: 'Hello, thank you for calling. How can I help you today?', timestamp: new Date(), isSystem: false },
+      { speaker: 'Customer', text: 'Hi, I\'ve been trying to fix my internet connection for hours and nothing is working. I\'m really frustrated right now.', timestamp: new Date(), isSystem: false },
+      { speaker: 'Agent', text: 'I understand your frustration. Let me help you resolve this issue quickly.', timestamp: new Date(), isSystem: false },
+      { speaker: 'Customer', text: 'This is the third time I\'ve called about this same problem. I\'m starting to think about switching providers.', timestamp: new Date(), isSystem: false },
+      { speaker: 'Agent', text: 'I sincerely apologize for the inconvenience. Let me check your account and see what\'s been happening.', timestamp: new Date(), isSystem: false },
+      { speaker: 'Customer', text: 'Thank you, I really hope you can help me this time.', timestamp: new Date(), isSystem: false }
+    ];
+    
+    setTranscript(testMessages);
+    
+    // Trigger sentiment analysis after adding test data
+    setTimeout(() => {
+      analyzeSentimentWithGemini(testMessages, 'manual');
+    }, 500);
   };
 
   const handleAnswerCall = () => {
@@ -1587,6 +1910,62 @@ Customer transferred from IVR system:
               </>
             )}
           </div>
+          
+          {/* Sentiment Analysis Quick Controls */}
+          {callStatus === 'active' && transcript.length > 0 && (
+            <div className="mt-3 flex justify-center space-x-2">
+              <button 
+                onClick={() => analyzeSentimentWithGemini(transcript, 'manual')}
+                disabled={sentimentAnalysisLoading}
+                className={`flex items-center px-3 py-1 text-sm rounded-lg transition-colors ${
+                  sentimentAnalysisLoading 
+                    ? 'bg-purple-100 text-purple-600 cursor-not-allowed' 
+                    : 'bg-purple-500 text-white hover:bg-purple-600'
+                }`}
+              >
+                {sentimentAnalysisLoading ? (
+                  <div className="w-3 h-3 border-2 border-purple-600 border-t-transparent rounded-full animate-spin mr-2" />
+                ) : (
+                  <Bot className="w-3 h-3 mr-2" />
+                )}
+                {sentimentAnalysisLoading ? 'Analyzing...' : 'Analyze Sentiment'}
+              </button>
+              
+              {currentSentiment && (
+                <div className={`flex items-center px-3 py-1 text-xs rounded-lg ${
+                  currentSentiment.overallSentiment === 'positive' ? 'bg-green-100 text-green-800' :
+                  currentSentiment.overallSentiment === 'negative' ? 'bg-red-100 text-red-800' :
+                  'bg-yellow-100 text-yellow-800'
+                }`}>
+                  <div className={`w-2 h-2 rounded-full mr-2 ${
+                    currentSentiment.overallSentiment === 'positive' ? 'bg-green-500' :
+                    currentSentiment.overallSentiment === 'negative' ? 'bg-red-500' : 'bg-yellow-500'
+                  }`} />
+                  {currentSentiment.overallSentiment.toUpperCase()}
+                </div>
+              )}
+              
+              {escalationRisk === 'high' && (
+                <div className="flex items-center px-3 py-1 text-xs bg-red-100 text-red-800 rounded-lg animate-pulse border border-red-200">
+                  <AlertCircle className="w-3 h-3 mr-1" />
+                  HIGH RISK
+                </div>
+              )}
+            </div>
+          )}
+          
+          {/* Development Test Controls - Remove in production */}
+          {/* {callStatus === 'active' && (
+            <div className="mt-2 flex justify-center">
+              <button 
+                onClick={addSentimentTestData}
+                className="flex items-center px-2 py-1 text-xs bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+              >
+                <MessageSquare className="w-3 h-3 mr-1" />
+                Add Test Conversation
+              </button>
+            </div>
+          )} */}
           
           {/* IVR Transfer Status */}
           {ivrSessionData && callStatus !== 'active' && (
@@ -2035,6 +2414,108 @@ Customer transferred from IVR system:
               {/* Center Panel - Transcript & Notes */}
               <div className="flex-1 flex flex-col">
                 
+        {/* Customer Sentiment Analysis */}
+        {(currentSentiment || sentimentAnalysisLoading) && (
+          <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-green-50 to-blue-50">
+            <div className="flex items-center space-x-2 mb-3">
+              <div className={`w-4 h-4 rounded-full ${
+                currentSentiment?.overallSentiment === 'positive' ? 'bg-green-500' :
+                currentSentiment?.overallSentiment === 'negative' ? 'bg-red-500' : 'bg-yellow-500'
+              }`} />
+              <h4 className="font-semibold text-gray-900">Customer Sentiment</h4>
+              {currentSentiment && (
+                <span className={`text-xs px-2 py-1 rounded-full font-medium ${
+                  currentSentiment.overallSentiment === 'positive' ? 'bg-green-100 text-green-800' :
+                  currentSentiment.overallSentiment === 'negative' ? 'bg-red-100 text-red-800' :
+                  'bg-yellow-100 text-yellow-800'
+                }`}>
+                  {currentSentiment.overallSentiment.toUpperCase()}
+                </span>
+              )}
+              {sentimentAnalysisLoading && (
+                <div className="flex items-center space-x-1">
+                  <div className="w-3 h-3 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                  <span className="text-xs text-blue-600">Analyzing sentiment...</span>
+                </div>
+              )}
+            </div>
+            
+            {currentSentiment && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Current Sentiment */}
+                <div className="bg-white rounded-lg p-3 border">
+                  <div className="text-sm font-medium text-gray-700 mb-1">Current State</div>
+                  <div className={`text-lg font-bold ${
+                    currentSentiment.overallSentiment === 'positive' ? 'text-green-600' :
+                    currentSentiment.overallSentiment === 'negative' ? 'text-red-600' : 'text-yellow-600'
+                  }`}>
+                    {currentSentiment.customerState?.toUpperCase() || 'Unknown'}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    {currentSentiment.confidence}% confidence
+                  </div>
+                </div>
+                
+                {/* Escalation Risk */}
+                <div className="bg-white rounded-lg p-3 border">
+                  <div className="text-sm font-medium text-gray-700 mb-1">Escalation Risk</div>
+                  <div className={`text-lg font-bold ${
+                    escalationRisk === 'low' ? 'text-green-600' :
+                    escalationRisk === 'high' ? 'text-red-600' : 'text-yellow-600'
+                  }`}>
+                    {escalationRisk.toUpperCase()}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    Trend: {sentimentTrend}
+                  </div>
+                </div>
+                
+                {/* Satisfaction Prediction */}
+                <div className="bg-white rounded-lg p-3 border">
+                  <div className="text-sm font-medium text-gray-700 mb-1">Satisfaction</div>
+                  <div className={`text-lg font-bold ${
+                    currentSentiment.satisfactionPrediction === 'likely_satisfied' ? 'text-green-600' :
+                    currentSentiment.satisfactionPrediction === 'likely_dissatisfied' ? 'text-red-600' : 'text-yellow-600'
+                  }`}>
+                    {currentSentiment.satisfactionPrediction?.replace('likely_', '').replace('_', ' ').toUpperCase() || 'NEUTRAL'}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    Score: {(currentSentiment.sentimentScore * 100).toFixed(0)}%
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {/* Emotional Indicators */}
+            {emotionalIndicators && emotionalIndicators.length > 0 && (
+              <div className="mt-3">
+                <div className="text-sm font-medium text-gray-700 mb-2">Emotional Indicators</div>
+                <div className="flex flex-wrap gap-2">
+                  {emotionalIndicators.map((indicator, index) => (
+                    <span key={index} className={`text-xs px-2 py-1 rounded-full border ${
+                      indicator.intensity === 'high' ? 'bg-red-50 text-red-700 border-red-200' :
+                      indicator.intensity === 'medium' ? 'bg-yellow-50 text-yellow-700 border-yellow-200' :
+                      'bg-green-50 text-green-700 border-green-200'
+                    }`}>
+                      {indicator.emotion} ({indicator.intensity})
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {/* Quick Actions based on sentiment */}
+            {currentSentiment && escalationRisk === 'high' && (
+              <div className="mt-3 p-2 bg-red-50 border border-red-200 rounded">
+                <div className="text-sm font-medium text-red-800 mb-1">⚠️ Recommended Actions</div>
+                <div className="text-xs text-red-700">
+                  High escalation risk detected. Consider supervisor involvement or immediate resolution focus.
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+                
         {/* AI Suggestions */}
         {aiSuggestions.length > 0 && (
           <div className="p-4 border-b border-gray-200">
@@ -2136,6 +2617,108 @@ Customer transferred from IVR system:
                         >
                           <Bot className="w-3 h-3 mr-1" />
                           Refresh Analysis
+                        </button>
+                      </div>
+                    </div>
+                  );
+                }
+
+                // Special handling for Sentiment Analysis
+                if (suggestion.source === 'gemini_sentiment') {
+                  const analysisText = suggestion.text.replace('😊 Customer Sentiment: ', '');
+                  
+                  return (
+                    <div key={index} className={`bg-gradient-to-r border-2 rounded-lg p-4 transition-all hover:shadow-md ${
+                      suggestion.sentiment === 'positive' ? 
+                        'from-green-50 to-emerald-50 border-green-200' :
+                      suggestion.sentiment === 'negative' ? 
+                        'from-red-50 to-rose-50 border-red-200' :
+                        'from-yellow-50 to-amber-50 border-yellow-200'
+                    }`}>
+                      <div className="flex items-center space-x-2 mb-3">
+                        <div className={`w-5 h-5 rounded-full ${
+                          suggestion.sentiment === 'positive' ? 'bg-green-500' :
+                          suggestion.sentiment === 'negative' ? 'bg-red-500' : 'bg-yellow-500'
+                        }`} />
+                        <span className={`font-semibold ${
+                          suggestion.sentiment === 'positive' ? 'text-green-900' :
+                          suggestion.sentiment === 'negative' ? 'text-red-900' : 'text-yellow-900'
+                        }`}>
+                          Customer Sentiment Analysis
+                        </span>
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                          suggestion.sentiment === 'positive' ? 'bg-green-100 text-green-800' :
+                          suggestion.sentiment === 'negative' ? 'bg-red-100 text-red-800' :
+                          'bg-yellow-100 text-yellow-800'
+                        }`}>
+                          {suggestion.confidence}% Confidence
+                        </span>
+                        {suggestion.escalationRisk === 'high' && (
+                          <span className="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs font-medium animate-pulse">
+                            ⚠️ HIGH RISK
+                          </span>
+                        )}
+                      </div>
+                      
+                      <div className="prose prose-sm max-w-none">
+                        {analysisText.split('\n').map((line, lineIndex) => {
+                          const trimmedLine = line.trim();
+                          
+                          if (trimmedLine.startsWith('**') && trimmedLine.endsWith('**')) {
+                            // Header line
+                            return (
+                              <h5 key={lineIndex} className="font-semibold text-gray-900 mt-3 mb-2 text-sm">
+                                {trimmedLine.replace(/\*\*/g, '')}
+                              </h5>
+                            );
+                          } else if (trimmedLine.startsWith('* **') || trimmedLine.startsWith('*')) {
+                            // Bullet point
+                            return (
+                              <div key={lineIndex} className="mb-2 pl-3">
+                                <p className="text-gray-800 text-sm leading-relaxed" 
+                                   dangerouslySetInnerHTML={{
+                                     __html: trimmedLine.replace(/^\*\s*/, '• ').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                   }} />
+                              </div>
+                            );
+                          } else if (trimmedLine.length > 0) {
+                            // Regular paragraph
+                            return (
+                              <p key={lineIndex} className="text-gray-800 text-sm leading-relaxed mb-2" 
+                                 dangerouslySetInnerHTML={{
+                                   __html: trimmedLine.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                 }} />
+                            );
+                          }
+                          return null;
+                        })}
+                      </div>
+                      
+                      <div className={`mt-4 flex items-center justify-between text-xs border-t pt-2 ${
+                        suggestion.sentiment === 'positive' ? 'text-gray-500 border-green-100' :
+                        suggestion.sentiment === 'negative' ? 'text-gray-500 border-red-100' :
+                        'text-gray-500 border-yellow-100'
+                      }`}>
+                        <span>😊 Real-time Sentiment Analysis</span>
+                        <span>Updated: {new Date(suggestion.timestamp).toLocaleTimeString()}</span>
+                      </div>
+                      
+                      <div className="mt-2 flex items-center space-x-2">
+                        <button className="text-xs text-green-600 hover:text-green-800 flex items-center">
+                          <ThumbsUp className="w-3 h-3 mr-1" />
+                          Helpful
+                        </button>
+                        <button className="text-xs text-red-600 hover:text-red-800 flex items-center">
+                          <ThumbsDown className="w-3 h-3 mr-1" />
+                          Not helpful
+                        </button>
+                        <button 
+                          onClick={() => analyzeSentimentWithGemini(transcript, 'manual')}
+                          className="text-xs text-purple-600 hover:text-purple-800 flex items-center ml-auto"
+                          disabled={sentimentAnalysisLoading}
+                        >
+                          <Bot className="w-3 h-3 mr-1" />
+                          Refresh Sentiment
                         </button>
                       </div>
                     </div>
@@ -2264,12 +2847,21 @@ Customer transferred from IVR system:
             
             {/* AI Suggestions Summary Stats */}
             <div className="mt-3 p-2 bg-gray-50 rounded border">
-              <div className="grid grid-cols-6 gap-2 text-xs text-center">
+              <div className="grid grid-cols-7 gap-2 text-xs text-center">
                 <div>
                   <div className="font-medium text-blue-600">
                     {aiSuggestions.filter(s => s.source === 'gemini_ai').length}
                   </div>
                   <div className="text-gray-600">AI Analysis</div>
+                </div>
+                <div>
+                  <div className={`font-medium ${
+                    currentSentiment?.overallSentiment === 'positive' ? 'text-green-600' :
+                    currentSentiment?.overallSentiment === 'negative' ? 'text-red-600' : 'text-yellow-600'
+                  }`}>
+                    {aiSuggestions.filter(s => s.source === 'gemini_sentiment').length}
+                  </div>
+                  <div className="text-gray-600">Sentiment</div>
                 </div>
                 <div>
                   <div className="font-medium text-green-600">
@@ -2295,6 +2887,15 @@ Customer transferred from IVR system:
                   </div>
                   <div className="text-gray-600">Errors</div>
                 </div>
+                <div>
+                  <div className={`font-medium ${
+                    escalationRisk === 'high' ? 'text-red-600 animate-pulse' :
+                    escalationRisk === 'medium' ? 'text-yellow-600' : 'text-green-600'
+                  }`}>
+                    {escalationRisk.charAt(0).toUpperCase()}
+                  </div>
+                  <div className="text-gray-600">Risk</div>
+                </div>
               </div>
               
               {/* Show when Gemini analysis is available */}
@@ -2303,6 +2904,24 @@ Customer transferred from IVR system:
                   <div className="flex items-center justify-center space-x-2 text-xs text-blue-600">
                     <Bot className="w-3 h-3" />
                     <span>Gemini AI analysis active • Last updated: {new Date().toLocaleTimeString()}</span>
+                  </div>
+                </div>
+              )}
+              
+              {/* Show sentiment trend when available */}
+              {currentSentiment && (
+                <div className="mt-2 text-center">
+                  <div className="flex items-center justify-center space-x-2 text-xs">
+                    <div className={`w-2 h-2 rounded-full ${
+                      currentSentiment.overallSentiment === 'positive' ? 'bg-green-500' :
+                      currentSentiment.overallSentiment === 'negative' ? 'bg-red-500' : 'bg-yellow-500'
+                    }`} />
+                    <span className={`${
+                      currentSentiment.overallSentiment === 'positive' ? 'text-green-600' :
+                      currentSentiment.overallSentiment === 'negative' ? 'text-red-600' : 'text-yellow-600'
+                    }`}>
+                      Customer sentiment: {currentSentiment.overallSentiment} • Trend: {sentimentTrend}
+                    </span>
                   </div>
                 </div>
               )}
