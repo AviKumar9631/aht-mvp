@@ -325,6 +325,134 @@ Ensure the summary is clear, concise, and highlights key findings.:\n\n${xmlText
     }
   };
 
+  // Function to call Gemini API with transcript data for analysis and resolution suggestions
+  const callGeminiAPIWithTranscript = async (transcriptMessages) => {
+    if (!transcriptMessages || transcriptMessages.length === 0) {
+      console.warn('No transcript available for Gemini API call');
+      return null;
+    }
+
+    setGeminiApiLoading(true);
+
+    try {
+      // Format transcript for analysis
+      const transcriptText = transcriptMessages
+        .filter(msg => !msg.isSystem) // Exclude system messages
+        .map(msg => `${msg.speaker}: ${msg.text}`)
+        .join('\n');
+
+      // Include customer context if available
+      const customerContext = customerData ? `
+Customer Information:
+- Name: ${customerData.name}
+- Phone: ${customerData.phone}
+- Account: ${customerData.account}
+- Issue Category: ${selectedOption || 'General Inquiry'}
+` : '';
+
+      // Gemini API payload for transcript analysis
+      const payload = {
+        contents: [
+          {
+            parts: [
+              {
+                text: `You are an AI assistant helping a contact center agent. Analyze the following customer service transcript and provide specific suggestions and information for resolution.
+
+${customerContext}
+
+Transcript:
+${transcriptText}
+
+Please provide:
+
+**Issue Analysis:**
+- Identify the main customer issues or concerns
+- Determine the urgency level (Low/Medium/High)
+- Note any emotional indicators (frustration, satisfaction, confusion)
+
+**Resolution Recommendations:**
+- Provide specific steps the agent should take to resolve the issue
+- Suggest follow-up actions needed
+- Recommend any additional services or products that might help
+
+**Customer Sentiment:**
+- Assess overall customer satisfaction during the call
+- Identify any potential escalation risks
+- Note opportunities to improve customer experience
+
+**Next Best Actions:**
+- List immediate actions the agent should prioritize
+- Suggest proactive measures to prevent similar issues
+- Recommend any system checks or account updates needed
+
+**Knowledge Base Suggestions:**
+- Identify relevant help articles or procedures
+- Suggest internal resources the agent should reference
+- Note any training opportunities for similar cases
+
+Please format your response clearly with specific, actionable recommendations that will help the agent provide excellent customer service.`
+              }
+            ]
+          }
+        ]
+      };
+
+      console.log('Calling Gemini API with transcript data:', payload);
+
+      // Make the API call
+      const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-goog-api-key': 'AIzaSyCroQ-BaLYAuriHkGfr9PxLL950RNQctfY' // You'll need to set your API key
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`Gemini API error: ${response.status} ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log('Gemini API transcript response:', data);
+
+      // Extract the generated text from the response
+      const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      
+      if (generatedText) {
+        // Add the transcript analysis as a suggestion
+        setAiSuggestions(prev => [
+          {
+            type: 'insight',
+            text: `📋 Transcript Analysis: ${generatedText}`,
+            confidence: 90,
+            source: 'gemini_transcript'
+          },
+          ...prev
+        ]);
+      }
+
+      setGeminiApiLoading(false);
+      return data;
+    } catch (error) {
+      console.error('Error calling Gemini API with transcript:', error);
+      
+      // Add error as a suggestion for debugging
+      setAiSuggestions(prev => [
+        {
+          type: 'context',
+          text: `⚠️ Failed to analyze transcript with AI: ${error.message}`,
+          confidence: 0,
+          source: 'gemini_transcript_error'
+        },
+        ...prev
+      ]);
+      
+      setGeminiApiLoading(false);
+      return null;
+    }
+  };
+
   // Calculate timing savings from pre-fetched IVR data
   const calculateTimingSavings = (ivrData) => {
     if (!ivrData || !ivrData.backendDetails) return;
@@ -901,6 +1029,11 @@ Customer transferred from IVR system:
           messageIndex++;
         } else {
           clearInterval(interval);
+          // Once all transcript messages are loaded, send to Gemini for analysis
+          console.log('Transcript loading complete, sending to Gemini for analysis...');
+          setTimeout(() => {
+            callGeminiAPIWithTranscript(messages);
+          }, 1000); // Wait 1 second after transcript is complete before analyzing
         }
       }, 2000);
       
@@ -1125,206 +1258,7 @@ Customer transferred from IVR system:
           </div>
         )}
 
-        {/* AI Suggestions */}
-        {aiSuggestions.length > 0 && (
-          <div className="p-4 border-b border-gray-200">
-            <div className="flex items-center space-x-2 mb-3">
-              <Bot className="w-4 h-4 text-purple-500" />
-              <h4 className="font-semibold text-gray-900">AI Suggestions</h4>
-              <span className="text-xs text-purple-600 bg-purple-100 px-2 py-1 rounded-full">
-                {aiSuggestions.length} insights
-              </span>
-              {geminiApiLoading && (
-                <div className="flex items-center space-x-1">
-                  <div className="w-3 h-3 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                  <span className="text-xs text-blue-600">AI analyzing...</span>
-                </div>
-              )}
-            </div>
-            
-            <div className="space-y-3 max-h-80 overflow-y-auto">
-              {/* Show Gemini loading state if API is loading and no Gemini response exists yet */}
-              {geminiApiLoading && !aiSuggestions.some(s => s.source === 'gemini_ai') && (
-                <div className="bg-gradient-to-r from-blue-50 to-purple-50 border-2 border-blue-200 rounded-lg p-4">
-                  <div className="flex items-center space-x-2 mb-3">
-                    <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                    <span className="font-semibold text-blue-900">Gemini AI is analyzing...</span>
-                  </div>
-                  <p className="text-gray-700 text-sm">
-                    Processing {backendDetails?.filter(s => s.RESPONSE_XML).length || 0} backend service responses to generate customer insights and recommendations.
-                  </p>
-                </div>
-              )}
-              
-              {aiSuggestions.map((suggestion, index) => {
-                // Special handling for Gemini AI response
-                if (suggestion.source === 'gemini_ai') {
-                  const analysisText = suggestion.text.replace('🤖 AI Analysis: ', '');
-                  
-                  return (
-                    <div key={index} className="bg-gradient-to-r from-blue-50 to-purple-50 border-2 border-blue-200 rounded-lg p-4 transition-all hover:shadow-md">
-                      <div className="flex items-center space-x-2 mb-3">
-                        <Bot className="w-5 h-5 text-blue-600" />
-                        <span className="font-semibold text-blue-900">AI Analysis</span>
-                        <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
-                          {suggestion.confidence}% Confidence
-                        </span>
-                      </div>
-                      
-                      <div className="prose prose-sm max-w-none">
-                        {analysisText.split('\n').map((line, lineIndex) => {
-                          const trimmedLine = line.trim();
-                          
-                          if (trimmedLine.startsWith('**') && trimmedLine.endsWith('**')) {
-                            // Header line
-                            return (
-                              <h5 key={lineIndex} className="font-semibold text-gray-900 mt-3 mb-2 text-sm">
-                                {trimmedLine.replace(/\*\*/g, '')}
-                              </h5>
-                            );
-                          } else if (trimmedLine.startsWith('* **') || trimmedLine.startsWith('*')) {
-                            // Bullet point
-                            return (
-                              <div key={lineIndex} className="mb-2 pl-3">
-                                <p className="text-gray-800 text-sm leading-relaxed" 
-                                   dangerouslySetInnerHTML={{
-                                     __html: trimmedLine.replace(/^\*\s*/, '• ').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                                   }} />
-                              </div>
-                            );
-                          } else if (trimmedLine.length > 0) {
-                            // Regular paragraph
-                            return (
-                              <p key={lineIndex} className="text-gray-800 text-sm leading-relaxed mb-2" 
-                                 dangerouslySetInnerHTML={{
-                                   __html: trimmedLine.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                                 }} />
-                            );
-                          }
-                          return null;
-                        })}
-                      </div>
-                      
-                      <div className="mt-4 flex items-center justify-between text-xs text-gray-500 border-t border-blue-100 pt-2">
-                        <span>🤖 Generated by AI</span>
-                        <span>Analyzed {backendDetails?.filter(s => s.RESPONSE_XML).length || 0} backend services</span>
-                      </div>
-                      
-                      <div className="mt-2 flex items-center space-x-2">
-                        <button className="text-xs text-green-600 hover:text-green-800 flex items-center">
-                          <ThumbsUp className="w-3 h-3 mr-1" />
-                          Helpful
-                        </button>
-                        <button className="text-xs text-red-600 hover:text-red-800 flex items-center">
-                          <ThumbsDown className="w-3 h-3 mr-1" />
-                          Not helpful
-                        </button>
-                        <button 
-                          onClick={() => callGeminiAPI(backendDetails)}
-                          className="text-xs text-blue-600 hover:text-blue-800 flex items-center ml-auto"
-                          disabled={geminiApiLoading}
-                        >
-                          <Bot className="w-3 h-3 mr-1" />
-                          Refresh Analysis
-                        </button>
-                      </div>
-                    </div>
-                  );
-                }
-
-                // Regular suggestions (non-Gemini)
-                return (
-                  <div key={index} className={`p-3 rounded-lg border transition-all hover:shadow-sm ${
-                    suggestion.type === 'action' ? 'bg-blue-50 border-blue-200' :
-                    suggestion.type === 'response' ? 'bg-green-50 border-green-200' :
-                    suggestion.type === 'escalation' ? 'bg-orange-50 border-orange-200' :
-                    suggestion.type === 'context' ? 'bg-purple-50 border-purple-200' :
-                    suggestion.type === 'insight' ? 'bg-yellow-50 border-yellow-200' :
-                    suggestion.source === 'gemini_error' ? 'bg-red-50 border-red-200' :
-                    'bg-gray-50 border-gray-200'
-                  }`}>
-                    <div className="flex items-start justify-between">
-                      <p className="text-sm text-gray-800 flex-1 pr-2">
-                        {suggestion.source === 'gemini_error' ? (
-                          <span className="text-red-700">{suggestion.text}</span>
-                        ) : (
-                          suggestion.text
-                        )}
-                      </p>
-                      <span className="text-xs font-medium ml-2 whitespace-nowrap">
-                        {suggestion.confidence}%
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between mt-2">
-                      <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${
-                        suggestion.type === 'action' ? 'bg-blue-100 text-blue-800' :
-                        suggestion.type === 'response' ? 'bg-green-100 text-green-800' :
-                        suggestion.type === 'escalation' ? 'bg-orange-100 text-orange-800' :
-                        suggestion.type === 'context' ? 'bg-purple-100 text-purple-800' :
-                        suggestion.type === 'insight' ? 'bg-yellow-100 text-yellow-800' :
-                        suggestion.source === 'gemini_error' ? 'bg-red-100 text-red-800' :
-                        'bg-gray-100 text-gray-800'
-                      }`}>
-                        {suggestion.type}
-                      </span>
-                      {suggestion.source && (
-                        <span className="text-xs text-gray-500 font-mono">
-                          {suggestion.source}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            
-            {/* AI Suggestions Summary Stats */}
-            <div className="mt-3 p-2 bg-gray-50 rounded border">
-              <div className="grid grid-cols-5 gap-2 text-xs text-center">
-                <div>
-                  <div className="font-medium text-blue-600">
-                    {aiSuggestions.filter(s => s.source === 'gemini_ai').length}
-                  </div>
-                  <div className="text-gray-600">AI Analysis</div>
-                </div>
-                <div>
-                  <div className="font-medium text-green-600">
-                    {aiSuggestions.filter(s => s.type === 'action' && s.source !== 'gemini_ai').length}
-                  </div>
-                  <div className="text-gray-600">Actions</div>
-                </div>
-                <div>
-                  <div className="font-medium text-purple-600">
-                    {aiSuggestions.filter(s => s.type === 'context' && s.source !== 'gemini_ai').length}
-                  </div>
-                  <div className="text-gray-600">Context</div>
-                </div>
-                <div>
-                  <div className="font-medium text-yellow-600">
-                    {aiSuggestions.filter(s => s.type === 'insight' && s.source !== 'gemini_ai').length}
-                  </div>
-                  <div className="text-gray-600">Insights</div>
-                </div>
-                <div>
-                  <div className="font-medium text-red-600">
-                    {aiSuggestions.filter(s => s.source === 'gemini_error').length}
-                  </div>
-                  <div className="text-gray-600">Errors</div>
-                </div>
-              </div>
-              
-              {/* Show when Gemini analysis is available */}
-              {aiSuggestions.some(s => s.source === 'gemini_ai') && (
-                <div className="mt-2 text-center">
-                  <div className="flex items-center justify-center space-x-2 text-xs text-blue-600">
-                    <Bot className="w-3 h-3" />
-                    <span>Gemini AI analysis active • Last updated: {new Date().toLocaleTimeString()}</span>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
+ 
 
         {/* AHT Optimization Demo Panel */}
         {showOptimizationDemo && timingSavings && (
@@ -1805,6 +1739,80 @@ Customer transferred from IVR system:
                   );
                 }
 
+                // Special handling for Gemini Transcript Analysis  
+                if (suggestion.source === 'gemini_transcript') {
+                  const analysisText = suggestion.text.replace('📋 Transcript Analysis: ', '');
+                  
+                  return (
+                    <div key={index} className="bg-gradient-to-r from-green-50 to-teal-50 border-2 border-green-200 rounded-lg p-4 transition-all hover:shadow-md">
+                      <div className="flex items-center space-x-2 mb-3">
+                        <FileText className="w-5 h-5 text-green-600" />
+                        <span className="font-semibold text-green-900">Transcript Analysis</span>
+                        <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
+                          {suggestion.confidence}% Confidence
+                        </span>
+                      </div>
+                      
+                      <div className="prose prose-sm max-w-none">
+                        {analysisText.split('\n').map((line, lineIndex) => {
+                          const trimmedLine = line.trim();
+                          
+                          if (trimmedLine.startsWith('**') && trimmedLine.endsWith('**')) {
+                            // Header line
+                            return (
+                              <h5 key={lineIndex} className="font-semibold text-gray-900 mt-3 mb-2 text-sm">
+                                {trimmedLine.replace(/\*\*/g, '')}
+                              </h5>
+                            );
+                          } else if (trimmedLine.startsWith('* **') || trimmedLine.startsWith('*')) {
+                            // Bullet point
+                            return (
+                              <div key={lineIndex} className="mb-2 pl-3">
+                                <p className="text-gray-800 text-sm leading-relaxed" 
+                                   dangerouslySetInnerHTML={{
+                                     __html: trimmedLine.replace(/^\*\s*/, '• ').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                   }} />
+                              </div>
+                            );
+                          } else if (trimmedLine.length > 0) {
+                            // Regular paragraph
+                            return (
+                              <p key={lineIndex} className="text-gray-800 text-sm leading-relaxed mb-2" 
+                                 dangerouslySetInnerHTML={{
+                                   __html: trimmedLine.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                 }} />
+                            );
+                          }
+                          return null;
+                        })}
+                      </div>
+                      
+                      <div className="mt-4 flex items-center justify-between text-xs text-gray-500 border-t border-green-100 pt-2">
+                        <span>📋 Generated from Transcript</span>
+                        <span>Analyzed {transcript.filter(msg => msg && !msg.isSystem).length} messages</span>
+                      </div>
+                      
+                      <div className="mt-2 flex items-center space-x-2">
+                        <button className="text-xs text-green-600 hover:text-green-800 flex items-center">
+                          <ThumbsUp className="w-3 h-3 mr-1" />
+                          Helpful
+                        </button>
+                        <button className="text-xs text-red-600 hover:text-red-800 flex items-center">
+                          <ThumbsDown className="w-3 h-3 mr-1" />
+                          Not helpful
+                        </button>
+                        <button 
+                          onClick={() => callGeminiAPIWithTranscript(transcript)}
+                          className="text-xs text-green-600 hover:text-green-800 flex items-center ml-auto"
+                          disabled={geminiApiLoading}
+                        >
+                          <FileText className="w-3 h-3 mr-1" />
+                          Refresh Analysis
+                        </button>
+                      </div>
+                    </div>
+                  );
+                }
                 // Regular suggestions (non-Gemini)
                 return (
                   <div key={index} className={`p-3 rounded-lg border transition-all hover:shadow-sm ${
@@ -1853,7 +1861,7 @@ Customer transferred from IVR system:
             
             {/* AI Suggestions Summary Stats */}
             <div className="mt-3 p-2 bg-gray-50 rounded border">
-              <div className="grid grid-cols-5 gap-2 text-xs text-center">
+              <div className="grid grid-cols-6 gap-2 text-xs text-center">
                 <div>
                   <div className="font-medium text-blue-600">
                     {aiSuggestions.filter(s => s.source === 'gemini_ai').length}
@@ -1898,6 +1906,7 @@ Customer transferred from IVR system:
             </div>
           </div>
         )}
+
 
                 {/* Live Transcript */}
                 <div className="flex-1 p-4">
