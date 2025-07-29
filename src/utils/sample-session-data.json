@@ -1,0 +1,329 @@
+{
+  "sampleSessionData": {
+    "callInfo": {
+      "status": "idle",
+      "duration": 420,
+      "startTime": "2025-07-29T10:15:30.000Z",
+      "endTime": "2025-07-29T10:22:30.000Z",
+      "isRecording": true,
+      "isMuted": false,
+      "sessionId": "session-1722257730000"
+    },
+    "customerInfo": {
+      "data": {
+        "name": "John Smith",
+        "phone": "+1-555-0123",
+        "account": "ACC-12345",
+        "tier": "Premium",
+        "sentiment": "neutral"
+      },
+      "phoneNumber": "+1-555-0123",
+      "issue": "Internet connectivity problem",
+      "selectedOption": "technical_support",
+      "categoryMapping": "Technical Support"
+    },
+    "agentInfo": {
+      "routedAgent": {
+        "name": "Sarah Johnson",
+        "id": "agent-sarah-001",
+        "specialization": "Technical Support",
+        "performance": {
+          "firstCallResolutionPercentage": 94,
+          "averageHandleTime": 380,
+          "customerSatisfactionScore": 4.7
+        }
+      },
+      "agentMatchScore": 94,
+      "availableAgentsCount": 3
+    },
+    "resolutionDetails": {
+      "status": "resolved",
+      "summary": "Assisted customer with internet connectivity issue. Performed network diagnostics and modem reset. Customer's connection restored successfully. Provided preventive maintenance tips.",
+      "category": "technical-support",
+      "followUpRequired": false,
+      "followUpDate": "",
+      "customerSatisfaction": 5,
+      "callNotes": "Customer experiencing intermittent connection drops. Modem showing error lights. Reset performed successfully."
+    },
+    "backendData": {
+      "details": [
+        {
+          "SERVICE_NAME": "Customer Profile Service",
+          "STATUS": "S",
+          "TIME_TAKEN": "1200",
+          "RESPONSE_XML": {
+            "customer": {
+              "id": "12345",
+              "name": "John Smith",
+              "tier": "Premium",
+              "services": ["Internet", "Phone"]
+            }
+          }
+        },
+        {
+          "SERVICE_NAME": "Network Diagnostics Service",
+          "STATUS": "S",
+          "TIME_TAKEN": "2500",
+          "RESPONSE_XML": {
+            "diagnostics": {
+              "connection_status": "unstable",
+              "signal_strength": "good",
+              "modem_status": "error"
+            }
+          }
+        }
+      ],
+      "totalServices": 2,
+      "successfulServices": 2,
+      "failedServices": 0,
+      "totalBackendTime": 3700
+    },
+    "ivrData": {
+      "sessionData": {
+        "phoneNumber": "+1-555-0123",
+        "selectedOption": "technical_support",
+        "categoryMapping": "Technical Support",
+        "sessionId": "ivr-session-1722257700000",
+        "timestamp": "2025-07-29T10:15:00.000Z",
+        "agentMatchScore": 94
+      },
+      "summary": {
+        "totalTime": 30,
+        "optionsSelected": 2,
+        "transferSuccessful": true
+      },
+      "activityLog": [
+        {
+          "timestamp": "2025-07-29T10:15:00.000Z",
+          "action": "call_received",
+          "details": "Customer call received"
+        },
+        {
+          "timestamp": "2025-07-29T10:15:15.000Z",
+          "action": "option_selected",
+          "details": "Selected technical support"
+        },
+        {
+          "timestamp": "2025-07-29T10:15:30.000Z",
+          "action": "agent_transfer",
+          "details": "Transferred to agent Sarah Johnson"
+        }
+      ],
+      "lastSession": "2025-07-29T10:15:00.000Z"
+    },
+    "aiAnalytics": {
+      "suggestions": [
+        {
+          "type": "action",
+          "text": "Run network diagnostics and connectivity tests",
+          "confidence": 92,
+          "source": "ivr_analysis"
+        },
+        {
+          "type": "insight",
+          "text": "🤖 AI Analysis: Customer shows signs of technical frustration but remains cooperative. Recommend thorough diagnosis and clear explanations of troubleshooting steps.",
+          "confidence": 88,
+          "source": "gemini_ai"
+        }
+      ],
+      "knowledgeBase": [
+        {
+          "title": "Network Troubleshooting Guide",
+          "relevance": 96,
+          "content": "Step-by-step guide for resolving connectivity issues...",
+          "source": "knowledge_base"
+        },
+        {
+          "title": "Modem Reset Procedures",
+          "relevance": 89,
+          "content": "How to properly reset customer equipment...",
+          "source": "knowledge_base"
+        }
+      ],
+      "geminiApiResponse": {
+        "candidates": [
+          {
+            "content": {
+              "parts": [
+                {
+                  "text": "Based on the customer's connectivity issues and backend diagnostics, recommend performing a modem reset and checking signal strength..."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "geminiApiLoading": false,
+      "timingSavings": {
+        "preFetchedTime": 3.7,
+        "customerDataTime": 5,
+        "contextTime": 3,
+        "totalSaved": 11.7,
+        "traditionalAHT": 660,
+        "optimizedAHT": 648.3,
+        "improvement": "1.8",
+        "servicesPreFetched": 2
+      }
+    },
+    "sentimentAnalysis": {
+      "currentSentiment": {
+        "overallSentiment": "neutral",
+        "sentimentScore": 0.6,
+        "confidence": 88,
+        "emotionalIndicators": [
+          {
+            "emotion": "concern",
+            "intensity": "medium",
+            "keywords": ["problem", "not working", "frustrated"]
+          }
+        ],
+        "escalationRisk": "low",
+        "escalationFactors": [],
+        "sentimentTrend": "stable",
+        "keyInsights": [
+          "Customer remains patient despite technical issues",
+          "Positive response to agent's troubleshooting approach"
+        ],
+        "recommendations": [
+          "Continue with systematic troubleshooting",
+          "Provide clear explanations of each step"
+        ],
+        "customerState": "concerned",
+        "urgencyLevel": "medium",
+        "satisfactionPrediction": "likely_satisfied"
+      },
+      "sentimentHistory": [
+        {
+          "timestamp": "2025-07-29T10:16:00.000Z",
+          "stage": "call-start",
+          "sentiment": "neutral",
+          "score": 0.5,
+          "confidence": 85,
+          "customerState": "neutral",
+          "escalationRisk": "low"
+        },
+        {
+          "timestamp": "2025-07-29T10:20:00.000Z",
+          "stage": "real-time",
+          "sentiment": "neutral",
+          "score": 0.6,
+          "confidence": 88,
+          "customerState": "concerned",
+          "escalationRisk": "low"
+        }
+      ],
+      "sentimentTrend": "stable",
+      "emotionalIndicators": [
+        {
+          "emotion": "concern",
+          "intensity": "medium",
+          "keywords": ["problem", "not working"]
+        }
+      ],
+      "escalationRisk": "low",
+      "finalSentimentScore": 0.6,
+      "overallCustomerState": "concerned",
+      "satisfactionPrediction": "likely_satisfied",
+      "sentimentAnalysisLoading": false
+    },
+    "conversationData": {
+      "transcript": [
+        {
+          "speaker": "System",
+          "text": "Call transferred from IVR - Customer: John Smith, Issue: technical_support",
+          "time": "10:15:30 AM",
+          "isSystem": true
+        },
+        {
+          "speaker": "Customer",
+          "text": "Hi, I was just transferred from the automated system regarding my internet connectivity problem.",
+          "time": "10:15:31 AM"
+        },
+        {
+          "speaker": "Agent",
+          "text": "Hello John, I can see you were routed here for technical support. I have your account information from the system. How can I help you today?",
+          "time": "10:15:35 AM"
+        },
+        {
+          "speaker": "Customer",
+          "text": "My internet connection has been dropping intermittently for the past few days. It's really affecting my work from home.",
+          "time": "10:15:45 AM"
+        },
+        {
+          "speaker": "Agent",
+          "text": "I understand how frustrating that must be, especially when working from home. Let me run some diagnostics on your connection to see what might be causing this issue.",
+          "time": "10:16:00 AM"
+        }
+      ],
+      "searchQuery": "connectivity troubleshooting"
+    },
+    "performanceMetrics": {
+      "timingSavings": {
+        "preFetchedTime": 3.7,
+        "customerDataTime": 5,
+        "contextTime": 3,
+        "totalSaved": 11.7,
+        "traditionalAHT": 660,
+        "optimizedAHT": 648.3,
+        "improvement": "1.8",
+        "servicesPreFetched": 2
+      },
+      "showOptimizationDemo": true
+    },
+    "additionalContext": {
+      "isAutoPopulating": false,
+      "showDebugPanel": false,
+      "completedAt": "2025-07-29T10:22:30.000Z",
+      "allLocalStorageState": {
+        "ivrSessionData": {
+          "phoneNumber": "+1-555-0123",
+          "selectedOption": "technical_support"
+        },
+        "customerData": {
+          "name": "John Smith",
+          "account": "ACC-12345"
+        }
+      }
+    }
+  },
+  "validationResult": {
+    "isValid": true,
+    "missingFields": [],
+    "warnings": [],
+    "completeness": 100
+  },
+  "sessionSummary": {
+    "sessionId": "session-1722257730000",
+    "timestamp": "2025-07-29T10:22:30.000Z",
+    "customer": {
+      "name": "John Smith",
+      "phone": "+1-555-0123",
+      "issue": "Internet connectivity problem"
+    },
+    "resolution": {
+      "status": "resolved",
+      "category": "technical-support",
+      "satisfaction": 5,
+      "followUpRequired": false
+    },
+    "performance": {
+      "duration": 420,
+      "durationFormatted": "07:00",
+      "agent": "Sarah Johnson",
+      "agentMatchScore": 94,
+      "backendServices": "2/2",
+      "timingSavings": 11.7
+    },
+    "sentiment": {
+      "overall": "neutral",
+      "score": 0.6,
+      "escalationRisk": "low",
+      "customerState": "concerned"
+    },
+    "analytics": {
+      "aiSuggestions": 2,
+      "knowledgeBaseArticles": 2,
+      "transcriptMessages": 5
+    }
+  }
+}

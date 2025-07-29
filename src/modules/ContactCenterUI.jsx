@@ -1,6 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Phone, PhoneCall, PhoneOff, User, Clock, MessageSquare, Search, Send, Star, AlertCircle, CheckCircle, Mic, MicOff, Volume2, VolumeX, Settings, BarChart3, FileText, Tag, Zap, Bot, ThumbsUp, ThumbsDown, X } from 'lucide-react';
+import { Phone, PhoneCall, PhoneOff, User, Clock, MessageSquare, Search, Send, Star, AlertCircle, CheckCircle, Mic, MicOff, Volume2, VolumeX, Settings, BarChart3, FileText, Tag, Zap, Bot, ThumbsUp, ThumbsDown, X, Download, Save, Database } from 'lucide-react';
 import TRANSCRIPT_DATA from '../utils/TRANSCRIPT_DATA.json';
+import { 
+  saveSessionDataToFile, 
+  saveSessionDataToStorage, 
+  generateSessionSummary, 
+  validateSessionData,
+  exportAllSessions,
+  getSavedSessions 
+} from '../utils/sessionDataManager';
 
 const ContactCenterUI = () => {
   const [callStatus, setCallStatus] = useState('idle'); // idle, incoming, active, hold, transferring
@@ -58,7 +66,143 @@ const ContactCenterUI = () => {
   const [escalationRisk, setEscalationRisk] = useState('low');
   const [sentimentAnalysisLoading, setSentimentAnalysisLoading] = useState(false);
   
+  // Rate limiting for Gemini API calls
+  const [lastGeminiCall, setLastGeminiCall] = useState(0);
+  const [geminiCallQueue, setGeminiCallQueue] = useState([]);
+  const GEMINI_RATE_LIMIT_MS = 2000; // 2 seconds between calls
+  
   const callTimerRef = useRef(null);
+
+  // Helper functions for session data management (moved inside component scope)
+  const exportAllCompletedSessions = () => {
+    try {
+      const completedSessions = JSON.parse(localStorage.getItem('completed-sessions') || '[]');
+      
+      if (completedSessions.length === 0) {
+        alert('No completed sessions found to export.');
+        return;
+      }
+      
+      // Load all session data
+      const allSessionsData = completedSessions.map(sessionMeta => {
+        const sessionData = JSON.parse(localStorage.getItem(sessionMeta.dataKey) || '{}');
+        return {
+          metadata: sessionMeta,
+          sessionData: sessionData
+        };
+      }).filter(session => Object.keys(session.sessionData).length > 0);
+      
+      // Create export data
+      const exportData = {
+        exportInfo: {
+          timestamp: new Date().toISOString(),
+          totalSessions: allSessionsData.length,
+          exportedBy: 'ContactCenterUI',
+          version: '1.0'
+        },
+        sessions: allSessionsData
+      };
+      
+      // Generate filename and download
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+      const filename = `all-completed-sessions-${timestamp}.json`;
+      
+      const jsonData = JSON.stringify(exportData, null, 2);
+      const blob = new Blob([jsonData], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      
+      const downloadLink = document.createElement('a');
+      downloadLink.href = url;
+      downloadLink.download = filename;
+      downloadLink.style.display = 'none';
+      
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      URL.revokeObjectURL(url);
+      
+      alert(`Successfully exported ${allSessionsData.length} sessions to ${filename}`);
+      
+    } catch (error) {
+      console.error('Error exporting all sessions:', error);
+      alert('Failed to export sessions. Check console for details.');
+    }
+  };
+
+  const getSessionStatistics = () => {
+    try {
+      const completedSessions = JSON.parse(localStorage.getItem('completed-sessions') || '[]');
+      
+      if (completedSessions.length === 0) {
+        return null;
+      }
+      
+      // Calculate statistics
+      const totalSessions = completedSessions.length;
+      const sessionsWithValidation = completedSessions.filter(s => s.validation);
+      const avgCompleteness = sessionsWithValidation.length > 0 
+        ? Math.round(sessionsWithValidation.reduce((sum, s) => sum + s.validation.completeness, 0) / sessionsWithValidation.length)
+        : 0;
+      
+      const resolutionStats = completedSessions.reduce((stats, session) => {
+        const status = session.summary?.resolution?.status || 'unknown';
+        stats[status] = (stats[status] || 0) + 1;
+        return stats;
+      }, {});
+      
+      const satisfactionScores = completedSessions
+        .map(s => s.summary?.resolution?.satisfaction)
+        .filter(score => score !== null && score !== undefined);
+      
+      const avgSatisfaction = satisfactionScores.length > 0
+        ? Math.round((satisfactionScores.reduce((sum, score) => sum + score, 0) / satisfactionScores.length) * 10) / 10
+        : null;
+      
+      return {
+        totalSessions,
+        avgCompleteness,
+        resolutionStats,
+        avgSatisfaction,
+        totalSatisfactionRatings: satisfactionScores.length
+      };
+      
+    } catch (error) {
+      console.error('Error calculating session statistics:', error);
+      return null;
+    }
+  };
+
+  const clearOldSessionData = (daysOld = 30) => {
+    try {
+      const cutoffDate = new Date();
+      cutoffDate.setDate(cutoffDate.getDate() - daysOld);
+      
+      const completedSessions = JSON.parse(localStorage.getItem('completed-sessions') || '[]');
+      const recentSessions = completedSessions.filter(session => {
+        const sessionDate = new Date(session.timestamp);
+        return sessionDate > cutoffDate;
+      });
+      
+      // Remove old session data from localStorage
+      const removedCount = completedSessions.length - recentSessions.length;
+      completedSessions.forEach(session => {
+        const sessionDate = new Date(session.timestamp);
+        if (session.dataKey && sessionDate <= cutoffDate) {
+          localStorage.removeItem(session.dataKey);
+        }
+      });
+      
+      // Update completed sessions list
+      localStorage.setItem('completed-sessions', JSON.stringify(recentSessions));
+      
+      console.log(`Cleaned up ${removedCount} sessions older than ${daysOld} days`);
+      return { removed: removedCount, remaining: recentSessions.length };
+      
+    } catch (error) {
+      console.error('Error cleaning up old session data:', error);
+      return { removed: 0, remaining: 0 };
+    }
+  };
 
   // Utility function to safely filter transcript messages
   const safeFilterTranscript = (messages, filterFn) => {
@@ -66,6 +210,20 @@ const ContactCenterUI = () => {
       return [];
     }
     return messages.filter(msg => msg && typeof msg === 'object' && filterFn(msg));
+  };
+
+  // Rate limiting wrapper for Gemini API calls
+  const rateLimitedGeminiCall = async (apiFunction, ...args) => {
+    const now = Date.now();
+    const timeSinceLastCall = now - lastGeminiCall;
+    
+    if (timeSinceLastCall < GEMINI_RATE_LIMIT_MS) {
+      console.log(`Rate limiting Gemini API call. Waiting ${GEMINI_RATE_LIMIT_MS - timeSinceLastCall}ms`);
+      return null; // Skip this call to avoid rate limiting
+    }
+    
+    setLastGeminiCall(now);
+    return await apiFunction(...args);
   };
 
   // Dialogflow chatbot integration
@@ -190,8 +348,8 @@ const ContactCenterUI = () => {
         if (ivrData.backendDetails) {
           setBackendDetails(ivrData.backendDetails);
           
-          // Call Gemini API with backend details RESPONSE_XML
-          callGeminiAPI(ivrData.backendDetails);
+          // Call Gemini API with backend details RESPONSE_XML (rate limited)
+          rateLimitedGeminiCall(callGeminiAPI, ivrData.backendDetails);
         }
         
         // Set call duration from IVR session
@@ -279,13 +437,13 @@ const ContactCenterUI = () => {
           {
             parts: [
               {
-                text: `Analyze the following backend service response XML data, which includes various service call responses. For the customer associated with this data, please provide a summary that includes:
+                text: `Analyze this customer's backend data. Provide a brief summary bullet points:
 
-* **Customer Information**: Extract the customer's name, billing and service address, account number (BAN), customer type, and any relevant contact details like email or phone numbers for notifications.
-* **Services**: List all active products/services, their Customer Product IDs, product codes, types, statuses, descriptions, activation dates, and any relevant technical details (e.g., internet speeds, access technology).
-* **Potential Issues and Recommendations**: Identify any failed operations (e.g., modem reboots), pending actions (e.g., MLT polls), open or past-due tickets, and any patterns of recurring issues from historical ticket data. Also, note any self-help eligibility or chronic customer flags.
+• **Customer**: Name, account #, service address
+• **Active Services**: Main products/services with status
+• **Issues/Actions**: Any failures, pending tasks, or recommendations
 
-Ensure the summary is clear, concise, and highlights key findings.:\n\n${xmlText}`
+Keep it under 150 words for quick agent reference:\n\n${xmlText}`
               }
             ]
           }
@@ -299,12 +457,17 @@ Ensure the summary is clear, concise, and highlights key findings.:\n\n${xmlText
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-goog-api-key': 'AIzaSyCroQ-BaLYAuriHkGfr9PxLL950RNQctfY' // You'll need to set your API key
+          'X-goog-api-key': 'AIzaSyBvzv6AyNg-pojZ1LNWGg2MHtbpHRpySvs' // You'll need to set your API key
         },
         body: JSON.stringify(payload)
       });
 
       if (!response.ok) {
+        if (response.status === 429) {
+          console.warn('Gemini API rate limit hit for backend analysis. Skipping this call.');
+          setGeminiApiLoading(false);
+          return null;
+        }
         throw new Error(`Gemini API error: ${response.status} ${response.statusText}`);
       }
 
@@ -380,41 +543,19 @@ Customer Information:
           {
             parts: [
               {
-                text: `You are an AI assistant helping a contact center agent. Analyze the following customer service transcript and provide specific suggestions and information for resolution.
+                text: `Agent Assistant: Quick call analysis.
 
 ${customerContext}
 
 Transcript:
 ${transcriptText}
 
-Please provide:
+Provide brief summary (under 100 words):
+• **Main Issue**: What does customer need?
+• **Next Steps**: Top 2 actions to take
+• **Risk Level**: Low/Medium/High escalation risk
 
-**Issue Analysis:**
-- Identify the main customer issues or concerns
-- Determine the urgency level (Low/Medium/High)
-- Note any emotional indicators (frustration, satisfaction, confusion)
-
-**Resolution Recommendations:**
-- Provide specific steps the agent should take to resolve the issue
-- Suggest follow-up actions needed
-- Recommend any additional services or products that might help
-
-**Customer Sentiment:**
-- Assess overall customer satisfaction during the call
-- Identify any potential escalation risks
-- Note opportunities to improve customer experience
-
-**Next Best Actions:**
-- List immediate actions the agent should prioritize
-- Suggest proactive measures to prevent similar issues
-- Recommend any system checks or account updates needed
-
-**Knowledge Base Suggestions:**
-- Identify relevant help articles or procedures
-- Suggest internal resources the agent should reference
-- Note any training opportunities for similar cases
-
-Please format your response clearly with specific, actionable recommendations that will help the agent provide excellent customer service.`
+Be concise and actionable.`
               }
             ]
           }
@@ -428,12 +569,17 @@ Please format your response clearly with specific, actionable recommendations th
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-goog-api-key': 'AIzaSyCroQ-BaLYAuriHkGfr9PxLL950RNQctfY' // You'll need to set your API key
+          'X-goog-api-key': 'AIzaSyBvzv6AyNg-pojZ1LNWGg2MHtbpHRpySvs' // You'll need to set your API key
         },
         body: JSON.stringify(payload)
       });
 
       if (!response.ok) {
+        if (response.status === 429) {
+          console.warn('Gemini API rate limit hit for transcript analysis. Skipping this call.');
+          setGeminiApiLoading(false);
+          return null;
+        }
         throw new Error(`Gemini API error: ${response.status} ${response.statusText}`);
       }
 
@@ -519,51 +665,26 @@ Customer Profile:
           {
             parts: [
               {
-                text: `You are an AI sentiment analyst for a contact center. Analyze the customer's emotional state and sentiment from their recent messages.
+                text: `Quick sentiment analysis for agent dashboard.
 
 ${customerContext}
-
-Analysis Stage: ${currentStageContext}
+Stage: ${currentStageContext}
 
 Recent Customer Messages:
 ${transcriptText}
 
-Please provide a detailed sentiment analysis in the following JSON format:
+Return concise JSON (no markdown):
 
 {
   "overallSentiment": "positive|neutral|negative",
   "sentimentScore": 0.85,
   "confidence": 95,
-  "emotionalIndicators": [
-    {
-      "emotion": "frustration|satisfaction|confusion|anger|joy|concern|trust",
-      "intensity": "low|medium|high",
-      "keywords": ["specific", "words", "that", "indicate", "this", "emotion"]
-    }
-  ],
   "escalationRisk": "low|medium|high",
-  "escalationFactors": ["reason1", "reason2"],
-  "sentimentTrend": "improving|stable|declining",
-  "keyInsights": [
-    "Customer shows signs of frustration with wait times",
-    "Positive response to agent's explanation",
-    "Potential satisfaction if issue is resolved quickly"
-  ],
-  "recommendations": [
-    "Acknowledge the customer's frustration",
-    "Provide clear timeline for resolution",
-    "Follow up proactively"
-  ],
-  "riskFactors": [
-    "Multiple failed attempts mentioned",
-    "Time sensitivity expressed"
-  ],
-  "customerState": "calm|frustrated|angry|satisfied|confused|anxious|impatient",
+  "customerState": "calm|frustrated|angry|satisfied",
   "urgencyLevel": "low|medium|high",
-  "satisfactionPrediction": "likely_satisfied|neutral|likely_dissatisfied"
-}
-
-Important: Respond ONLY with the raw JSON object. Do not include any markdown code blocks, backticks, or additional formatting. Start your response directly with the opening curly brace { and end with the closing curly brace }.`
+  "keyInsights": ["brief insight 1", "brief insight 2"],
+  "recommendations": ["quick action 1", "quick action 2"]
+}`
               }
             ]
           }
@@ -577,12 +698,17 @@ Important: Respond ONLY with the raw JSON object. Do not include any markdown co
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-goog-api-key': 'AIzaSyCroQ-BaLYAuriHkGfr9PxLL950RNQctfY'
+          'X-goog-api-key': 'AIzaSyBvzv6AyNg-pojZ1LNWGg2MHtbpHRpySvs'
         },
         body: JSON.stringify(payload)
       });
 
       if (!response.ok) {
+        if (response.status === 429) {
+          console.warn('Gemini API rate limit hit for sentiment analysis. Skipping this call.');
+          setSentimentAnalysisLoading(false);
+          return null;
+        }
         throw new Error(`Gemini API error: ${response.status} ${response.statusText}`);
       }
 
@@ -1513,11 +1639,8 @@ Customer transferred from IVR system:
           messageIndex++;
         } else {
           clearInterval(interval);
-          // Once all transcript messages are loaded, send to Gemini for analysis
-          console.log('Transcript loading complete, sending to Gemini for analysis...');
-          setTimeout(() => {
-            callGeminiAPIWithTranscript(messages);
-          }, 1000); // Wait 1 second after transcript is complete before analyzing
+          // Automatic transcript analysis disabled to reduce Gemini API calls
+          console.log('Transcript loading complete. Manual analysis available via buttons.');
         }
       }, 2000);
       
@@ -1573,43 +1696,39 @@ Customer transferred from IVR system:
     }
   }, [callStatus, transcript.length]);
 
-  // Real-time sentiment analysis during active calls
+  // Real-time sentiment analysis during active calls (reduced frequency)
   useEffect(() => {
     if (callStatus === 'active' && transcript.length > 0) {
-      // Analyze sentiment every 3 customer messages to avoid too frequent API calls
+      // Analyze sentiment every 5 customer messages to reduce API calls
       const customerMessages = safeFilterTranscript(transcript, msg => !msg.isSystem && msg.speaker === 'Customer');
-      const shouldAnalyze = customerMessages.length > 0 && customerMessages.length % 3 === 0;
+      const shouldAnalyze = customerMessages.length > 0 && customerMessages.length % 5 === 0;
       
       if (shouldAnalyze) {
-        analyzeSentimentWithGemini(transcript, 'real-time');
+        rateLimitedGeminiCall(analyzeSentimentWithGemini, transcript, 'real-time');
       }
     }
   }, [transcript, callStatus]);
 
-  // Sentiment analysis at call start
+  // Sentiment analysis at call start (disabled to reduce API calls)
   useEffect(() => {
-    if (callStatus === 'active' && transcript.length >= 2) {
-      // Initial sentiment analysis when call starts and we have first customer interaction
-      const hasCustomerMessage = safeFilterTranscript(transcript, msg => !msg.isSystem && msg.speaker === 'Customer').length > 0;
-      if (hasCustomerMessage && sentimentHistory.length === 0) {
-        analyzeSentimentWithGemini(transcript, 'call-start');
-      }
-    }
+    // Disabled to reduce Gemini API calls and avoid rate limiting
+    // Initial sentiment analysis can be done manually if needed
   }, [callStatus, transcript, sentimentHistory.length]);
 
   // Comprehensive sentiment analysis at call end
   useEffect(() => {
     if (callStatus === 'idle' && transcript.length > 0) {
-      // Perform final comprehensive sentiment analysis
+      // Perform final comprehensive sentiment analysis (rate limited)
       const customerMessages = safeFilterTranscript(transcript, msg => !msg.isSystem && msg.speaker === 'Customer');
       if (customerMessages.length > 0) {
-        analyzeSentimentWithGemini(transcript, 'call-end');
+        rateLimitedGeminiCall(analyzeSentimentWithGemini, transcript, 'call-end');
       }
     }
   }, [callStatus, transcript.length]);
 
-  // Function to handle complete resolution - gather all data and log it
-  const handleCompleteResolution = () => {
+  // Function to handle complete resolution - gather all data and save it
+  const handleCompleteResolution = async () => {
+    // Gather all session data
     const resolutionData = {
       // Call Information
       callInfo: {
@@ -1709,12 +1828,26 @@ Customer transferred from IVR system:
       }
     };
 
-    // Log the complete resolution data
+    // Validate session data
+    const validation = validateSessionData(resolutionData);
+    console.log('Session data validation:', validation);
+
+    // Generate session summary
+    const sessionSummary = generateSessionSummary(resolutionData);
+    console.log('Session summary:', sessionSummary);
+
+    // Save session data to file (JSON download)
+    const fileResult = saveSessionDataToFile(resolutionData);
+    
+    // Also save to localStorage for future reference
+    const storageResult = saveSessionDataToStorage(resolutionData);
+
+    // Log the complete resolution data to console
     console.log('=== COMPLETE RESOLUTION DATA ===');
     console.log(JSON.stringify(resolutionData, null, 2));
     console.log('=== END RESOLUTION DATA ===');
     
-    // Also log a summary for easier reading
+    // Log a summary for easier reading
     console.log('=== RESOLUTION SUMMARY ===');
     console.log('Customer:', customerData?.name || 'Unknown');
     console.log('Phone:', phoneNumber || 'Not provided');
@@ -1726,17 +1859,64 @@ Customer transferred from IVR system:
     console.log('Follow-up Required:', followUpRequired ? 'Yes' : 'No');
     console.log('Backend Services:', `${successfulServices}/${totalBackendServices} successful`);
     console.log('AI Suggestions:', aiSuggestions?.length || 0);
+    console.log('Sentiment:', currentSentiment?.overallSentiment || 'Unknown');
+    console.log('Escalation Risk:', escalationRisk || 'Unknown');
     console.log('=== END SUMMARY ===');
     
-    // Optional: Show alert to confirm completion
-    alert('Resolution completed! Check console for detailed data log.');
+    // Show success message with file save results
+    const successMessage = `Resolution completed successfully!\n\n` +
+      `📁 JSON File: ${fileResult.success ? `Downloaded as ${fileResult.filename}` : 'Failed to download'}\n` +
+      `💾 Local Storage: ${storageResult.success ? 'Saved successfully' : 'Failed to save'}\n` +
+      `📊 Data Completeness: ${validation.completeness}%\n` +
+      `⚠️ Warnings: ${validation.warnings.length} issues noted\n\n` +
+      `Check browser console for detailed logs.`;
+    
+    alert(successMessage);
+    
+    // Add the completed session to a maintained list for export functionality
+    try {
+      const completedSessions = JSON.parse(localStorage.getItem('completed-sessions') || '[]');
+      completedSessions.push({
+        sessionId: sessionId || `session-${Date.now()}`,
+        timestamp: new Date().toISOString(),
+        summary: sessionSummary,
+        dataKey: storageResult.key,
+        validation: validation
+      });
+      
+      // Keep only last 100 completed sessions
+      const recentSessions = completedSessions.slice(-100);
+      localStorage.setItem('completed-sessions', JSON.stringify(recentSessions));
+      
+      console.log(`Added to completed sessions list. Total sessions: ${recentSessions.length}`);
+    } catch (error) {
+      console.error('Error updating completed sessions list:', error);
+    }
     
     // Optional: Clear the call state or perform other cleanup
     // You could add additional logic here like:
-    // - Sending data to an API
-    // - Clearing localStorage
-    // - Resetting call state
-    // - Navigating to next call
+    // - Sending data to an API endpoint
+    // - Clearing localStorage IVR data
+    // - Resetting call state for next call
+    // - Navigating to dashboard or next call
+    
+    // Clear current session IVR data since resolution is complete
+    localStorage.removeItem('ivrSessionData');
+    localStorage.removeItem('ivrSessionSummary');
+    
+    // Reset call status to idle for next call
+    setTimeout(() => {
+      setCallStatus('idle');
+      setCallDuration(0);
+      setTranscript([]);
+      setCallNotes('');
+      setResolutionSummary('');
+      setResolutionStatus('');
+      setResolutionCategory('');
+      setFollowUpRequired(false);
+      setFollowUpDate('');
+      setCustomerSatisfaction(null);
+    }, 2000); // 2 second delay to allow user to see the completion message
   };
 
   const formatTime = (seconds) => {
@@ -1915,7 +2095,7 @@ Customer transferred from IVR system:
           {callStatus === 'active' && transcript.length > 0 && (
             <div className="mt-3 flex justify-center space-x-2">
               <button 
-                onClick={() => analyzeSentimentWithGemini(transcript, 'manual')}
+                onClick={() => rateLimitedGeminiCall(analyzeSentimentWithGemini, transcript, 'manual')}
                 disabled={sentimentAnalysisLoading}
                 className={`flex items-center px-3 py-1 text-sm rounded-lg transition-colors ${
                   sentimentAnalysisLoading 
@@ -2198,7 +2378,7 @@ Customer transferred from IVR system:
                 <Settings className="w-5 h-5" />
               </button>
               <button 
-                onClick={() => callGeminiAPI(backendDetails)}
+                onClick={() => rateLimitedGeminiCall(callGeminiAPI, backendDetails)}
                 className={`p-2 rounded transition-colors ${
                   geminiApiLoading 
                     ? 'bg-blue-500 text-white animate-pulse' 
@@ -2611,7 +2791,7 @@ Customer transferred from IVR system:
                           Not helpful
                         </button>
                         <button 
-                          onClick={() => callGeminiAPI(backendDetails)}
+                          onClick={() => rateLimitedGeminiCall(callGeminiAPI, backendDetails)}
                           className="text-xs text-blue-600 hover:text-blue-800 flex items-center ml-auto"
                           disabled={geminiApiLoading}
                         >
@@ -2713,7 +2893,7 @@ Customer transferred from IVR system:
                           Not helpful
                         </button>
                         <button 
-                          onClick={() => analyzeSentimentWithGemini(transcript, 'manual')}
+                          onClick={() => rateLimitedGeminiCall(analyzeSentimentWithGemini, transcript, 'manual')}
                           className="text-xs text-purple-600 hover:text-purple-800 flex items-center ml-auto"
                           disabled={sentimentAnalysisLoading}
                         >
@@ -2788,7 +2968,7 @@ Customer transferred from IVR system:
                           Not helpful
                         </button>
                         <button 
-                          onClick={() => callGeminiAPIWithTranscript(transcript)}
+                          onClick={() => rateLimitedGeminiCall(callGeminiAPIWithTranscript, transcript)}
                           className="text-xs text-green-600 hover:text-green-800 flex items-center ml-auto"
                           disabled={geminiApiLoading}
                         >
@@ -3233,6 +3413,58 @@ Customer transferred from IVR system:
                       </div>
                     </div>
                   )}
+
+                  {/* Session Data Management Panel */}
+                  <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="text-sm font-medium text-blue-900">Session Data Management</h4>
+                      <Database className="w-4 h-4 text-blue-600" />
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        onClick={() => {
+                          const stats = getSessionStatistics();
+                          if (stats) {
+                            alert(`Session Statistics:\n\nTotal Sessions: ${stats.totalSessions}\nAvg Completeness: ${stats.avgCompleteness}%\nAvg Satisfaction: ${stats.avgSatisfaction || 'N/A'}\n\nResolution Status:\n${Object.entries(stats.resolutionStats).map(([status, count]) => `${status}: ${count}`).join('\n')}`);
+                          } else {
+                            alert('No session statistics available.');
+                          }
+                        }}
+                        className="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors"
+                      >
+                        View Stats
+                      </button>
+                      <button
+                        onClick={exportAllCompletedSessions}
+                        className="px-2 py-1 text-xs bg-green-100 text-green-700 rounded hover:bg-green-200 transition-colors flex items-center justify-center"
+                      >
+                        <Download className="w-3 h-3 mr-1" />
+                        Export All
+                      </button>
+                      <button
+                        onClick={() => {
+                          const result = clearOldSessionData(30);
+                          alert(`Cleanup completed!\n\nRemoved: ${result.removed} old sessions\nRemaining: ${result.remaining} sessions`);
+                        }}
+                        className="px-2 py-1 text-xs bg-orange-100 text-orange-700 rounded hover:bg-orange-200 transition-colors"
+                      >
+                        Cleanup (30d)
+                      </button>
+                      <button
+                        onClick={() => {
+                          const savedSessions = getSavedSessions();
+                          console.log('All saved sessions:', savedSessions);
+                          alert(`Found ${savedSessions.length} saved session(s). Check console for details.`);
+                        }}
+                        className="px-2 py-1 text-xs bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition-colors"
+                      >
+                        List All
+                      </button>
+                    </div>
+                    <div className="text-xs text-blue-600 mt-2">
+                      💡 Each completed resolution automatically saves to JSON file & localStorage
+                    </div>
+                  </div>
                 </div>
               </div>
 
