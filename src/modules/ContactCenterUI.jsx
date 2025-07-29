@@ -57,6 +57,7 @@ const ContactCenterUI = () => {
   const [timingSavings, setTimingSavings] = useState(null);
   const [geminiApiLoading, setGeminiApiLoading] = useState(false);
   const [geminiApiResponse, setGeminiApiResponse] = useState(null);
+  const [geminiBackendAnalyzed, setGeminiBackendAnalyzed] = useState(false);
   
   // Customer Sentiment Analysis State Variables
   const [currentSentiment, setCurrentSentiment] = useState(null);
@@ -308,6 +309,9 @@ const ContactCenterUI = () => {
       const storedSummary = localStorage.getItem('ivrSessionSummary');
       const storedLastSession = localStorage.getItem('lastIVRSession');
       
+      // Reset Gemini backend analysis flag for new session
+      setGeminiBackendAnalyzed(false);
+      
       if (storedData) {
         const ivrData = JSON.parse(storedData);
         console.log('Loaded IVR session data:', ivrData);
@@ -348,8 +352,11 @@ const ContactCenterUI = () => {
         if (ivrData.backendDetails) {
           setBackendDetails(ivrData.backendDetails);
           
-          // Call Gemini API with backend details RESPONSE_XML (rate limited)
-          rateLimitedGeminiCall(callGeminiAPI, ivrData.backendDetails);
+          // Call Gemini API with backend details only once
+          if (!geminiBackendAnalyzed) {
+            rateLimitedGeminiCall(callGeminiAPI, ivrData.backendDetails);
+            setGeminiBackendAnalyzed(true);
+          }
         }
         
         // Set call duration from IVR session
@@ -409,6 +416,12 @@ const ContactCenterUI = () => {
       return null;
     }
 
+    // Check if already analyzed to prevent duplicate calls
+    if (geminiBackendAnalyzed) {
+      console.log('Backend details already analyzed by Gemini API, skipping duplicate call');
+      return null;
+    }
+
     setGeminiApiLoading(true);
 
     try {
@@ -437,13 +450,13 @@ const ContactCenterUI = () => {
           {
             parts: [
               {
-                text: `Analyze this customer's backend data. Provide a brief summary bullet points:
+                text: `Analyze the following backend service response XML data, which includes various service call responses. For the customer associated with this data, please provide a summary that includes:
 
-• **Customer**: Name, account #, service address
-• **Active Services**: Main products/services with status
-• **Issues/Actions**: Any failures, pending tasks, or recommendations
+* **Customer Information**: Extract the customer's name, billing and service address, account number (BAN), customer type, and any relevant contact details like email or phone numbers for notifications.
+* **Services**: List all active products/services, their Customer Product IDs, product codes, types, statuses, descriptions, activation dates, and any relevant technical details (e.g., internet speeds, access technology).
+* **Potential Issues and Recommendations**: Identify any failed operations (e.g., modem reboots), pending actions (e.g., MLT polls), open or past-due tickets, and any patterns of recurring issues from historical ticket data. Also, note any self-help eligibility or chronic customer flags.
 
-Keep it under 150 words for quick agent reference:\n\n${xmlText}`
+Ensure the summary is clear, concise, and highlights key findings.:\n\n${xmlText}`
               }
             ]
           }
