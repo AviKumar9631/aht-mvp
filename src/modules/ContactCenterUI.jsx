@@ -3424,22 +3424,22 @@ Customer transferred from IVR system:
                                 <span className="text-gray-600 font-medium">
                                   Service Details:
                                 </span>
-                                <div className="mt-2 space-y-1 max-h-32 overflow-y-auto">
+                                <div className="mt-2 space-y-1 max-h-32 overflow-y-auto ">
                                   {backendDetails.map((service, index) => (
                                     <div
                                       key={index}
-                                      className="flex justify-between items-center"
+                                      className="flex justify-between items-center w-full"
                                     >
                                       <span className="text-gray-700">
-                                        {service.service}
+                                        {service.SERVICE_NAME}
                                       </span>
                                       <div className="flex items-center space-x-2">
                                         <span className="text-gray-500 text-xs">
-                                          {service.responseTime}ms
+                                          {service.TIME_TAKEN}ms
                                         </span>
                                         <span
                                           className={`w-2 h-2 rounded-full ${
-                                            service.status === "success"
+                                            service.STATUS === "S"
                                               ? "bg-green-500"
                                               : "bg-red-500"
                                           }`}

@@ -443,406 +443,141 @@ const IVRDemo = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+        {/* Compact Header */}
+        <div className="bg-white rounded-lg shadow-sm border p-4 mb-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <PhoneCall className="w-8 h-8 text-blue-600" />
+              <div className={`p-2 rounded-lg ${getStatusColor(callStatus).replace('text-', 'bg-').replace('-600', '-100')}`}>
+                <PhoneCall className={`w-5 h-5 ${getStatusColor(callStatus)}`} />
+              </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">IVR System Demo</h1>
-                <p className="text-gray-600">Interactive Voice Response & Customer Routing</p>
+                <h1 className="text-lg font-bold text-gray-900">IVR System</h1>
+                <div className="flex items-center space-x-4 text-sm">
+                  <div className={`flex items-center space-x-2 ${getStatusColor(callStatus)}`}>
+                    <div className="w-2 h-2 rounded-full bg-current animate-pulse"></div>
+                    <span className="font-medium">
+                      {callStatus === 'waiting' && 'Standby'}
+                      {callStatus === 'connected' && 'Connected'}
+                      {callStatus === 'unknown' && 'Unknown'}
+                      {callStatus === 'routing' && 'Routing...'}
+                      {callStatus === 'routed' && 'Ready to Transfer'}
+                    </span>
+                  </div>
+                  {callDuration > 0 && (
+                    <div className="flex items-center space-x-1 text-gray-600">
+                      <Clock className="w-3 h-3" />
+                      <span className="font-mono text-sm">{formatDuration(callDuration)}</span>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2">
               <button
                 onClick={() => setShowActivityPanel(!showActivityPanel)}
-                className={`p-2 rounded-lg transition-colors ${
+                className={`p-2 rounded-md transition-colors text-xs ${
                   showActivityPanel ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
-                title="Toggle Backend Activity Panel"
+                title="Backend Activity"
               >
-                <Database className="w-5 h-5" />
+                <Database className="w-4 h-4" />
               </button>
-              <div className={`flex items-center space-x-2 ${getStatusColor(callStatus)}`}>
-                <div className="w-3 h-3 rounded-full bg-current animate-pulse"></div>
-                <span className="font-medium">
-                  {callStatus === 'waiting' && 'Waiting for call'}
-                  {callStatus === 'connected' && 'Call connected'}
-                  {callStatus === 'unknown' && 'Unknown number'}
-                  {callStatus === 'routing' && 'Routing call...'}
-                  {callStatus === 'routed' && 'Call routed'}
-                </span>
-              </div>
-              {callDuration > 0 && (
-                <div className="flex items-center space-x-2 text-gray-600">
-                  <Clock className="w-4 h-4" />
-                  <span>{formatDuration(callDuration)}</span>
+              {backendDetails.length > 0 && (
+                <div className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                  {backendDetails.filter(s => s.STATUS === 'S').length}/{backendDetails.length} services
                 </div>
               )}
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* AHT Optimization Flow Panel */}
-          <div className="lg:col-span-4 bg-white rounded-lg shadow-lg p-6 mb-6">
-            <div className="flex items-center justify-between mb-4">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+          {/* Compact AHT Optimization Summary */}
+          <div className="lg:col-span-4 bg-white rounded-lg shadow-sm border p-4 mb-4">
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-2">
-                <Zap className="w-5 h-5 text-orange-500" />
-                <h3 className="text-lg font-semibold text-gray-900">AHT Optimization Flow</h3>
-                <span className="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full font-medium">
-                  DEMO
+                <Zap className="w-4 h-4 text-orange-500" />
+                <h3 className="text-base font-semibold text-gray-900">AHT Impact Summary</h3>
+                <span className="px-2 py-0.5 bg-orange-100 text-orange-800 text-xs rounded font-medium">
+                  LIVE
                 </span>
               </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* Traditional Flow */}
-              <div className="p-4 bg-red-50 rounded-lg border border-red-200">
-                <h4 className="font-semibold text-red-800 mb-3 flex items-center">
-                  <AlertCircle className="w-4 h-4 mr-2" />
-                  Traditional Flow
-                </h4>
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center text-red-700">
-                    <Clock className="w-3 h-3 mr-2" />
-                    Customer calls → Agent answers
-                  </div>
-                  <div className="flex items-center text-red-700">
-                    <Database className="w-3 h-3 mr-2" />
-                    Agent fetches customer data (5-15s)
-                  </div>
-                  <div className="flex items-center text-red-700">
-                    <Brain className="w-3 h-3 mr-2" />
-                    Agent reads context (3-8s)
-                  </div>
-                  <div className="flex items-center text-red-700">
-                    <MessageSquare className="w-3 h-3 mr-2" />
-                    Agent starts helping
-                  </div>
-                  <div className="mt-3 p-2 bg-red-100 rounded text-center">
-                    <span className="font-bold text-red-800">Total AHT: ~11 min</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* IVR Pre-fetch Process */}
-              <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                <h4 className="font-semibold text-blue-800 mb-3 flex items-center">
-                  <Bot className="w-4 h-4 mr-2" />
-                  IVR Pre-fetch Process
-                </h4>
-                <div className="space-y-2 text-sm">
-                  <div className={`flex items-center ${phoneNumber ? 'text-green-700' : 'text-blue-700'}`}>
-                    <Phone className="w-3 h-3 mr-2" />
-                    {phoneNumber ? '✓ Customer identified' : 'Customer enters phone number'}
-                  </div>
-                  <div className={`flex items-center ${backendDetails.length > 0 ? 'text-green-700' : 'text-blue-700'}`}>
-                    <Database className="w-3 h-3 mr-2" />
-                    {backendDetails.length > 0 ? `✓ ${backendDetails.length} services pre-fetched` : 'Backend services loading...'}
-                  </div>
-                  <div className={`flex items-center ${routedAgent ? 'text-green-700' : 'text-blue-700'}`}>
-                    <Brain className="w-3 h-3 mr-2" />
-                    {routedAgent ? `✓ Routed to ${routedAgent.name}` : 'Routing to best agent...'}
-                  </div>
-                  <div className={`flex items-center ${callStatus === 'routed' ? 'text-green-700' : 'text-blue-700'}`}>
-                    <CheckCircle className="w-3 h-3 mr-2" />
-                    {callStatus === 'routed' ? '✓ Ready for transfer' : 'Preparing transfer...'}
-                  </div>
-                  {backendDetails.length > 0 && (
-                    <div className="mt-3 p-2 bg-green-100 rounded text-center">
-                      <span className="font-bold text-green-800">
-                        Pre-fetch time: {Math.round(Math.max(...backendDetails.map(service => 
-                          parseInt(service.TIME_TAKEN || 0))) / 1000)}s (parallel)
-                      </span>
-                      <div className="text-xs text-green-600 mt-1">
-                        Sequential would take: {Math.round(backendDetails.reduce((sum, service) => 
-                          sum + parseInt(service.TIME_TAKEN || 0), 0) / 1000)}s
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Optimized Flow */}
-              <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-                <h4 className="font-semibold text-green-800 mb-3 flex items-center">
-                  <CheckCircle className="w-4 h-4 mr-2" />
-                  Optimized Flow
-                </h4>
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center text-green-700">
-                    <PhoneCall className="w-3 h-3 mr-2" />
-                    Transfer from IVR → Agent
-                  </div>
-                  <div className="flex items-center text-green-700">
-                    <CheckCircle className="w-3 h-3 mr-2" />
-                    Customer data already loaded
-                  </div>
-                  <div className="flex items-center text-green-700">
-                    <CheckCircle className="w-3 h-3 mr-2" />
-                    Agent context ready
-                  </div>
-                  <div className="flex items-center text-green-700">
-                    <Zap className="w-3 h-3 mr-2" />
-                    Agent starts helping immediately
-                  </div>
-                  {backendDetails.length > 0 && (
-                    <div className="mt-3 p-2 bg-green-100 rounded text-center">
-                      <span className="font-bold text-green-800">
-                        Estimated AHT: ~{Math.max(1, 11 - Math.round(Math.max(...backendDetails.map(service => 
-                          parseInt(service.TIME_TAKEN || 0))) / 1000 / 60))} min
-                      </span>
-                      <div className="text-xs text-green-600 mt-1">
-                        Saved ~{Math.round((backendDetails.reduce((sum, service) => 
-                          sum + parseInt(service.TIME_TAKEN || 0), 0) - 
-                          Math.max(...backendDetails.map(service => parseInt(service.TIME_TAKEN || 0)))) / 1000 / 60)} min
-                        from parallel loading
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Transfer to Contact Center Button */}
-            {callStatus === 'routed' && backendDetails.length > 0 && (
-              <div className="mt-6 text-center">
-                {/* <Link to="/contact-center">
-                  <button 
-                    onClick={() => storeIVRSessionData()}
-                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all transform hover:scale-105 shadow-lg"
-                  >
-                    <ChevronRight className="w-5 h-5 mr-2" />
-                    Transfer to Contact Center (Pre-loaded Data)
-                    <Zap className="w-4 h-4 ml-2" />
-                  </button>
-                </Link> */}
-                <p className="text-sm text-gray-600 mt-2">
-                  All customer data and backend services are pre-loaded for the agent
-                </p>
-              </div>
-            )}
-          </div>
-
-          {/* Backend Activity Panel */}
-          {showActivityPanel && (
-            <div className="lg:col-span-1 bg-white rounded-lg shadow-lg p-6 max-h-screen overflow-hidden">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center space-x-2">
-                  <Database className="w-5 h-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold">Backend Activity</h3>
-                </div>
-                <button
-                  onClick={() => setShowActivityPanel(false)}
-                  className="p-1 hover:bg-gray-100 rounded text-gray-400 hover:text-gray-600"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-              {phoneNumber ? (
-                <div className="space-y-3 overflow-y-auto max-h-96">
-                  {backendDetails.length === 0 && loadingServices.size === 0 ? (
-                    <div className="text-center py-8 text-gray-500">
-                      <Database className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                      <p className="text-sm">No backend data found</p>
-                    </div>
-                  ) : (
-                    <>
-                      {/* Loading services */}
-                      {Array.from(loadingServices).map(serviceName => (
-                        <div key={`loading-${serviceName}`} className="flex items-center justify-between p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                          <div className="flex items-center space-x-3">
-                            <Database className="w-4 h-4 text-yellow-600 animate-pulse" />
-                            <div>
-                              <p className="font-medium text-yellow-800">{serviceName}</p>
-                              <p className="text-sm text-yellow-600">Loading...</p>
-                            </div>
-                          </div>
-                          <div className="w-4 h-4 border-2 border-yellow-600 border-t-transparent rounded-full animate-spin"></div>
-                        </div>
-                      ))}
-                      
-                      {/* Loaded services */}
-                      {backendDetails
-                        .sort((a, b) => a.loadedAt - b.loadedAt) // Sort by load time
-                        .map(service => (
-                        <div key={service.id} className={`flex items-center justify-between p-3 rounded-lg border ${
-                          service.STATUS === 'S' 
-                            ? 'bg-green-50 border-green-200' 
-                            : 'bg-red-50 border-red-200'
-                        }`}>
-                          <div className="flex items-center space-x-3">
-                            {service.STATUS === 'S' 
-                              ? <CheckCircle className="w-4 h-4 text-green-600" />
-                              : <AlertCircle className="w-4 h-4 text-red-600" />
-                            }
-                            <div>
-                              <p className={`font-medium ${
-                                service.STATUS === 'S' ? 'text-green-800' : 'text-red-800'
-                              }`}>
-                                {service.SERVICE_NAME}
-                              </p>
-                              <p className={`text-sm ${
-                                service.STATUS === 'S' ? 'text-green-600' : 'text-red-600'
-                              }`}>
-                                Status: {service.STATUS === 'S' ? 'Success' : 'Failed'} • 
-                                Response Time: {service.TIME_TAKEN}ms
-                                {service.Average_Elapsed_Time_ms && 
-                                  ` • Avg: ${Math.round(service.Average_Elapsed_Time_ms)}ms`
-                                }
-                              </p>
-                            </div>
-                          </div>
-                          <div className="text-right">
-                            <span className={`text-xs font-mono px-2 py-1 rounded ${
-                              service.STATUS === 'S' 
-                                ? 'bg-green-100 text-green-700' 
-                                : 'bg-red-100 text-red-700'
-                            }`}>
-                              {service.TIME_TAKEN}ms
-                            </span>
-                            {service.MAX_TIME && service.MIN_TIME && (
-                              <p className="text-xs text-gray-500 mt-1">
-                                {service.MIN_TIME}-{service.MAX_TIME}ms range
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </>
-                  )}
-                </div>
-              ) : (
-                <div className="text-center py-8 text-gray-500">
-                  <Database className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                  <p className="text-sm">Enter phone number to view backend activity</p>
+              {backendDetails.length > 0 && (
+                <div className="text-sm text-gray-600">
+                  <span className="font-mono">
+                    Saved: ~{Math.round((backendDetails.reduce((sum, service) => 
+                      sum + parseInt(service.TIME_TAKEN || 0), 0) - 
+                      Math.max(...backendDetails.map(service => parseInt(service.TIME_TAKEN || 0)))) / 1000)}s
+                  </span>
+                  <span className="text-xs text-gray-500 ml-2">parallel vs sequential</span>
                 </div>
               )}
             </div>
-          )}
-
-          {/* Main IVR Interface */}
-          <div className={`${showActivityPanel ? 'lg:col-span-2' : 'lg:col-span-3'} space-y-6`}>
-            {/* Phone Number Input */}
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <div className="flex items-center space-x-3 mb-4">
-                <Phone className="w-6 h-6 text-blue-600" />
-                <h2 className="text-xl font-semibold">Incoming Call</h2>
-              </div>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    placeholder="+1234567890"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg font-mono"
-                  />
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {/* Before */}
+              <div className="p-3 bg-red-50 rounded border border-red-200">
+                <h4 className="font-medium text-red-800 mb-2 flex items-center text-sm">
+                  <AlertCircle className="w-3 h-3 mr-1" />
+                  Traditional (11+ min AHT)
+                </h4>
+                <div className="space-y-1 text-xs text-red-700">
+                  <div>→ Agent answers blind</div>
+                  <div>→ Fetch customer data (8-15s)</div>
+                  <div>→ Read context (5-10s)</div>
+                  <div>→ Start helping</div>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {TN_DATA?.backend?.map(a => a.tn)?.map(num => (
-                    <button
-                      key={num}
-                      onClick={() => setPhoneNumber(num)}
-                      className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-md font-mono"
-                    >
-                      {num}
-                    </button>
-                  ))}
+              </div>
+
+              {/* Current Process */}
+              <div className="p-3 bg-blue-50 rounded border border-blue-200">
+                <h4 className="font-medium text-blue-800 mb-2 flex items-center text-sm">
+                  <Bot className="w-3 h-3 mr-1" />
+                  IVR Pre-processing
+                </h4>
+                <div className="space-y-1 text-xs">
+                  <div className={`${phoneNumber ? 'text-green-700' : 'text-blue-700'}`}>
+                    {phoneNumber ? '✓' : '○'} Customer identified
+                  </div>
+                  <div className={`${backendDetails.length > 0 ? 'text-green-700' : 'text-blue-700'}`}>
+                    {backendDetails.length > 0 ? '✓' : '○'} {backendDetails.length} services pre-loaded
+                  </div>
+                  <div className={`${routedAgent ? 'text-green-700' : 'text-blue-700'}`}>
+                    {routedAgent ? '✓' : '○'} Agent matched ({routedAgent?.matchPercentage || 0}%)
+                  </div>
+                </div>
+              </div>
+
+              {/* Result */}
+              <div className="p-3 bg-green-50 rounded border border-green-200">
+                <h4 className="font-medium text-green-800 mb-2 flex items-center text-sm">
+                  <CheckCircle className="w-3 h-3 mr-1" />
+                  Optimized Result
+                </h4>
+                <div className="space-y-1 text-xs text-green-700">
+                  <div>→ Context pre-loaded</div>
+                  <div>→ Agent starts immediately</div>
+                  {backendDetails.length > 0 && (
+                    <>
+                      <div className="font-medium">
+                        New AHT: ~{Math.max(6, 11 - Math.round(Math.max(...backendDetails.map(service => 
+                          parseInt(service.TIME_TAKEN || 0))) / 1000 / 60))} min
+                      </div>
+                      <div className="text-green-600">
+                        {Math.round((1 - (Math.max(6, 11 - Math.round(Math.max(...backendDetails.map(service => 
+                          parseInt(service.TIME_TAKEN || 0))) / 1000 / 60)) / 11)) * 100)}% improvement
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
 
-            {/* IVR Options */}
-            {phoneNumber && (
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <div className="flex items-center space-x-3 mb-4">
-                  <MessageSquare className="w-6 h-6 text-blue-600" />
-                  <h2 className="text-xl font-semibold">IVR Menu Options</h2>
-                </div>
-                <div className="space-y-3 flex flex-wrap gap-1">
-                  {ivrOptions.map(option => (
-                    <div
-                      key={option.value}
-                      onClick={() => setSelectedOption(option.value)}
-                      className={`p-2 w-fit border-2 rounded-lg cursor-pointer transition-all ${
-                        selectedOption === option.value
-                          ? 'border-blue-500 bg-blue-50'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="font-medium">{option.label}</span>
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPriorityColor(option.priority)}`}>
-                          {option.priority}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Routing Result */}
-            {routedAgent && (
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-6 h-6 text-green-600" />
-                    <h2 className="text-xl font-semibold text-green-600">Call Routed Successfully</h2>
-                  </div>
-                  {/* Agent Match Score */}
-                  <div className="flex items-center space-x-2">
-                    <span className="text-sm text-gray-600">Match Score:</span>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-16 bg-gray-200 rounded-full h-2">
-                        <div 
-                          className="bg-gradient-to-r from-green-400 to-green-600 h-2 rounded-full transition-all duration-1000 ease-out"
-                          style={{ width: `${routedAgent.matchPercentage || 0}%` }}
-                        ></div>
-                      </div>
-                      <span className="text-sm font-semibold text-green-600">
-                        {routedAgent.matchPercentage || 0}%
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-green-50 rounded-lg p-4">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center">
-                      <User className="w-6 h-6 text-green-700" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-gray-900">{routedAgent.name}</h3>
-                      <p className="text-gray-600">{routedAgent.dept}</p>
-                      <p className="text-sm text-gray-500">{routedAgent.availability}</p>
-                      <div className="flex space-x-4 mt-2 text-xs text-gray-600">
-                        <span>AHT: {Math.round(routedAgent.performance.averageHandleTimeSeconds / 60)}m</span>
-                        <span>FCR: {routedAgent.performance.firstCallResolutionPercentage}%</span>
-                        <span>Calls Today: {routedAgent.performance.callsHandled}</span>
-                      </div>
-                    </div>
-                  </div>
-                  {routedAgent.skillSet && (
-                    <div className="mt-3 pt-3 border-t border-green-200">
-                      <p className="text-sm text-gray-600 mb-2">Skills:</p>
-                      <div className="flex flex-wrap gap-1">
-                        {routedAgent.skillSet.slice(0, 3).map(skill => (
-                          <span key={skill} className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                </div>
+            {/* Transfer Button */}
+            {callStatus === 'routed' && backendDetails.length > 0 && (
+              <div className="mt-4 flex items-center justify-center">
                 <Link to="/contact-center" onClick={() => {
                   const success = storeIVRSessionData();
                   if (success) {
@@ -851,123 +586,427 @@ const IVRDemo = () => {
                     addActivityLog('system', 'Failed to save session data', 'error');
                   }
                 }}>
-                  <Button className='w-full mt-2'>Move To Contact Center</Button>
+                  <Button className="w-full mt-3 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-medium py-2.5 rounded-lg transition-all transform hover:scale-[1.02] shadow-md">
+                    <ChevronRight className="w-4 h-4 mr-1" />
+                    Transfer to Contact Center
+                    <span className="ml-2 px-2 py-0.5 bg-white/20 rounded text-xs">
+                      {backendDetails.filter(s => s.STATUS === 'S').length} services ready
+                    </span>
+                  </Button>
                 </Link>
               </div>
             )}
           </div>
 
-          {/* Sidebar */}
-          <div className="lg:col-span-1 space-y-6">
-            {/* Customer Information */}
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold">Customer Information</h3>
-                {customerData && <CheckCircle className="w-5 h-5 text-green-600" />}
-              </div>
-              {customerData ? (
-                <div className="space-y-3">
-                  <div>
-                    <span className="text-sm text-gray-500">Name</span>
-                    <p className="font-medium">{customerData.name}</p>
-                  </div>
-                  <div>
-                    <span className="text-sm text-gray-500">Account</span>
-                    <p className="font-medium">{customerData.accountNumber}</p>
-                  </div>
-                  <div>
-                    <span className="text-sm text-gray-500">Tier</span>
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      customerData.tier === 'Premium' ? 'bg-purple-100 text-purple-800' :
-                      customerData.tier === 'Business' ? 'bg-blue-100 text-blue-800' :
-                      'bg-gray-100 text-gray-800'
-                    }`}>
-                      {customerData.tier}
+          {/* Backend Activity Panel - Compact */}
+          {showActivityPanel && (
+            <div className="lg:col-span-1 bg-white rounded-lg shadow-sm border p-4">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center space-x-2">
+                  <Database className="w-4 h-4 text-blue-600" />
+                  <h3 className="text-sm font-semibold">Backend Services</h3>
+                  {backendDetails.length > 0 && (
+                    <span className="text-xs text-gray-500">
+                      {backendDetails.filter(s => s.STATUS === 'S').length}/{backendDetails.length}
                     </span>
+                  )}
+                </div>
+                <button
+                  onClick={() => setShowActivityPanel(false)}
+                  className="p-1 hover:bg-gray-100 rounded text-gray-400 hover:text-gray-600"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </div>
+              
+              {phoneNumber ? (
+                <div className="space-y-2 max-h-80 overflow-y-auto">
+                  {backendDetails.length === 0 && loadingServices.size === 0 ? (
+                    <div className="text-center py-6 text-gray-500">
+                      <Database className="w-6 h-6 mx-auto mb-2 opacity-50" />
+                      <p className="text-xs">No data available</p>
+                    </div>
+                  ) : (
+                    <>
+                      {/* Loading Services - Compact */}
+                      {Array.from(loadingServices).map(serviceName => (
+                        <div key={`loading-${serviceName}`} className="flex items-center justify-between p-2 bg-yellow-50 rounded border border-yellow-200">
+                          <div className="flex items-center space-x-2">
+                            <div className="w-2 h-2 bg-yellow-600 rounded-full animate-pulse"></div>
+                            <span className="text-xs font-medium text-yellow-800 truncate">{serviceName}</span>
+                          </div>
+                          <div className="w-3 h-3 border border-yellow-600 border-t-transparent rounded-full animate-spin"></div>
+                        </div>
+                      ))}
+                      
+                      {/* Loaded Services - Compact */}
+                      {backendDetails
+                        .sort((a, b) => a.loadedAt - b.loadedAt)
+                        .map(service => (
+                        <div key={service.id} className={`flex items-center justify-between p-2 rounded border ${
+                          service.STATUS === 'S' 
+                            ? 'bg-green-50 border-green-200' 
+                            : 'bg-red-50 border-red-200'
+                        }`}>
+                          <div className="flex items-center space-x-2 flex-1 min-w-0">
+                            <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                              service.STATUS === 'S' ? 'bg-green-600' : 'bg-red-600'
+                            }`}></div>
+                            <div className="min-w-0 flex-1">
+                              <p className={`text-xs font-medium truncate ${
+                                service.STATUS === 'S' ? 'text-green-800' : 'text-red-800'
+                              }`}>
+                                {service.SERVICE_NAME}
+                              </p>
+                              <p className={`text-xs ${
+                                service.STATUS === 'S' ? 'text-green-600' : 'text-red-600'
+                              }`}>
+                                {service.TIME_TAKEN}ms
+                              </p>
+                            </div>
+                          </div>
+                          <div className={`text-xs font-mono px-1.5 py-0.5 rounded flex-shrink-0 ${
+                            service.STATUS === 'S' 
+                              ? 'bg-green-100 text-green-700' 
+                              : 'bg-red-100 text-red-700'
+                          }`}>
+                            {service.STATUS === 'S' ? '✓' : '✗'}
+                          </div>
+                        </div>
+                      ))}
+                    </>
+                  )}
+                </div>
+              ) : (
+                <div className="text-center py-6 text-gray-500">
+                  <Phone className="w-6 h-6 mx-auto mb-2 opacity-50" />
+                  <p className="text-xs">Enter phone number</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Main IVR Interface - Compact */}
+          <div className={`${showActivityPanel ? 'lg:col-span-2' : 'lg:col-span-3'} space-y-4`}>
+            {/* Phone Input & IVR Options Combined */}
+            <div className="bg-white rounded-lg shadow-sm border p-4">
+              <div className="flex items-center space-x-2 mb-3">
+                <Phone className="w-4 h-4 text-blue-600" />
+                <h2 className="text-base font-semibold">Call Processing</h2>
+              </div>
+              
+              <div className="space-y-3">
+                {/* Phone Number Input */}
+                <div>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">Phone Number</label>
+                  <input
+                    type="tel"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    placeholder="+1234567890"
+                    className="w-full px-3 py-2 border border-gray-300 rounded text-sm font-mono focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                  <div className="flex flex-wrap gap-1 mt-2">
+                    {TN_DATA?.backend?.map(a => a.tn)?.slice(0, 6).map(num => (
+                      <button
+                        key={num}
+                        onClick={() => setPhoneNumber(num)}
+                        className="px-2 py-1 text-xs bg-gray-100 hover:bg-gray-200 rounded font-mono"
+                      >
+                        {num}
+                      </button>
+                    ))}
                   </div>
+                </div>
+
+                {/* IVR Options */}
+                {phoneNumber && (
                   <div>
-                    <span className="text-sm text-gray-500">Balance</span>
-                    <p className="font-medium text-green-600">{customerData.balance}</p>
+                    <label className="block text-xs font-medium text-gray-700 mb-2">
+                      Customer Selection • {ivrOptions.length} options available
+                    </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {ivrOptions.slice(0, 8).map(option => (
+                        <button
+                          key={option.value}
+                          onClick={() => setSelectedOption(option.value)}
+                          className={`p-2 text-left border rounded text-xs transition-all ${
+                            selectedOption === option.value
+                              ? 'border-blue-500 bg-blue-50 text-blue-800'
+                              : 'border-gray-200 hover:border-gray-300 text-gray-700'
+                          }`}
+                        >
+                          <div className="font-medium truncate">{option.label}</div>
+                        </button>
+                      ))}
+                      {ivrOptions.length > 8 && (
+                        <div className="p-2 text-xs text-gray-500 border border-dashed rounded">
+                          +{ivrOptions.length - 8} more options...
+                        </div>
+                      )}
+                    </div>
                   </div>
+                )}
+              </div>
+            </div>
+
+            {/* Agent Routing Result - Compact */}
+            {routedAgent && (
+              <div className="bg-white rounded-lg shadow-sm border p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle className="w-4 h-4 text-green-600" />
+                    <h2 className="text-base font-semibold text-green-600">Agent Matched</h2>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-xs text-gray-600">Match:</span>
+                    <div className="flex items-center space-x-1">
+                      <div className="w-12 bg-gray-200 rounded-full h-1.5">
+                        <div 
+                          className="bg-green-500 h-1.5 rounded-full transition-all duration-1000"
+                          style={{ width: `${routedAgent.matchPercentage || 0}%` }}
+                        ></div>
+                      </div>
+                      <span className="text-xs font-semibold text-green-600 min-w-[2rem]">
+                        {routedAgent.matchPercentage || 0}%
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="bg-green-50 rounded border border-green-200 p-3">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-10 h-10 bg-green-200 rounded-full flex items-center justify-center flex-shrink-0">
+                      <User className="w-5 h-5 text-green-700" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <h3 className="font-semibold text-gray-900 truncate">{routedAgent.name}</h3>
+                        <span className="text-xs text-green-600 bg-green-100 px-2 py-0.5 rounded">
+                          {routedAgent.availability}
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-600 truncate">{routedAgent.dept}</p>
+                      
+                      <div className="grid grid-cols-3 gap-2 mt-2 text-xs">
+                        <div className="text-center p-1 bg-white/50 rounded">
+                          <div className="font-medium text-gray-900">{Math.round(routedAgent.performance.averageHandleTimeSeconds / 60)}m</div>
+                          <div className="text-gray-500">AHT</div>
+                        </div>
+                        <div className="text-center p-1 bg-white/50 rounded">
+                          <div className="font-medium text-gray-900">{routedAgent.performance.firstCallResolutionPercentage}%</div>
+                          <div className="text-gray-500">FCR</div>
+                        </div>
+                        <div className="text-center p-1 bg-white/50 rounded">
+                          <div className="font-medium text-gray-900">{routedAgent.performance.callsHandled}</div>
+                          <div className="text-gray-500">Today</div>
+                        </div>
+                      </div>
+                      
+                      {routedAgent.skillSet && (
+                        <div className="mt-2">
+                          <div className="flex flex-wrap gap-1">
+                            {routedAgent.skillSet.slice(0, 2).map(skill => (
+                              <span key={skill} className="px-2 py-0.5 bg-green-100 text-green-800 text-xs rounded">
+                                {skill}
+                              </span>
+                            ))}
+                            {routedAgent.skillSet.length > 2 && (
+                              <span className="text-xs text-gray-500">
+                                +{routedAgent.skillSet.length - 2} more
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Sidebar - Compact */}
+          <div className="lg:col-span-1 space-y-4">
+            {/* Customer Information - Compact */}
+            <div className="bg-white rounded-lg shadow-sm border p-4">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-semibold flex items-center">
+                  <User className="w-4 h-4 mr-1" />
+                  Customer
+                </h3>
+                {customerData && <CheckCircle className="w-4 h-4 text-green-600" />}
+              </div>
+              
+              {customerData ? (
+                <div className="space-y-2">
                   <div>
-                    <span className="text-sm text-gray-500">Recent Issues</span>
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs text-gray-500">Name</span>
+                      <span className={`px-2 py-0.5 rounded text-xs font-medium ${
+                        customerData.tier === 'Premium' ? 'bg-purple-100 text-purple-800' :
+                        customerData.tier === 'Business' ? 'bg-blue-100 text-blue-800' :
+                        'bg-gray-100 text-gray-800'
+                      }`}>
+                        {customerData.tier}
+                      </span>
+                    </div>
+                    <p className="font-medium text-sm">{customerData.name}</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div>
+                      <span className="text-gray-500">Account</span>
+                      <p className="font-medium text-gray-900 truncate">{customerData.accountNumber}</p>
+                    </div>
+                    <div>
+                      <span className="text-gray-500">Balance</span>
+                      <p className="font-medium text-green-600">{customerData.balance}</p>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <span className="text-xs text-gray-500">Recent Issues</span>
                     <div className="flex flex-wrap gap-1 mt-1">
-                      {customerData.issues.map(issue => (
-                        <span key={issue} className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded">
+                      {customerData.issues.slice(0, 2).map(issue => (
+                        <span key={issue} className="px-1.5 py-0.5 bg-yellow-100 text-yellow-800 text-xs rounded">
                           {issue}
                         </span>
                       ))}
+                      {customerData.issues.length > 2 && (
+                        <span className="text-xs text-gray-500">+{customerData.issues.length - 2}</span>
+                      )}
                     </div>
                   </div>
                 </div>
               ) : phoneNumber ? (
                 <div className="text-center py-4">
-                  <AlertCircle className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                  <p className="text-gray-500">Customer not found</p>
+                  <AlertCircle className="w-6 h-6 text-gray-400 mx-auto mb-1" />
+                  <p className="text-xs text-gray-500">Customer not found</p>
                 </div>
               ) : (
                 <div className="text-center py-4">
-                  <User className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                  <p className="text-gray-500">Enter phone number</p>
+                  <Phone className="w-6 h-6 text-gray-400 mx-auto mb-1" />
+                  <p className="text-xs text-gray-500">Enter phone number</p>
                 </div>
               )}
             </div>
 
-            {/* Available Agents */}
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold">Available Agents</h3>
-                {selectedOption && (
-                  <span className="text-sm text-gray-500">
-                    {categoryMapping[selectedOption] || 'General'}
+            {/* Available Agents - Compact */}
+            <div className="bg-white rounded-lg shadow-sm border p-4">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-semibold flex items-center">
+                  <Settings className="w-4 h-4 mr-1" />
+                  Agents
+                </h3>
+                {selectedOption && getAgentsForCategory(selectedOption).length > 0 && (
+                  <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
+                    {getAgentsForCategory(selectedOption).length} available
                   </span>
                 )}
               </div>
-              <div className="space-y-3 max-h-84 overflow-y-auto">
+              
+              <div className="space-y-2 max-h-64 overflow-y-auto">
                 {selectedOption ? (
                   getAgentsForCategory(selectedOption).length > 0 ? (
-                    getAgentsForCategory(selectedOption).slice(0, 5).map((agent, index) => (
-                      <div key={agent.id} className={`flex items-center justify-between p-3 rounded-lg border ${
+                    getAgentsForCategory(selectedOption).slice(0, 4).map((agent, index) => (
+                      <div key={agent.id} className={`flex items-center justify-between p-2 rounded border transition-all ${
                         routedAgent && routedAgent.id === agent.id 
-                          ? 'bg-green-50 border-green-200' 
-                          : 'bg-gray-50 border-gray-200'
+                          ? 'bg-green-50 border-green-200 ring-1 ring-green-300' 
+                          : 'bg-gray-50 border-gray-200 hover:border-gray-300'
                       }`}>
-                        <div className="flex items-center space-x-3">
-                          <div className={`w-3 h-3 rounded-full ${
-                            agent.availability === 'Available' || agent.availability === 'Ready' 
+                        <div className="flex items-center space-x-2 min-w-0 flex-1">
+                          <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                            agent.availability === 'Available' || agent.availability === 'Ready' || agent.availability === 'IDLE'
                               ? 'bg-green-500' 
                               : agent.availability === 'After Call Work'
                               ? 'bg-yellow-500'
                               : 'bg-gray-400'
                           }`}></div>
-                          <div>
-                            <p className="font-medium text-gray-900">{agent.name}</p>
-                            <p className="text-sm text-gray-600">{agent.availability}</p>
-                            <p className="text-xs text-gray-500">
-                              AHT: {Math.round(agent.performance.averageHandleTimeSeconds / 60)}m | 
-                              FCR: {agent.performance.firstCallResolutionPercentage}%
-                            </p>
+                          <div className="min-w-0 flex-1">
+                            <p className="font-medium text-xs text-gray-900 truncate">{agent.name}</p>
+                            <div className="flex justify-between items-center text-xs text-gray-600">
+                              <span>{Math.round(agent.performance.averageHandleTimeSeconds / 60)}m AHT</span>
+                              <span>{agent.performance.firstCallResolutionPercentage}% FCR</span>
+                            </div>
                           </div>
                         </div>
                         {routedAgent && routedAgent.id === agent.id && (
-                          <CheckCircle className="w-5 h-5 text-green-600" />
+                          <CheckCircle className="w-3 h-3 text-green-600 flex-shrink-0 ml-1" />
                         )}
                       </div>
                     ))
                   ) : (
                     <div className="text-center py-4">
-                      <AlertCircle className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                      <p className="text-gray-500 text-sm">No agents available for this category</p>
+                      <AlertCircle className="w-6 h-6 text-gray-400 mx-auto mb-1" />
+                      <p className="text-xs text-gray-500">No agents available</p>
+                      <p className="text-xs text-gray-400">for this category</p>
                     </div>
                   )
                 ) : (
                   <div className="text-center py-4">
-                    <User className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                    <p className="text-gray-500 text-sm">Select a category to view agents</p>
+                    <MessageSquare className="w-6 h-6 text-gray-400 mx-auto mb-1" />
+                    <p className="text-xs text-gray-500">Select category to</p>
+                    <p className="text-xs text-gray-400">view agents</p>
+                  </div>
+                )}
+                
+                {selectedOption && getAgentsForCategory(selectedOption).length > 4 && (
+                  <div className="text-center py-2">
+                    <span className="text-xs text-gray-500">
+                      +{getAgentsForCategory(selectedOption).length - 4} more agents
+                    </span>
                   </div>
                 )}
               </div>
             </div>
+
+            {/* Quick Stats - New compact panel */}
+            {(backendDetails.length > 0 || routedAgent) && (
+              <div className="bg-white rounded-lg shadow-sm border p-4">
+                <h3 className="text-sm font-semibold mb-3 flex items-center">
+                  <Activity className="w-4 h-4 mr-1" />
+                  Session Stats
+                </h3>
+                
+                <div className="space-y-2 text-xs">
+                  {backendDetails.length > 0 && (
+                    <>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Backend Services</span>
+                        <span className="font-medium">
+                          {backendDetails.filter(s => s.STATUS === 'S').length}/{backendDetails.length}
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Load Time</span>
+                        <span className="font-medium text-green-600">
+                          {Math.round(Math.max(...backendDetails.map(s => parseInt(s.TIME_TAKEN || 0))) / 1000)}s
+                        </span>
+                      </div>
+                    </>
+                  )}
+                  
+                  {routedAgent && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Agent Match</span>
+                      <span className="font-medium text-blue-600">
+                        {routedAgent.matchPercentage}%
+                      </span>
+                    </div>
+                  )}
+                  
+                  {callDuration > 0 && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">IVR Duration</span>
+                      <span className="font-medium text-gray-900 font-mono">
+                        {formatDuration(callDuration)}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
