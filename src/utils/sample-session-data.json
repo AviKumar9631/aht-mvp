@@ -76,7 +76,8 @@
       "totalServices": 2,
       "successfulServices": 2,
       "failedServices": 0,
-      "totalBackendTime": 3700
+      "totalBackendTime": 2200,
+      "sequentialBackendTime": 3700
     },
     "ivrData": {
       "sessionData": {

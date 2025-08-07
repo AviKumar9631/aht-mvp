@@ -72,7 +72,7 @@ const BackendTimingAnalyzer = () => {
             <p className="text-2xl font-bold text-green-600">{formatTime(performanceSummary.averageTime)}</p>
           </div>
           <div className="bg-orange-50 p-4 rounded-lg border border-orange-200">
-            <h3 className="font-semibold text-orange-800">Total Time</h3>
+            <h3 className="font-semibold text-orange-800">Total Time (Parallel)</h3>
             <p className="text-2xl font-bold text-orange-600">{formatTime(performanceSummary.totalTime)}</p>
           </div>
           <div className="bg-red-50 p-4 rounded-lg border border-red-200">

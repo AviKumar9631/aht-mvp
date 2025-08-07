@@ -107,7 +107,7 @@ const DebugPanel = ({
           </div>
           <div>
             <span className="font-medium text-gray-700">
-              Total Backend Time:
+              Total Backend Time (Parallel):
             </span>
             <p className="text-gray-900">{totalBackendTime || 0}ms</p>
           </div>
@@ -1368,8 +1368,13 @@ Return concise JSON (no markdown):
   const calculateTimingSavings = (ivrData) => {
     if (!ivrData || !ivrData.backendDetails) return;
 
-    // Calculate total time for backend services that were pre-fetched
-    const preFetchedTime = ivrData.backendDetails.reduce((total, service) => {
+    // Calculate parallel time for backend services that were pre-fetched
+    const preFetchedTime = ivrData.backendDetails.length > 0 
+      ? Math.max(...ivrData.backendDetails.map(service => parseInt(service.TIME_TAKEN || 0)))
+      : 0;
+
+    // Calculate sequential time for comparison
+    const sequentialTime = ivrData.backendDetails.reduce((total, service) => {
       return total + parseInt(service.TIME_TAKEN || 0);
     }, 0);
 
@@ -1377,6 +1382,7 @@ Return concise JSON (no markdown):
     const customerDataLookupTime = 5000; // 5 seconds typical lookup time
     const agentContextSwitchTime = 3000; // 3 seconds for agent to understand context
 
+    // Use parallel fetch time as the actual time spent
     const totalTimeSaved =
       preFetchedTime + customerDataLookupTime + agentContextSwitchTime;
 

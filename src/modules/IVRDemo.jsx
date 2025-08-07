@@ -53,7 +53,8 @@ const IVRDemo = () => {
       totalBackendServices: backendDetails.length,
       successfulServices: backendDetails.filter(s => s.STATUS === 'S').length,
       failedServices: backendDetails.filter(s => s.STATUS !== 'S').length,
-      totalBackendTime: backendDetails.reduce((sum, s) => sum + parseInt(s.TIME_TAKEN || 0), 0),
+      totalBackendTime: backendDetails.length > 0 ? Math.max(...backendDetails.map(s => parseInt(s.TIME_TAKEN || 0))) : 0, // Parallel time
+      sequentialBackendTime: backendDetails.reduce((sum, s) => sum + parseInt(s.TIME_TAKEN || 0), 0), // Keep for comparison
       
       // Agent matching info
       agentMatchScore: routedAgent?.matchPercentage || null,
@@ -97,8 +98,33 @@ const IVRDemo = () => {
     }, ...prev.slice(0, 19)]); // Keep last 20 entries
   };
 
-  // Function to load backend details for a phone number
-  const loadBackendDetails = (tn) => {
+  // Function to simulate an async backend API call
+  const simulateBackendCall = (service, tn, index) => {
+    return new Promise((resolve) => {
+      const timeTaken = parseInt(service.TIME_TAKEN) || 1000;
+      const serviceName = service.SERVICE_NAME;
+      
+      // Add processing log immediately
+      setTimeout(() => {
+        addActivityLog('api', `Fetching ${serviceName}...`, 'processing');
+      }, index * 50); // Slight stagger for UI clarity
+      
+      // Simulate the actual API call delay
+      setTimeout(() => {
+        const serviceResult = {
+          ...service,
+          id: `${tn}-${index}`,
+          loadedAt: Date.now(),
+          actualLoadTime: timeTaken
+        };
+        
+        resolve(serviceResult);
+      }, timeTaken);
+    });
+  };
+
+  // Function to load backend details for a phone number (now async and parallel)
+  const loadBackendDetails = async (tn) => {
     // Find the TN data
     const tnData = TN_DATA?.backend?.find(item => item.tn === tn);
     
@@ -113,24 +139,36 @@ const IVRDemo = () => {
     setLoadingServices(new Set());
     
     // Add initial log
-    addActivityLog('api', `Loading backend services for ${tn}...`, 'processing');
-    addActivityLog('system', `Found ${tnData.backendDetail.length} backend services`, 'success');
+    addActivityLog('api', `Loading ${tnData.backendDetail.length} backend services for ${tn}...`, 'processing');
+    addActivityLog('system', `Starting parallel backend calls`, 'success');
     
-    // Process each backend service with its TIME_TAKEN as delay
-    tnData.backendDetail.forEach((service, index) => {
-      const timeTaken = parseInt(service.TIME_TAKEN) || 1000;
-      const serviceName = service.SERVICE_NAME;
+    // Set all services as loading initially
+    const allServiceNames = tnData.backendDetail.map(service => service.SERVICE_NAME);
+    setLoadingServices(new Set(allServiceNames));
+    
+    try {
+      // Create all API call promises
+      const apiCalls = tnData.backendDetail.map((service, index) => 
+        simulateBackendCall(service, tn, index)
+      );
       
-      // Add to loading set
-      setLoadingServices(prev => new Set([...prev, serviceName]));
+      // Start timing for parallel execution
+      const startTime = Date.now();
+      addActivityLog('system', `Initiating ${apiCalls.length} parallel API calls`, 'processing');
       
-      // Add processing log immediately
-      setTimeout(() => {
-        addActivityLog('api', `Fetching ${serviceName}...`, 'processing');
-      }, index * 100); // Stagger the "fetching" messages slightly
+      // Execute all calls in parallel and handle results as they complete
+      const results = await Promise.allSettled(apiCalls);
       
-      // Simulate API call with TIME_TAKEN delay
-      setTimeout(() => {
+      const totalParallelTime = Date.now() - startTime;
+      addActivityLog('system', `All parallel calls completed in ${totalParallelTime}ms`, 'success');
+      
+      // Process results
+      const successfulServices = [];
+      const failedServices = [];
+      
+      results.forEach((result, index) => {
+        const serviceName = tnData.backendDetail[index].SERVICE_NAME;
+        
         // Remove from loading set
         setLoadingServices(prev => {
           const newSet = new Set(prev);
@@ -138,37 +176,52 @@ const IVRDemo = () => {
           return newSet;
         });
         
-        // Add to backend details
-        setBackendDetails(prev => [...prev, {
-          ...service,
-          id: `${tn}-${index}`,
-          loadedAt: Date.now()
-        }]);
-        
-        // Add success log
-        const statusText = service.STATUS === 'S' ? 'Success' : 'Failed';
-        addActivityLog('api', `${serviceName} loaded (${statusText})`, 
-          service.STATUS === 'S' ? 'success' : 'warning', `${timeTaken}ms`);
-        
-        // Check if customer data can be extracted from Product Info service
-        if (serviceName === 'Product Info' && service.RESPONSE_XML?.RxPSProductInfoResponse?.CustomerServiceRecord) {
-          const customerRecord = service.RESPONSE_XML.RxPSProductInfoResponse.CustomerServiceRecord;
-          setCustomerData({
-            name: customerRecord.BillingName || 'Unknown Customer',
-            accountNumber: customerRecord.BAN || 'N/A',
-            tier: customerRecord.CustomerType || 'Standard',
-            balance: '$0.00', // This would come from another service
-            lastPayment: 'N/A',
-            issues: ['Service Inquiry'],
-            callHistory: 1
-          });
-          if (callStatus !== 'routed') {
-            setCallStatus('connected');
+        if (result.status === 'fulfilled') {
+          const service = result.value;
+          successfulServices.push(service);
+          
+          // Add to backend details
+          setBackendDetails(prev => [...prev, service]);
+          
+          // Add success log
+          const statusText = service.STATUS === 'S' ? 'Success' : 'Failed';
+          addActivityLog('api', `${serviceName} loaded (${statusText})`, 
+            service.STATUS === 'S' ? 'success' : 'warning', `${service.actualLoadTime}ms`);
+          
+          // Check if customer data can be extracted from Product Info service
+          if (serviceName === 'Product Info' && service.RESPONSE_XML?.RxPSProductInfoResponse?.CustomerServiceRecord) {
+            const customerRecord = service.RESPONSE_XML.RxPSProductInfoResponse.CustomerServiceRecord;
+            setCustomerData({
+              name: customerRecord.BillingName || 'Unknown Customer',
+              accountNumber: customerRecord.BAN || 'N/A',
+              tier: customerRecord.CustomerType || 'Standard',
+              balance: '$0.00', // This would come from another service
+              lastPayment: 'N/A',
+              issues: ['Service Inquiry'],
+              callHistory: 1
+            });
+            if (callStatus !== 'routed') {
+              setCallStatus('connected');
+            }
+            addActivityLog('system', `Customer identified: ${customerRecord.BillingName}`, 'success');
           }
-          addActivityLog('system', `Customer identified: ${customerRecord.BillingName}`, 'success');
+        } else {
+          failedServices.push(serviceName);
+          addActivityLog('api', `${serviceName} failed to load`, 'error');
         }
-      }, timeTaken);
-    });
+      });
+      
+      // Log summary
+      addActivityLog('system', 
+        `Backend loading complete: ${successfulServices.length} successful, ${failedServices.length} failed`, 
+        failedServices.length === 0 ? 'success' : 'warning'
+      );
+      
+    } catch (error) {
+      console.error('Error loading backend services:', error);
+      addActivityLog('system', 'Error during parallel backend loading', 'error');
+      setLoadingServices(new Set());
+    }
   };
 
   // Mock customer database
@@ -284,11 +337,17 @@ const IVRDemo = () => {
     if (phoneNumber && phoneNumber.length >= 3) {
       addActivityLog('api', 'Validating phone number format...', 'processing');
       
-      setTimeout(() => {
+      const validateAndLoad = async () => {
+        await new Promise(resolve => setTimeout(resolve, 300)); // Validation delay
         addActivityLog('api', 'Phone number validated', 'success', '300ms');
-        // Load backend details for this TN
-        loadBackendDetails(phoneNumber);
-      }, 300);
+        // Load backend details for this TN (now async)
+        await loadBackendDetails(phoneNumber);
+      };
+      
+      validateAndLoad().catch(error => {
+        console.error('Error during phone number validation and loading:', error);
+        addActivityLog('system', 'Error during backend loading process', 'error');
+      });
     } else {
       // Clear data when phone number is empty or too short
       setBackendDetails([]);
@@ -495,9 +554,13 @@ const IVRDemo = () => {
                   {backendDetails.length > 0 && (
                     <div className="mt-3 p-2 bg-green-100 rounded text-center">
                       <span className="font-bold text-green-800">
-                        Pre-fetch time: {Math.round(backendDetails.reduce((sum, service) => 
-                          sum + parseInt(service.TIME_TAKEN || 0), 0) / 1000)}s
+                        Pre-fetch time: {Math.round(Math.max(...backendDetails.map(service => 
+                          parseInt(service.TIME_TAKEN || 0))) / 1000)}s (parallel)
                       </span>
+                      <div className="text-xs text-green-600 mt-1">
+                        Sequential would take: {Math.round(backendDetails.reduce((sum, service) => 
+                          sum + parseInt(service.TIME_TAKEN || 0), 0) / 1000)}s
+                      </div>
                     </div>
                   )}
                 </div>
@@ -529,9 +592,15 @@ const IVRDemo = () => {
                   {backendDetails.length > 0 && (
                     <div className="mt-3 p-2 bg-green-100 rounded text-center">
                       <span className="font-bold text-green-800">
-                        Estimated AHT: ~{Math.max(1, 11 - Math.round(backendDetails.reduce((sum, service) => 
-                          sum + parseInt(service.TIME_TAKEN || 0), 0) / 1000 / 60))} min
+                        Estimated AHT: ~{Math.max(1, 11 - Math.round(Math.max(...backendDetails.map(service => 
+                          parseInt(service.TIME_TAKEN || 0))) / 1000 / 60))} min
                       </span>
+                      <div className="text-xs text-green-600 mt-1">
+                        Saved ~{Math.round((backendDetails.reduce((sum, service) => 
+                          sum + parseInt(service.TIME_TAKEN || 0), 0) - 
+                          Math.max(...backendDetails.map(service => parseInt(service.TIME_TAKEN || 0)))) / 1000 / 60)} min
+                        from parallel loading
+                      </div>
                     </div>
                   )}
                 </div>
@@ -541,7 +610,7 @@ const IVRDemo = () => {
             {/* Transfer to Contact Center Button */}
             {callStatus === 'routed' && backendDetails.length > 0 && (
               <div className="mt-6 text-center">
-                <Link to="/contact-center">
+                {/* <Link to="/contact-center">
                   <button 
                     onClick={() => storeIVRSessionData()}
                     className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all transform hover:scale-105 shadow-lg"
@@ -550,7 +619,7 @@ const IVRDemo = () => {
                     Transfer to Contact Center (Pre-loaded Data)
                     <Zap className="w-4 h-4 ml-2" />
                   </button>
-                </Link>
+                </Link> */}
                 <p className="text-sm text-gray-600 mt-2">
                   All customer data and backend services are pre-loaded for the agent
                 </p>

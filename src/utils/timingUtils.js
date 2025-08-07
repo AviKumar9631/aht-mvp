@@ -88,6 +88,8 @@ export const getTNPerformanceSummary = (tnEntry) => {
   }
 
   const totalTime = details.reduce((sum, detail) => sum + (detail.Average_Elapsed_Time_ms || 0), 0);
+  const sequentialTime = details.reduce((sum, detail) => sum + (detail.TIME_TAKEN || detail.Average_Elapsed_Time_ms || 0), 0);
+  const parallelTime = details.length > 0 ? Math.max(...details.map(detail => detail.TIME_TAKEN || detail.Average_Elapsed_Time_ms || 0)) : 0;
   const avgTime = totalTime / details.length;
   const maxTime = Math.max(...details.map(detail => detail.MAX_TIME || 0));
   const minTime = Math.min(...details.map(detail => detail.MIN_TIME || Infinity));
@@ -96,7 +98,8 @@ export const getTNPerformanceSummary = (tnEntry) => {
     tn: tnEntry.tn,
     serviceCount: details.length,
     averageTime: avgTime,
-    totalTime,
+    totalTime: parallelTime, // Use parallel time as the effective total time
+    sequentialTime, // Keep sequential time for comparison
     maxTime,
     minTime,
     services: details.map(detail => ({

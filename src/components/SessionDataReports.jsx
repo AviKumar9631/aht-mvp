@@ -129,7 +129,11 @@ const SessionDataReports = () => {
       if (session.backendData?.details) {
         stats.totalServices += session.backendData.totalServices || 0;
         stats.successfulServices += session.backendData.successfulServices || 0;
-        stats.totalBackendTime += session.backendData.totalBackendTime || 0;
+        // Use parallel time calculation if available, fallback to existing totalBackendTime
+        const parallelTime = session.backendData.details?.length > 0 
+          ? Math.max(...session.backendData.details.map(service => parseInt(service.TIME_TAKEN || 0)))
+          : session.backendData.totalBackendTime || 0;
+        stats.totalBackendTime += parallelTime;
         stats.sessions++;
       }
       return stats;
