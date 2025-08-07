@@ -420,11 +420,14 @@ const IVRDemo = () => {
   }, [selectedOption, customerData]);
 
   useEffect(() => {
-    if (callStatus === 'connected' || callStatus === 'routing' || callStatus === 'routed') {
+    if (phoneNumber && phoneNumber.length >= 3) {
       const timer = setInterval(() => setCallDuration(prev => prev + 1), 1000);
       return () => clearInterval(timer);
+    } else {
+      // Reset timer when phone number is cleared
+      setCallDuration(0);
     }
-  }, [callStatus]);
+  }, [phoneNumber]);
 
   const formatDuration = (seconds) => {
     const mins = Math.floor(seconds / 60);
@@ -465,7 +468,7 @@ const IVRDemo = () => {
                       {callStatus === 'routed' && 'Ready to Transfer'}
                     </span>
                   </div>
-                  {callDuration > 0 && (
+                  {(callDuration > 0 || phoneNumber) && (
                     <div className="flex items-center space-x-1 text-gray-600">
                       <Clock className="w-3 h-3" />
                       <span className="font-mono text-sm">{formatDuration(callDuration)}</span>
@@ -707,7 +710,7 @@ const IVRDemo = () => {
                     className="w-full px-3 py-2 border border-gray-300 rounded text-sm font-mono focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                   <div className="flex flex-wrap gap-1 mt-2">
-                    {TN_DATA?.backend?.map(a => a.tn)?.slice(0, 6).map(num => (
+                    {TN_DATA?.backend?.map(a => a.tn).map(num => (
                       <button
                         key={num}
                         onClick={() => setPhoneNumber(num)}
