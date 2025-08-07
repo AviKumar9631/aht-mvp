@@ -2347,6 +2347,61 @@ Customer transferred from IVR system:
     }
   }, [transcript.length, callStatus]);
 
+  // Function to call the completion API with resolution data
+  const callCompletionAPI = async (resolutionData) => {
+    try {
+      console.log("Calling completion API with resolution data...");
+
+      // Extract transcript text from conversation data
+      const transcriptText = resolutionData.conversationData?.transcript
+        ?.filter(entry => !entry.isSystem && entry.speaker && entry.text)
+        ?.map(entry => `${entry.speaker}: ${entry.text}`)
+        ?.join('\n') || 'No conversation transcript available';
+
+      // Create API payload similar to aht-sample.json structure
+      const apiPayload = {
+        // Core API fields
+        transcript: transcriptText,
+        telephone_number: resolutionData.customerInfo?.phoneNumber || 'unknown',
+        customer_account_id: resolutionData.customerInfo?.data?.accountNumber || null,
+        
+        // Full resolution context - similar to aht-sample.json structure
+        callInfo: resolutionData.callInfo,
+        customerInfo: resolutionData.customerInfo,
+        agentInfo: resolutionData.agentInfo,
+        resolutionDetails: resolutionData.resolutionDetails,
+        backendData: resolutionData.backendData,
+        conversationData: resolutionData.conversationData,
+        performanceMetrics: resolutionData.performanceMetrics,
+        sentimentAnalysis: resolutionData.sentimentAnalysis,
+        aiAnalytics: resolutionData.aiAnalytics
+      };
+
+      console.log("Completion API Payload:", apiPayload);
+
+      const response = await fetch('http://localhost:8000/process_transcript/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(apiPayload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("Completion API Response:", data);
+      
+      return data;
+    } catch (error) {
+      console.error('Completion API call failed:', error);
+      // Don't throw error - completion should continue even if API fails
+      return null;
+    }
+  };
+
   // Function to handle complete resolution - gather all data and save it
   const handleCompleteResolution = async () => {
     // Gather all session data
@@ -2449,6 +2504,21 @@ Customer transferred from IVR system:
       },
     };
 
+    // Call completion API with the resolution data
+    console.log("Calling completion API...");
+    const apiResponse = await callCompletionAPI(resolutionData);
+    
+    // Add API response to resolution data if successful
+    if (apiResponse) {
+      resolutionData.apiResponse = {
+        completionApiResponse: apiResponse,
+        timestamp: new Date().toISOString()
+      };
+      console.log("Completion API call successful:", apiResponse);
+    } else {
+      console.log("Completion API call failed or skipped");
+    }
+
     // Validate session data
     const validation = validateSessionData(resolutionData);
     console.log("Session data validation:", validation);
@@ -2493,7 +2563,12 @@ Customer transferred from IVR system:
     // Show success message with file save results
     const successMessage =
       `Resolution completed successfully!\n\n` +
-      `📁 JSON File: ${
+      `� API Call: ${
+        apiResponse
+          ? "Completion data sent successfully"
+          : "API call failed or skipped"
+      }\n` +
+      `�📁 JSON File: ${
         fileResult.success
           ? `Downloaded as ${fileResult.filename}`
           : "Failed to download"

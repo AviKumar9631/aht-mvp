@@ -3,11 +3,13 @@ import { Phone, User, Bot, MessageSquare, Clock, CheckCircle, AlertCircle, Setti
 import TN_DATA from '../utils/TN_DATA.json';
 import CONTACT_DRIVER from '../utils/CONTACT_DRIVER.json';
 import AGENT_DATA from '../utils/AGENT_DATA.json';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
+import ahtSampleData from '../utils/aht-sample.json';
 
 
 const IVRDemo = () => {
+  const navigate = useNavigate();
   const [phoneNumber, setPhoneNumber] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
   const [customerData, setCustomerData] = useState(null);
@@ -19,6 +21,8 @@ const IVRDemo = () => {
   const [showActivityPanel, setShowActivityPanel] = useState(true);
   const [backendDetails, setBackendDetails] = useState([]);
   const [loadingServices, setLoadingServices] = useState(new Set());
+  const [apiLoading, setApiLoading] = useState(false);
+  const [apiResponse, setApiResponse] = useState(null);
 
   // Function to store IVR session data to localStorage
   const storeIVRSessionData = () => {
@@ -96,6 +100,177 @@ const IVRDemo = () => {
       duration,
       timestamp
     }, ...prev.slice(0, 19)]); // Keep last 20 entries
+  };
+
+  // Function to call the agent assist API
+  const callAgentAssistAPI = async (phoneNumber) => {
+    try {
+      setApiLoading(true);
+      addActivityLog('api', 'Calling Agent Assist API...', 'processing');
+
+      // Create IVR interaction transcript based on current session
+      const ivrTranscript = [];
+      
+      // Add system greeting
+      ivrTranscript.push({
+        speaker: "IVR System",
+        text: `Thank you for calling. I see you're calling from ${phoneNumber}.`,
+        time: new Date().toLocaleTimeString(),
+        isSystem: true
+      });
+
+      // Add customer selection
+      if (selectedOption) {
+        ivrTranscript.push({
+          speaker: "Customer",
+          text: `Selected option: ${selectedOption}`,
+          time: new Date().toLocaleTimeString()
+        });
+      }
+
+      // Add customer identification if available
+      if (customerData) {
+        ivrTranscript.push({
+          speaker: "IVR System",
+          text: `Customer identified: ${customerData.name}, Account: ${customerData.accountNumber}`,
+          time: new Date().toLocaleTimeString(),
+          isSystem: true
+        });
+      }
+
+      // Add agent routing information
+      if (routedAgent) {
+        ivrTranscript.push({
+          speaker: "IVR System",
+          text: `Routing to ${routedAgent.name} in ${routedAgent.dept} department (${routedAgent.matchPercentage}% match)`,
+          time: new Date().toLocaleTimeString(),
+          isSystem: true
+        });
+      }
+
+      // Add backend services information
+      if (backendDetails.length > 0) {
+        ivrTranscript.push({
+          speaker: "IVR System",
+          text: `Pre-loaded ${backendDetails.filter(s => s.STATUS === 'S').length} backend services: ${backendDetails.filter(s => s.STATUS === 'S').map(s => s.SERVICE_NAME).join(', ')}`,
+          time: new Date().toLocaleTimeString(),
+          isSystem: true
+        });
+      }
+
+      // Create the payload structure similar to aht-sample.json
+      const payload = {
+        callInfo: {
+          status: "active",
+          duration: callDuration,
+          startTime: new Date(Date.now() - callDuration * 1000).toISOString(),
+          endTime: new Date().toISOString(),
+          isRecording: true,
+          isMuted: false,
+          sessionId: `ivr_${Date.now()}`
+        },
+        customerInfo: {
+          data: customerData || {
+            name: "Unknown Customer",
+            accountNumber: "N/A",
+            tier: "Standard",
+            balance: "$0.00",
+            lastPayment: "N/A",
+            issues: [selectedOption || "General Inquiry"],
+            callHistory: 1,
+            phone: phoneNumber,
+            issue: selectedOption || "General Inquiry",
+            sentiment: "neutral"
+          },
+          phoneNumber: phoneNumber,
+          issue: selectedOption || "General Inquiry",
+          selectedOption: selectedOption || "General Inquiry",
+          categoryMapping: selectedOption || "General Inquiry"
+        },
+        agentInfo: routedAgent ? {
+          routedAgent: routedAgent,
+          agentMatchScore: routedAgent.matchPercentage,
+          availableAgentsCount: getAgentsForCategory(selectedOption).length
+        } : null,
+        backendData: {
+          details: backendDetails
+        },
+        conversationData: {
+          transcript: ivrTranscript,
+          searchQuery: ""
+        },
+        performanceMetrics: {
+          timingSavings: {
+            preFetchedTime: backendDetails.reduce((sum, service) => sum + parseInt(service.TIME_TAKEN || 0), 0) / 1000,
+            servicesPreFetched: backendDetails.length,
+            totalSaved: backendDetails.length > 0 ? 
+              (backendDetails.reduce((sum, service) => sum + parseInt(service.TIME_TAKEN || 0), 0) - 
+               Math.max(...backendDetails.map(service => parseInt(service.TIME_TAKEN || 0)))) / 1000 : 0
+          },
+          showOptimizationDemo: true
+        },
+        // API-specific fields
+        transcript: ivrTranscript
+          .filter(entry => !entry.isSystem && entry.speaker && entry.text)
+          .map(entry => `${entry.speaker}: ${entry.text}`)
+          .join('\n') || `Customer called from ${phoneNumber} regarding ${selectedOption || 'general inquiry'}`,
+        telephone_number: phoneNumber,
+        customer_account_id: customerData?.accountNumber || null
+      };
+
+      addActivityLog('api', `Sending payload with ${ivrTranscript.length} transcript entries`, 'processing');
+
+      const response = await fetch('http://localhost:8000/process_transcript/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setApiResponse(data);
+      addActivityLog('api', 'Agent Assist API call successful', 'success', `${response.headers.get('x-response-time') || 'unknown'}ms`);
+      addActivityLog('ai', `Intent: ${data.intent}`, 'success');
+      addActivityLog('ai', `Sentiment: ${data.sentiment_analysis?.sentiment || 'unknown'}`, 'success');
+      
+      return data;
+    } catch (error) {
+      console.error('Agent Assist API call failed:', error);
+      addActivityLog('api', `Agent Assist API call failed: ${error.message}`, 'error');
+      throw error;
+    } finally {
+      setApiLoading(false);
+    }
+  };
+
+  // Function to handle transfer to contact center
+  const handleTransferToContactCenter = async () => {
+    try {
+      // Store IVR session data first
+      const success = storeIVRSessionData();
+      if (success) {
+        addActivityLog('system', 'Session data saved to localStorage', 'success');
+      } else {
+        addActivityLog('system', 'Failed to save session data', 'error');
+      }
+
+      // Make API call with the current IVR session data
+      if (phoneNumber) {
+        await callAgentAssistAPI(phoneNumber);
+      }
+
+      // Navigate to contact center
+      navigate('/contact-center');
+    } catch (error) {
+      console.error('Transfer failed:', error);
+      // Still navigate even if API call fails
+      navigate('/contact-center');
+    }
   };
 
   // Function to simulate an async backend API call
@@ -581,22 +756,26 @@ const IVRDemo = () => {
             {/* Transfer Button */}
             {callStatus === 'routed' && backendDetails.length > 0 && (
               <div className="mt-4 flex items-center justify-center">
-                <Link to="/contact-center" onClick={() => {
-                  const success = storeIVRSessionData();
-                  if (success) {
-                    addActivityLog('system', 'Session data saved to localStorage', 'success');
-                  } else {
-                    addActivityLog('system', 'Failed to save session data', 'error');
-                  }
-                }}>
-                  <Button className="w-full mt-3 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-medium py-2.5 rounded-lg transition-all transform hover:scale-[1.02] shadow-md">
-                    <ChevronRight className="w-4 h-4 mr-1" />
-                    Transfer to Contact Center
-                    <span className="ml-2 px-2 py-0.5 bg-white/20 rounded text-xs">
-                      {backendDetails.filter(s => s.STATUS === 'S').length} services ready
-                    </span>
-                  </Button>
-                </Link>
+                <Button 
+                  onClick={handleTransferToContactCenter}
+                  disabled={apiLoading}
+                  className="w-full mt-3 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-medium py-2.5 rounded-lg transition-all transform hover:scale-[1.02] shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {apiLoading ? (
+                    <>
+                      <div className="w-4 h-4 mr-1 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      Processing...
+                    </>
+                  ) : (
+                    <>
+                      <ChevronRight className="w-4 h-4 mr-1" />
+                      Transfer to Contact Center
+                      <span className="ml-2 px-2 py-0.5 bg-white/20 rounded text-xs">
+                        {backendDetails.filter(s => s.STATUS === 'S').length} services ready
+                      </span>
+                    </>
+                  )}
+                </Button>
               </div>
             )}
           </div>
