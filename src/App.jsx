@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
 import './App.css'
 import {Button} from './components/ui/button.tsx'
-import AHTOptimizationMVP  from './modules/AHTOptimizationMvp.jsx'
+// Fixed case sensitivity issue for Netlify deployment
+import AHTOptimizationMvp  from './modules/AHTOptimizationMvp.jsx'
 import IVRDemo  from './modules/IVRDemo.jsx'
 import ContactCenterUI from './modules/ContactCenterUI.jsx'
 
@@ -49,7 +50,7 @@ function App() {
         <Route path="/" element={<IVRDemo />} />
         <Route path="/ivr" element={<IVRDemo />} />
         <Route path="/contact-center" element={<ContactCenterUI />} />
-        <Route path="/aht-optimizer" element={<AHTOptimizationMVP />} />
+        <Route path="/aht-optimizer" element={<AHTOptimizationMvp />} />
       </Routes>
     </Router>
   )
