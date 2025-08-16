@@ -621,18 +621,18 @@ const IVRDemo = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-3">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-4">
       <div className="max-w-7xl mx-auto">
-        {/* Compact Header */}
-        <div className="bg-white rounded-lg shadow-sm border p-4 mb-4">
+        {/* Enhanced Header */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 p-6 mb-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className={`p-2 rounded-lg ${getStatusColor(callStatus).replace('text-', 'bg-').replace('-600', '-100')}`}>
-                <PhoneCall className={`w-5 h-5 ${getStatusColor(callStatus)}`} />
+            <div className="flex items-center space-x-4">
+              <div className={`p-3 rounded-xl shadow-lg ${getStatusColor(callStatus).replace('text-', 'bg-').replace('-600', '-100')} border ${getStatusColor(callStatus).replace('text-', 'border-').replace('-600', '-200')}`}>
+                <PhoneCall className={`w-6 h-6 ${getStatusColor(callStatus)}`} />
               </div>
               <div>
-                <h1 className="text-lg font-bold text-gray-900">IVR System</h1>
-                <div className="flex items-center space-x-4 text-sm">
+                <h1 className="text-2xl font-bold text-gray-900">IVR System</h1>
+                <div className="flex items-center space-x-6 text-sm mt-1">
                   <div className={`flex items-center space-x-2 ${getStatusColor(callStatus)}`}>
                     <div className="w-2 h-2 rounded-full bg-current animate-pulse"></div>
                     <span className="font-medium">
@@ -644,102 +644,136 @@ const IVRDemo = () => {
                     </span>
                   </div>
                   {(callDuration > 0 || phoneNumber) && (
-                    <div className="flex items-center space-x-1 text-gray-600">
-                      <Clock className="w-3 h-3" />
-                      <span className="font-mono text-sm">{formatDuration(callDuration)}</span>
+                    <div className="flex items-center space-x-2 text-gray-600">
+                      <Clock className="w-4 h-4" />
+                      <span className="font-mono text-sm font-medium">{formatDuration(callDuration)}</span>
                     </div>
                   )}
                 </div>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-3">
               <button
                 onClick={() => setShowActivityPanel(!showActivityPanel)}
-                className={`p-2 rounded-md transition-colors text-xs ${
-                  showActivityPanel ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                className={`px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium shadow-sm hover:shadow-md transform hover:scale-105 ${
+                  showActivityPanel 
+                    ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white' 
+                    : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
                 }`}
                 title="Backend Activity"
               >
-                <Database className="w-4 h-4" />
+                <Database className="w-4 h-4 mr-2 inline" />
+                Backend Activity
               </button>
               {backendDetails.length > 0 && (
-                <div className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
-                  {backendDetails.filter(s => s.STATUS === 'S').length}/{backendDetails.length} services
+                <div className="text-sm text-gray-600 bg-gradient-to-r from-green-50 to-green-100 px-3 py-2 rounded-lg border border-green-200">
+                  <span className="font-medium text-green-700">
+                    {backendDetails.filter(s => s.STATUS === 'S').length}/{backendDetails.length}
+                  </span>
+                  <span className="text-green-600 ml-1">services</span>
                 </div>
               )}
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-          {/* Compact AHT Optimization Summary */}
-          <div className="lg:col-span-4 bg-white rounded-lg shadow-sm border p-4 mb-4">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center space-x-2">
-                <Zap className="w-4 h-4 text-orange-500" />
-                <h3 className="text-base font-semibold text-gray-900">AHT Impact Summary</h3>
-                <span className="px-2 py-0.5 bg-orange-100 text-orange-800 text-xs rounded font-medium">
-                  LIVE
-                </span>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          {/* Enhanced AHT Optimization Summary */}
+          <div className="lg:col-span-4 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 p-6 mb-6">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center space-x-3">
+                <div className="p-3 bg-gradient-to-r from-orange-100 to-amber-100 rounded-xl border border-orange-200">
+                  <Zap className="w-6 h-6 text-orange-600" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">AHT Impact Summary</h3>
+                  <div className="flex items-center space-x-2 mt-1">
+                    <span className="px-3 py-1 bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 text-sm rounded-full font-medium border border-orange-300">
+                      LIVE ANALYSIS
+                    </span>
+                    <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
+                  </div>
+                </div>
               </div>
               {backendDetails.length > 0 && (
-                <div className="text-sm text-gray-600">
-                  <span className="font-mono">
+                <div className="text-right">
+                  <div className="text-lg font-bold text-green-600">
                     Saved: ~{Math.round((backendDetails.reduce((sum, service) => 
                       sum + parseInt(service.TIME_TAKEN || 0), 0) - 
                       Math.max(...backendDetails.map(service => parseInt(service.TIME_TAKEN || 0)))) / 1000)}s
-                  </span>
-                  <span className="text-xs text-gray-500 ml-2">parallel vs sequential</span>
+                  </div>
+                  <div className="text-sm text-gray-600">parallel vs sequential processing</div>
                 </div>
               )}
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Before */}
-              <div className="p-3 bg-red-50 rounded border border-red-200">
-                <h4 className="font-medium text-red-800 mb-2 flex items-center text-sm">
-                  <AlertCircle className="w-3 h-3 mr-1" />
+              <div className="p-5 bg-gradient-to-br from-red-50 to-red-100 rounded-xl border border-red-200 shadow-sm hover:shadow-md transition-shadow">
+                <h4 className="font-bold text-red-800 mb-3 flex items-center text-base">
+                  <AlertCircle className="w-4 h-4 mr-2" />
                   Traditional (11+ min AHT)
                 </h4>
-                <div className="space-y-1 text-xs text-red-700">
-                  <div>→ Agent answers blind</div>
-                  <div>→ Fetch customer data (8-15s)</div>
-                  <div>→ Read context (5-10s)</div>
-                  <div>→ Start helping</div>
+                <div className="space-y-2 text-sm text-red-700">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-1.5 h-1.5 bg-red-400 rounded-full"></div>
+                    <span>Agent answers blind</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-1.5 h-1.5 bg-red-400 rounded-full"></div>
+                    <span>Fetch customer data (8-15s)</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-1.5 h-1.5 bg-red-400 rounded-full"></div>
+                    <span>Read context (5-10s)</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-1.5 h-1.5 bg-red-400 rounded-full"></div>
+                    <span>Start helping</span>
+                  </div>
                 </div>
               </div>
 
               {/* Current Process */}
-              <div className="p-3 bg-blue-50 rounded border border-blue-200">
-                <h4 className="font-medium text-blue-800 mb-2 flex items-center text-sm">
-                  <Bot className="w-3 h-3 mr-1" />
+              <div className="p-5 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200 shadow-sm hover:shadow-md transition-shadow">
+                <h4 className="font-bold text-blue-800 mb-3 flex items-center text-base">
+                  <Bot className="w-4 h-4 mr-2" />
                   IVR Pre-processing
                 </h4>
-                <div className="space-y-1 text-xs">
-                  <div className={`${phoneNumber ? 'text-green-700' : 'text-blue-700'}`}>
-                    {phoneNumber ? '✓' : '○'} Customer identified
+                <div className="space-y-2 text-sm">
+                  <div className={`flex items-center space-x-2 ${phoneNumber ? 'text-green-700' : 'text-blue-700'}`}>
+                    <div className={`w-1.5 h-1.5 rounded-full ${phoneNumber ? 'bg-green-500' : 'bg-blue-400'}`}></div>
+                    <span>{phoneNumber ? '✓' : '○'} Customer identified</span>
                   </div>
-                  <div className={`${backendDetails.length > 0 ? 'text-green-700' : 'text-blue-700'}`}>
-                    {backendDetails.length > 0 ? '✓' : '○'} {backendDetails.length} services pre-loaded
+                  <div className={`flex items-center space-x-2 ${backendDetails.length > 0 ? 'text-green-700' : 'text-blue-700'}`}>
+                    <div className={`w-1.5 h-1.5 rounded-full ${backendDetails.length > 0 ? 'bg-green-500' : 'bg-blue-400'}`}></div>
+                    <span>{backendDetails.length > 0 ? '✓' : '○'} {backendDetails.length} services pre-loaded</span>
                   </div>
-                  <div className={`${routedAgent ? 'text-green-700' : 'text-blue-700'}`}>
-                    {routedAgent ? '✓' : '○'} Agent matched ({routedAgent?.matchPercentage || 0}%)
+                  <div className={`flex items-center space-x-2 ${routedAgent ? 'text-green-700' : 'text-blue-700'}`}>
+                    <div className={`w-1.5 h-1.5 rounded-full ${routedAgent ? 'bg-green-500' : 'bg-blue-400'}`}></div>
+                    <span>{routedAgent ? '✓' : '○'} Agent matched ({routedAgent?.matchPercentage || 0}%)</span>
                   </div>
                 </div>
               </div>
 
               {/* Result */}
-              <div className="p-3 bg-green-50 rounded border border-green-200">
-                <h4 className="font-medium text-green-800 mb-2 flex items-center text-sm">
-                  <CheckCircle className="w-3 h-3 mr-1" />
+              <div className="p-5 bg-gradient-to-br from-green-50 to-green-100 rounded-xl border border-green-200 shadow-sm hover:shadow-md transition-shadow">
+                <h4 className="font-bold text-green-800 mb-3 flex items-center text-base">
+                  <CheckCircle className="w-4 h-4 mr-2" />
                   Optimized Result
                 </h4>
-                <div className="space-y-1 text-xs text-green-700">
-                  <div>→ Context pre-loaded</div>
-                  <div>→ Agent starts immediately</div>
+                <div className="space-y-2 text-sm text-green-700">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                    <span>Context pre-loaded</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                    <span>Agent starts immediately</span>
+                  </div>
                   {backendDetails.length > 0 && (
                     <>
-                      <div className="font-medium">
+                      <div className="font-bold text-green-800 text-base mt-3">
                         New AHT: ~{Math.max(6, 11 - Math.round(Math.max(...backendDetails.map(service => 
                           parseInt(service.TIME_TAKEN || 0))) / 1000 / 60))} min
                       </div>

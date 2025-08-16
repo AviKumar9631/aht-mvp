@@ -27,6 +27,9 @@ import {
   Download,
   Save,
   Database,
+  Brain,
+  RefreshCw,
+  Activity,
 } from "lucide-react";
 import {
   Dialog,
@@ -65,69 +68,70 @@ const DebugPanel = ({
   backendDetails,
 }) => {
   return (
-    <div className="space-y-4">
-      <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-3">
+    <div className="space-y-6">
+      <div className="bg-white rounded-xl shadow-lg border p-8">
+        <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+          <Database className="w-6 h-6 mr-3 text-blue-600" />
           localStorage State Data
         </h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-sm">
-          <div>
-            <span className="font-medium text-gray-700">Phone Number:</span>
-            <p className="text-gray-900">{phoneNumber || "N/A"}</p>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-sm">
+          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <span className="font-medium text-blue-700">Phone Number:</span>
+            <p className="text-blue-900 font-medium">{phoneNumber || "N/A"}</p>
           </div>
-          <div>
-            <span className="font-medium text-gray-700">Selected Option:</span>
-            <p className="text-gray-900">{selectedOption || "N/A"}</p>
+          <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+            <span className="font-medium text-purple-700">Selected Option:</span>
+            <p className="text-purple-900 font-medium">{selectedOption || "N/A"}</p>
           </div>
-          <div>
+          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
             <span className="font-medium text-gray-700">Session ID:</span>
-            <p className="text-gray-900 font-mono text-xs">
+            <p className="text-gray-900 font-mono text-xs break-all">
               {sessionId || "N/A"}
             </p>
           </div>
-          <div>
-            <span className="font-medium text-gray-700">
+          <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+            <span className="font-medium text-green-700">
               Agent Match Score:
             </span>
-            <p className="text-gray-900">
+            <p className="text-green-900 font-bold">
               {agentMatchScore ? `${agentMatchScore}%` : "N/A"}
             </p>
           </div>
-          <div>
-            <span className="font-medium text-gray-700">Backend Services:</span>
-            <p className="text-gray-900">{totalBackendServices || 0}</p>
+          <div className="bg-indigo-50 rounded-lg p-4 border border-indigo-200">
+            <span className="font-medium text-indigo-700">Backend Services:</span>
+            <p className="text-indigo-900 font-bold">{totalBackendServices || 0}</p>
           </div>
-          <div>
-            <span className="font-medium text-gray-700">Successful:</span>
-            <p className="text-green-600">{successfulServices || 0}</p>
+          <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+            <span className="font-medium text-green-700">Successful:</span>
+            <p className="text-green-600 font-bold">{successfulServices || 0}</p>
           </div>
-          <div>
-            <span className="font-medium text-gray-700">Failed:</span>
-            <p className="text-red-600">{failedServices || 0}</p>
+          <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+            <span className="font-medium text-red-700">Failed:</span>
+            <p className="text-red-600 font-bold">{failedServices || 0}</p>
           </div>
-          <div>
-            <span className="font-medium text-gray-700">
+          <div className="bg-amber-50 rounded-lg p-4 border border-amber-200">
+            <span className="font-medium text-amber-700">
               Total Backend Time (Parallel):
             </span>
-            <p className="text-gray-900">{totalBackendTime || 0}ms</p>
+            <p className="text-amber-900 font-bold">{totalBackendTime || 0}ms</p>
           </div>
-          <div>
-            <span className="font-medium text-gray-700">Available Agents:</span>
-            <p className="text-gray-900">{availableAgentsCount || 0}</p>
+          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <span className="font-medium text-blue-700">Available Agents:</span>
+            <p className="text-blue-900 font-bold">{availableAgentsCount || 0}</p>
           </div>
-          <div>
-            <span className="font-medium text-gray-700">Category Mapping:</span>
-            <p className="text-gray-900">{categoryMapping || "N/A"}</p>
+          <div className="bg-violet-50 rounded-lg p-4 border border-violet-200">
+            <span className="font-medium text-violet-700">Category Mapping:</span>
+            <p className="text-violet-900 text-xs">{categoryMapping || "N/A"}</p>
           </div>
-          <div>
-            <span className="font-medium text-gray-700">
+          <div className="bg-teal-50 rounded-lg p-4 border border-teal-200">
+            <span className="font-medium text-teal-700">
               Activity Log Entries:
             </span>
-            <p className="text-gray-900">{activityLog?.length || 0}</p>
+            <p className="text-teal-900 font-bold">{activityLog?.length || 0}</p>
           </div>
-          <div>
-            <span className="font-medium text-gray-700">Last Session:</span>
-            <p className="text-gray-900 text-xs">
+          <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
+            <span className="font-medium text-slate-700">Last Session:</span>
+            <p className="text-slate-900 text-xs">
               {lastIVRSession
                 ? new Date(lastIVRSession).toLocaleTimeString()
                 : "N/A"}
@@ -136,36 +140,37 @@ const DebugPanel = ({
         </div>
 
         {routedAgent && (
-          <div className="mt-4 p-3 bg-blue-50 rounded border border-blue-200">
-            <h4 className="font-medium text-blue-900 mb-2">
+          <div className="mt-6 p-6 bg-gradient-to-r from-blue-50 via-purple-50 to-indigo-50 rounded-xl border border-blue-200 shadow-sm">
+            <h4 className="font-bold text-blue-900 mb-4 flex items-center">
+              <User className="w-5 h-5 mr-2 text-blue-600" />
               Routed Agent Details:
             </h4>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
-              <div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+              <div className="bg-white rounded-lg p-3 border border-blue-100">
                 <span className="font-medium text-blue-700">Name:</span>
-                <p className="text-blue-900">{routedAgent.name}</p>
+                <p className="text-blue-900 font-semibold">{routedAgent.name}</p>
               </div>
-              <div>
-                <span className="font-medium text-blue-700">Department:</span>
-                <p className="text-blue-900">{routedAgent.dept}</p>
+              <div className="bg-white rounded-lg p-3 border border-purple-100">
+                <span className="font-medium text-purple-700">Department:</span>
+                <p className="text-purple-900 font-semibold">{routedAgent.dept}</p>
               </div>
-              <div>
-                <span className="font-medium text-blue-700">Agent ID:</span>
-                <p className="text-blue-900">{routedAgent.id}</p>
+              <div className="bg-white rounded-lg p-3 border border-indigo-100">
+                <span className="font-medium text-indigo-700">Agent ID:</span>
+                <p className="text-indigo-900 font-mono">{routedAgent.id}</p>
               </div>
-              <div>
-                <span className="font-medium text-blue-700">Availability:</span>
-                <p className="text-blue-900">{routedAgent.availability}</p>
+              <div className="bg-white rounded-lg p-3 border border-green-100">
+                <span className="font-medium text-green-700">Availability:</span>
+                <p className="text-green-900 font-semibold">{routedAgent.availability}</p>
               </div>
-              <div>
-                <span className="font-medium text-blue-700">FCR:</span>
-                <p className="text-blue-900">
+              <div className="bg-white rounded-lg p-3 border border-emerald-100">
+                <span className="font-medium text-emerald-700">FCR:</span>
+                <p className="text-emerald-900 font-bold">
                   {routedAgent.performance?.firstCallResolutionPercentage}%
                 </p>
               </div>
-              <div>
-                <span className="font-medium text-blue-700">AHT:</span>
-                <p className="text-blue-900">
+              <div className="bg-white rounded-lg p-3 border border-amber-100">
+                <span className="font-medium text-amber-700">AHT:</span>
+                <p className="text-amber-900 font-bold">
                   {Math.round(
                     routedAgent.performance?.averageHandleTimeSeconds / 60
                   )}
@@ -177,34 +182,49 @@ const DebugPanel = ({
         )}
 
         {/* AI Analysis Section */}
-        <div className="mt-4 p-3 bg-green-50 rounded border border-green-200">
-          <h4 className="font-medium text-green-900 mb-2">AI Analysis:</h4>
-          <div className="grid grid-cols-2 gap-3 text-sm">
-            <div>
+        <div className="mt-6 p-6 bg-gradient-to-r from-green-50 via-emerald-50 to-teal-50 rounded-xl border border-green-200 shadow-sm">
+          <h4 className="font-bold text-green-900 mb-4 flex items-center">
+            <Brain className="w-5 h-5 mr-2 text-green-600" />
+            AI Analysis:
+          </h4>
+          <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="bg-white rounded-lg p-3 border border-green-100">
               <span className="font-medium text-green-700">Status:</span>
-              <p className="text-green-900">
-                {geminiApiLoading
-                  ? "Processing..."
-                  : geminiApiResponse
-                  ? "Completed"
-                  : "Ready"}
+              <p className="text-green-900 font-semibold flex items-center">
+                {geminiApiLoading ? (
+                  <>
+                    <RefreshCw className="w-4 h-4 mr-1 animate-spin text-blue-600" />
+                    Processing...
+                  </>
+                ) : geminiApiResponse ? (
+                  <>
+                    <CheckCircle className="w-4 h-4 mr-1 text-green-600" />
+                    Completed
+                  </>
+                ) : (
+                  <>
+                    <Clock className="w-4 h-4 mr-1 text-gray-600" />
+                    Ready
+                  </>
+                )}
               </p>
             </div>
-            <div>
-              <span className="font-medium text-green-700">
+            <div className="bg-white rounded-lg p-3 border border-emerald-100">
+              <span className="font-medium text-emerald-700">
                 Backend Services:
               </span>
-              <p className="text-green-900">
+              <p className="text-emerald-900 font-bold">
                 {backendDetails?.filter((s) => s.RESPONSE_XML).length || 0} with
                 XML data
               </p>
             </div>
             {geminiApiResponse && (
-              <div className="col-span-2">
-                <span className="font-medium text-green-700">
+              <div className="col-span-2 bg-white rounded-lg p-3 border border-teal-100">
+                <span className="font-medium text-teal-700">
                   Last Analysis:
                 </span>
-                <p className="text-green-900 text-xs">
+                <p className="text-teal-900 text-xs flex items-center">
+                  <Activity className="w-3 h-3 mr-1 text-teal-600" />
                   {new Date().toLocaleTimeString()} - Check AI Suggestions for
                   insights
                 </p>
@@ -821,7 +841,7 @@ ${xmlText}`,
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-goog-api-key": "AIzaSyAuoqm2vGsdwbdV4pCewGJjT1PtWTQuXOg1",
+            "X-goog-api-key": "AIzaSyAuoqm2vGsdwbdV4pCewGJjT1PtWTQuXOg",
           },
           body: JSON.stringify(payload),
         }
@@ -1079,7 +1099,7 @@ Be concise and actionable.`,
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-goog-api-key": "AIzaSyAuoqm2vGsdwbdV4pCewGJjT1PtWTQuXOg1", // You'll need to set your API key
+            "X-goog-api-key": "AIzaSyAuoqm2vGsdwbdV4pCewGJjT1PtWTQuXOg", // You'll need to set your API key
           },
           body: JSON.stringify(payload),
         }
@@ -1224,7 +1244,7 @@ Return concise JSON (no markdown):
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-goog-api-key": "AIzaSyAuoqm2vGsdwbdV4pCewGJjT1PtWTQuXOg1",
+            "X-goog-api-key": "AIzaSyAuoqm2vGsdwbdV4pCewGJjT1PtWTQuXOg",
           },
           body: JSON.stringify(payload),
         }
@@ -1481,7 +1501,7 @@ Keep content concise and action-oriented for agents.`,
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-goog-api-key": "AIzaSyAuoqm2vGsdwbdV4pCewGJjT1PtWTQuXOg1",
+            "X-goog-api-key": "AIzaSyAuoqm2vGsdwbdV4pCewGJjT1PtWTQuXOg",
           },
           body: JSON.stringify(payload),
         }
@@ -5472,15 +5492,20 @@ Customer transferred from IVR system:
                   </div> */}
                 </div>
 
-                {/* Right Panel - Knowledge Base */}
-                <div className="w-80 bg-white border-l border-gray-200 flex flex-col h-fit">
-                  {/* Compact Header with Search and Stats */}
-                  <div className="p-3 border-b border-gray-200 bg-gray-50">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-sm font-semibold text-gray-900">
-                        Knowledge Hub
-                      </h3>
-                      <div className="flex items-center space-x-1">
+                {/* Enhanced Right Panel - Knowledge Base */}
+                <div className="w-80 bg-white/80 backdrop-blur-sm border-l border-slate-200/60 flex flex-col h-fit rounded-r-xl shadow-lg">
+                  {/* Enhanced Header with Search and Stats */}
+                  <div className="p-4 border-b border-slate-200/60 bg-gradient-to-r from-purple-50 to-indigo-50">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center space-x-2">
+                        <div className="p-2 bg-gradient-to-r from-purple-100 to-purple-200 rounded-lg border border-purple-300">
+                          <Brain className="w-5 h-5 text-purple-600" />
+                        </div>
+                        <h3 className="text-base font-bold text-gray-900">
+                          Knowledge Hub
+                        </h3>
+                      </div>
+                      <div className="flex items-center space-x-2">
                         <button
                           onClick={() => {
                             if (customerData?.issue || selectedOption) {
@@ -5493,40 +5518,42 @@ Customer transferred from IVR system:
                             }
                           }}
                           disabled={knowledgeBaseLoading}
-                          className={`text-xs p-1 rounded transition-colors ${
+                          className={`p-2 rounded-lg transition-all duration-200 ${
                             knowledgeBaseLoading
-                              ? "text-gray-400 cursor-not-allowed"
-                              : "text-blue-600 hover:text-blue-800 hover:bg-blue-100"
+                              ? "text-gray-400 cursor-not-allowed bg-gray-50"
+                              : "text-blue-600 hover:text-blue-800 hover:bg-blue-50 bg-white border border-blue-200 shadow-sm hover:shadow-md"
                           }`}
                           title="Refresh knowledge base with AI"
                         >
                           {knowledgeBaseLoading ? (
-                            <div className="w-3 h-3 border border-gray-400 border-t-transparent rounded-full animate-spin" />
+                            <div className="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
                           ) : (
-                            <Bot className="w-3 h-3" />
+                            <Bot className="w-4 h-4" />
                           )}
                         </button>
-                        <span className="text-xs text-gray-500 bg-white px-2 py-1 rounded-full border">
-                          {knowledgeBase.length}
-                        </span>
-                        <span className="text-xs text-green-600 font-medium bg-green-50 px-2 py-1 rounded-full">
-                          {knowledgeBase.length > 0
-                            ? Math.round(
-                                knowledgeBase.reduce(
-                                  (sum, a) => sum + a.relevance,
-                                  0
-                                ) / knowledgeBase.length
-                              )
-                            : 0}
-                          % avg
-                        </span>
+                        <div className="flex items-center space-x-1">
+                          <span className="text-sm text-gray-600 bg-white px-3 py-1 rounded-full border border-slate-200 font-medium">
+                            {knowledgeBase.length}
+                          </span>
+                          <span className="text-sm text-green-600 font-bold bg-gradient-to-r from-green-100 to-green-200 px-3 py-1 rounded-full border border-green-300">
+                            {knowledgeBase.length > 0
+                              ? Math.round(
+                                  knowledgeBase.reduce(
+                                    (sum, a) => sum + a.relevance,
+                                    0
+                                  ) / knowledgeBase.length
+                                )
+                              : 0}
+                            % avg
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div className="relative">
-                      <Search className="absolute left-2.5 top-1/2 transform -translate-y-1/2 w-3.5 h-3.5 text-gray-400" />
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                       <input
                         type="text"
-                        placeholder="Quick search..."
+                        placeholder="Quick search knowledge base..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         onKeyPress={(e) => {
@@ -5539,42 +5566,42 @@ Customer transferred from IVR system:
                             );
                           }
                         }}
-                        className="w-full pl-8 pr-3 py-1.5 text-sm border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                        className="w-full pl-10 pr-4 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white shadow-sm transition-all"
                       />
                     </div>
                   </div>
 
-                  {/* Knowledge Base Results - Compact Cards */}
+                  {/* Enhanced Knowledge Base Results */}
                   <div className="flex-1 overflow-hidden">
-                    <div className="p-3 h-full">
-                      <div className="space-y-2 h-full overflow-y-auto">
+                    <div className="p-4 h-full">
+                      <div className="space-y-3 h-full overflow-y-auto">
                         {knowledgeBase.map((article, index) => (
                           <div
                             key={index}
-                            className={`p-2.5 rounded-md border transition-all hover:shadow-sm cursor-pointer group ${
+                            className={`p-4 rounded-xl border transition-all hover:shadow-lg cursor-pointer group transform hover:scale-[1.02] ${
                               article.type === "case_study"
-                                ? "bg-blue-50 border-blue-200 hover:bg-blue-100"
+                                ? "bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 hover:from-blue-100 hover:to-blue-200"
                                 : article.type === "technical_guide"
-                                ? "bg-green-50 border-green-200 hover:bg-green-100"
+                                ? "bg-gradient-to-br from-green-50 to-green-100 border-green-200 hover:from-green-100 hover:to-green-200"
                                 : article.type === "service_guide"
-                                ? "bg-purple-50 border-purple-200 hover:bg-purple-100"
+                                ? "bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 hover:from-purple-100 hover:to-purple-200"
                                 : article.type === "analytics"
-                                ? "bg-yellow-50 border-yellow-200 hover:bg-yellow-100"
-                                : "bg-gray-50 border-gray-200 hover:bg-gray-100"
+                                ? "bg-gradient-to-br from-yellow-50 to-yellow-100 border-yellow-200 hover:from-yellow-100 hover:to-yellow-200"
+                                : "bg-gradient-to-br from-gray-50 to-gray-100 border-gray-200 hover:from-gray-100 hover:to-gray-200"
                             }`}
                           >
-                            <div className="flex items-start justify-between mb-1.5">
-                              <h4 className="text-xs font-medium text-gray-900 flex-1 pr-2 leading-tight">
+                            <div className="flex items-start justify-between mb-2">
+                              <h4 className="text-sm font-bold text-gray-900 flex-1 pr-3 leading-tight group-hover:text-gray-800">
                                 {article.title}
                               </h4>
-                              <div className="flex items-center space-x-1">
-                                <span className="text-xs font-bold text-green-600 min-w-0">
+                              <div className="flex items-center space-x-2">
+                                <span className="text-sm font-bold text-green-600 min-w-0 bg-white px-2 py-1 rounded-full shadow-sm">
                                   {article.relevance}%
                                 </span>
                               </div>
                             </div>
 
-                            <p className="text-xs text-gray-600 mb-2 line-clamp-2 leading-tight">
+                            <p className="text-sm text-gray-700 mb-3 line-clamp-2 leading-relaxed">
                               {article.content}
                             </p>
 
